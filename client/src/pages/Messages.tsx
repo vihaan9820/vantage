@@ -776,8 +776,8 @@ export default function Messages() {
       {/* Audio / Video Call Modal */}
       {/* Audio / Video Call Modal */}
       {callKind === "video" ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg animate-fade-in" role="dialog" aria-modal="true">
-          <div className="relative w-full max-w-4xl glass-panel rounded-3xl p-6 md:p-8 shadow-2xl border border-white/20 overflow-hidden flex flex-col gap-6 max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-lg animate-fade-in" role="dialog" aria-modal="true">
+          <div className="relative w-full max-w-4xl glass-panel rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 md:p-8 shadow-2xl border border-white/20 overflow-hidden flex flex-col gap-4 sm:gap-6 max-h-[96vh] overflow-y-auto">
             {/* Header */}
             <div className="flex justify-between items-center pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">

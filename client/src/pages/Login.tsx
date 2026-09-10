@@ -1,4 +1,4 @@
-import { ArrowRight, Eye, EyeOff, KeyRound, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, KeyRound, LockKeyhole, Mail, ShieldCheck, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { toast } from "sonner";
@@ -112,6 +112,20 @@ export default function Login() {
                 <GithubIcon size={18} /> Continue with GitHub
               </button>
             </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                const acct = logIn("vihaan@vantage.io", "Vihaan Patange");
+                toast.success("Welcome, Vihaan! 20 Skill Points active.");
+                navigate(acct.onboardingComplete ? "/dashboard" : "/onboarding");
+              }}
+              className="w-full py-2.5 px-3 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+            >
+              <Sparkles size={14} className="text-yellow-400" />
+              <span>⚡ 1-Tap Quick Access (Mobile / Demo)</span>
+            </button>
+
             <div className="auth-divider">
               <span>or email</span>
             </div>

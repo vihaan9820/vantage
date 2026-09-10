@@ -147,6 +147,18 @@ input, select, textarea {
   box-shadow: none;
   -webkit-appearance: none;
   appearance: none;
+  font-size: 16px; /* Prevents iOS Safari auto-zoom on mobile focus */
+}
+
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Enhanced mobile touch behavior & smooth tapping */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
 }
 
 /* Eliminate any boxy outlines on transparent or search-embedded inputs everywhere */
