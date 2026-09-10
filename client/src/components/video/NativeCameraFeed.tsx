@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { AlertCircle, Camera, Mic, MicOff, RefreshCw, SwitchCamera, Video, VideoOff } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AlertCircle, Camera, Maximize2, Mic, MicOff, Minimize2, RefreshCw, SwitchCamera, Video, VideoOff } from "lucide-react";
 import type { MediaStatus } from "@/hooks/useNativeMediaStream";
 
 export interface NativeCameraFeedProps {
@@ -14,6 +14,10 @@ export interface NativeCameraFeedProps {
   className?: string;
   showControls?: boolean;
   isScreenShare?: boolean;
+  allowFullscreen?: boolean;
+  isFullscreen?: boolean;
+  onToggleFullscreen?: () => void;
+  onStopScreenShare?: () => void;
   onToggleVideo?: () => void;
   onToggleAudio?: () => void;
   onSwitchCamera?: () => void;
@@ -32,12 +36,48 @@ export function NativeCameraFeed({
   className = "",
   showControls = false,
   isScreenShare = false,
+  allowFullscreen = true,
+  isFullscreen: externalFullscreen,
+  onToggleFullscreen,
+  onStopScreenShare,
   onToggleVideo,
   onToggleAudio,
   onSwitchCamera,
   onRetry,
 }: NativeCameraFeedProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [internalFullscreen, setInternalFullscreen] = useState(false);
+  const isFullscreen = externalFullscreen !== undefined ? externalFullscreen : internalFullscreen;
+
+  const toggleFullscreen = () => {
+    if (onToggleFullscreen) {
+      onToggleFullscreen();
+    } else {
+      setInternalFullscreen((prev) => {
+        const next = !prev;
+        if (next && containerRef.current && containerRef.current.requestFullscreen) {
+          containerRef.current.requestFullscreen().catch(() => {});
+        } else if (!next && document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+        return next;
+      });
+    }
+  };
+
+  // Keyboard shortcut: Escape exits fullscreen, F toggles fullscreen
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isFullscreen]);
 
   // Attach MediaStream to HTMLVideoElement
   useEffect(() => {
@@ -56,8 +96,48 @@ export function NativeCameraFeed({
 
   return (
     <div
-      className={`relative aspect-video rounded-2xl bg-[#090b14] border-2 border-white/20 flex flex-col items-center justify-center overflow-hidden shadow-2xl group ${className}`}
+      ref={containerRef}
+      className={
+        isFullscreen
+          ? "fixed inset-0 z-[9999] bg-[#05060b]/98 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 select-none animate-in fade-in duration-200"
+          : `relative aspect-video rounded-2xl bg-[#090b14] border-2 border-white/20 flex flex-col items-center justify-center overflow-hidden shadow-2xl group ${className}`
+      }
     >
+      {/* FULLSCREEN HUD HEADER */}
+      {isFullscreen && (
+        <div className="w-full max-w-7xl flex justify-between items-center mb-3 px-2 z-10 animate-fade-in">
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-2 bg-blue-500/20 text-blue-300 border border-blue-500/40 px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-lg">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+              {isScreenShare ? "Screen Share Live · Ultra HD" : `${userName} · Live Feed`}
+            </span>
+            <span className="text-[11px] text-zinc-400 hidden md:inline">
+              Double-click to toggle · Press Esc to exit
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            {isScreenShare && onStopScreenShare && (
+              <button
+                onClick={() => {
+                  toggleFullscreen();
+                  onStopScreenShare();
+                }}
+                className="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                Stop Sharing
+              </button>
+            )}
+            <button
+              onClick={toggleFullscreen}
+              className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur shadow-md"
+              title="Exit Fullscreen (Esc)"
+            >
+              <Minimize2 size={14} />
+              <span>Exit Fullscreen</span>
+            </button>
+          </div>
+        </div>
+      )}
       {/* 1. Active Camera / Screen Feed */}
       {status === "active" && videoEnabled ? (
         <video
@@ -65,10 +145,29 @@ export function NativeCameraFeed({
           autoPlay
           playsInline
           muted
-          className={`w-full h-full ${isScreenShare ? "object-contain bg-black" : "object-cover"}`}
+          onDoubleClick={toggleFullscreen}
+          className={`w-full h-full transition-all duration-300 ${
+            isFullscreen
+              ? "max-h-[88vh] object-contain rounded-xl shadow-2xl bg-black"
+              : isScreenShare
+              ? "object-contain bg-black cursor-pointer"
+              : "object-cover"
+          }`}
           style={{ transform: isScreenShare ? "none" : "scaleX(-1)" }} // Only mirror webcam, not screen share
         />
       ) : null}
+
+      {/* Top Right Fullscreen Trigger Button when not in fullscreen */}
+      {status === "active" && (isScreenShare || allowFullscreen) && !isFullscreen && (
+        <button
+          onClick={toggleFullscreen}
+          className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-lg bg-black/80 hover:bg-black text-white border border-white/25 hover:border-blue-400/50 backdrop-blur-md transition-all flex items-center gap-1.5 text-[11px] font-bold cursor-pointer shadow-lg hover:shadow-blue-500/20"
+          title="Toggle Fullscreen (or double-click video)"
+        >
+          <Maximize2 size={12} className="text-blue-400" />
+          <span className="hidden sm:inline">Fullscreen</span>
+        </button>
+      )}
 
       {/* 2. Camera Off Placeholder */}
       {status === "active" && !videoEnabled ? (

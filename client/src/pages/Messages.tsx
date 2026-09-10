@@ -822,6 +822,8 @@ export default function Messages() {
                   videoEnabled={true}
                   audioEnabled={false}
                   isScreenShare={true}
+                  allowFullscreen={true}
+                  onStopScreenShare={videoMedia.stopScreenShare}
                   userName="Your Screen"
                   className="w-full aspect-video max-h-[360px]"
                 />
