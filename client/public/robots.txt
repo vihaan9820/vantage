@@ -1,0 +1,26 @@
+# SkillSwap — Production Robots Configuration
+# https://skillswap.io
+
+User-agent: *
+Allow: /
+Allow: /dashboard
+Allow: /discover
+Allow: /matches
+Allow: /skills/
+Allow: /professionals/
+Allow: /learn
+Allow: /teach
+Allow: /community
+Allow: /help
+Allow: /about
+
+# Private authenticated routes & internal endpoints
+Disallow: /api/
+Disallow: /settings
+Disallow: /messages
+Disallow: /wallet
+Disallow: /sessions
+Disallow: /saved
+Disallow: /onboarding
+
+Sitemap: https://skillswap.io/sitemap.xml

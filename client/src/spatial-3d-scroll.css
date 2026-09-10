@@ -1,0 +1,78 @@
+/**
+ * Vantage / SkillSwap — Spatial 3D Scroll Choreography System
+ * 
+ * Provides continuous 3D camera depth, multi-plane holographic layers,
+ * hardware acceleration, and seamless perspective contexts.
+ */
+
+/* Perspective root environments — applied to landing viewports so fixed viewport backgrounds (ferrofluid & ambient glow) stay truly pinned across the entire page without breaking 3D composition */
+.spatial-perspective-root,
+.site-shell > main {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base spatial section behavior */
+.spatial-section-target {
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+}
+
+/* Layered depth hierarchy */
+.spatial-bg-layer {
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.spatial-mid-layer {
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.spatial-fg-layer {
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  /* Maintain razor-sharp typography and highest visual contrast */
+  filter: none !important;
+}
+
+/* Prevent unwanted horizontal overflow during spatial tilts while preserving 3D */
+body {
+  overflow-x: hidden;
+}
+
+/* Accessibility: Full fallback when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .spatial-perspective-root,
+  .site-shell,
+  .site-shell > main,
+  .app-chrome,
+  .app-content,
+  .product-content,
+  .spatial-section-target,
+  .spatial-bg-layer,
+  .spatial-mid-layer,
+  .spatial-fg-layer {
+    perspective: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    will-change: auto !important;
+  }
+}

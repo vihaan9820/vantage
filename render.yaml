@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: skillswap-platform
+    env: node
+    plan: starter
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
+    startCommand: node dist/index.js
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: VITE_SUPABASE_URL
+        value: https://yhbgukystflgmwubtyvo.supabase.co
+      - key: VITE_SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloYmd1a3lzdGZsZ213dWJ0eXZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5Njk4ODMsImV4cCI6MjEwMzU0NTg4M30.C3V2M2Wppg26OE9snqvFbbSmIaxasWNsZWw1i87VUnw
+      - key: ADMIN_API_KEY
+        generateValue: true

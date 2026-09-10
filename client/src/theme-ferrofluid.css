@@ -1,0 +1,269 @@
+/* =============================================================================
+   Ferrofluid Theme Tokens (Navy / Beige / Cream Palette)
+   ============================================================================= */
+
+:root,
+html[data-theme="dark"],
+html[data-skillswap-theme="dark"],
+html.dark {
+  /* Obsidian Dark Mode */
+  --bg-base: #000000;
+  --bg-elevated: #09090B;
+  --accent-primary: #FFFFFF;
+  --accent-secondary: #A1A1AA;
+  --text-primary: #FFFFFF;
+  --text-muted: #8E8E93;
+  --border: rgba(255, 255, 255, 0.14);
+
+  --bg-wash: #000000;
+  --ferrofluid-blob: linear-gradient(135deg, #18181B 0%, #27272A 50%, #000000 100%);
+  --toggle-track: linear-gradient(90deg, #18181B, #09090B);
+  --toggle-glow: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+}
+
+html[data-theme="light"],
+html[data-skillswap-theme="light"],
+html.light {
+  /* Crisp White Light Mode (#FFFFFF) */
+  --bg-base: #FFFFFF;
+  --bg-elevated: #F8FAFC;
+  --accent-primary: #000000;
+  --accent-secondary: #334155;
+  --text-primary: #000000;
+  --text-muted: #64748B;
+  --border: rgba(0, 0, 0, 0.12);
+
+  --bg-wash: #FFFFFF;
+  --ferrofluid-blob: linear-gradient(135deg, #000000 0%, #1E293B 50%, #64748B 100%);
+  --toggle-track: linear-gradient(90deg, #E2E8F0, #FFFFFF);
+  --toggle-glow: radial-gradient(circle, rgba(0, 0, 0, 0.15), transparent 70%);
+}
+
+/* Light Mode Global Adaptations */
+html[data-theme="light"] body,
+html[data-skillswap-theme="light"] body,
+html.light body {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+html[data-theme="light"] .vantage-logo-img,
+html[data-skillswap-theme="light"] .vantage-logo-img {
+  filter: brightness(0) !important;
+}
+
+html[data-theme="light"] .glass-panel,
+html[data-skillswap-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.90) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #000000 !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light"] .glass-panel p,
+html[data-theme="light"] .glass-panel span,
+html[data-skillswap-theme="light"] .glass-panel p,
+html[data-skillswap-theme="light"] .glass-panel span {
+  color: #64748B !important;
+}
+
+html[data-theme="light"] .glass-panel h1,
+html[data-theme="light"] .glass-panel h2,
+html[data-theme="light"] .glass-panel h3,
+html[data-theme="light"] .glass-panel h4,
+html[data-skillswap-theme="light"] .glass-panel h1,
+html[data-skillswap-theme="light"] .glass-panel h2,
+html[data-skillswap-theme="light"] .glass-panel h3,
+html[data-skillswap-theme="light"] .glass-panel h4 {
+  color: #000000 !important;
+}
+
+/* Transitions */
+body, .glass-panel, header, nav, .vantage-landing-wrap {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+/* Landing Page & Auth Light Mode Overrides */
+html[data-theme="light"] .vantage-landing-wrap,
+html[data-skillswap-theme="light"] .vantage-landing-wrap,
+html.light .vantage-landing-wrap {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+html[data-theme="dark"] .vantage-landing-wrap,
+html[data-skillswap-theme="dark"] .vantage-landing-wrap,
+html.dark .vantage-landing-wrap {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+/* Logo inversion in light mode to crisp black on white */
+html[data-theme="light"] img[src="/vantage-logo.png"],
+html[data-skillswap-theme="light"] img[src="/vantage-logo.png"],
+html.light img[src="/vantage-logo.png"] {
+  filter: brightness(0) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12)) !important;
+}
+
+/* Headings in Light Mode */
+html[data-theme="light"] .vantage-landing-wrap h1,
+html[data-theme="light"] .vantage-landing-wrap h2,
+html[data-theme="light"] .vantage-landing-wrap h3,
+html[data-theme="light"] .vantage-landing-wrap h4,
+html[data-theme="light"] .vantage-landing-wrap .font-megiko,
+html[data-skillswap-theme="light"] .vantage-landing-wrap h1,
+html[data-skillswap-theme="light"] .vantage-landing-wrap h2,
+html[data-skillswap-theme="light"] .vantage-landing-wrap h3,
+html[data-skillswap-theme="light"] .vantage-landing-wrap h4,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .font-megiko {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* Body Text in Light Mode */
+html[data-theme="light"] .vantage-landing-wrap p,
+html[data-theme="light"] .vantage-landing-wrap li span,
+html[data-skillswap-theme="light"] .vantage-landing-wrap p,
+html[data-skillswap-theme="light"] .vantage-landing-wrap li span {
+  color: #52525B !important;
+  text-shadow: none !important;
+}
+
+/* Badges & Borders in Light Mode */
+html[data-theme="light"] .vantage-landing-wrap .border-white\/10,
+html[data-theme="light"] .vantage-landing-wrap .border-white\/15,
+html[data-theme="light"] .vantage-landing-wrap .border-white\/20,
+html[data-theme="light"] .vantage-landing-wrap .border-white\/30,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .border-white\/10,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .border-white\/15,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .border-white\/20,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .border-white\/30 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme="light"] .vantage-landing-wrap .bg-black\/85,
+html[data-theme="light"] .vantage-landing-wrap .bg-black\/60,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .bg-black\/85,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] .vantage-landing-wrap .bg-white\/5,
+html[data-theme="light"] .vantage-landing-wrap .bg-white\/10,
+html[data-theme="light"] .vantage-landing-wrap .bg-white\/\[0\.02\],
+html[data-skillswap-theme="light"] .vantage-landing-wrap .bg-white\/5,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .bg-white\/10,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .bg-white\/\[0\.02\] {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #000000 !important;
+}
+
+/* Primary Action Buttons on Landing Page */
+html[data-theme="light"] .vantage-landing-wrap a[href="/signup"],
+html[data-skillswap-theme="light"] .vantage-landing-wrap a[href="/signup"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+html[data-theme="light"] .vantage-landing-wrap a[href="/login"],
+html[data-skillswap-theme="light"] .vantage-landing-wrap a[href="/login"] {
+  color: #000000 !important;
+}
+
+html[data-theme="light"] .vantage-landing-wrap .glow-orb-mono,
+html[data-skillswap-theme="light"] .vantage-landing-wrap .glow-orb-mono {
+  opacity: 0.03 !important;
+}
+
+/* =============================================================================
+   Account & Authentication (Signup, Login) Dark vs Light
+   ============================================================================= */
+
+/* DARK MODE: Pure Obsidian Dark (#000000) with Frosted Obsidian Glass */
+:is(html[data-theme="dark"], html[data-skillswap-theme="dark"], html.dark) .account-page {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+:is(html[data-theme="dark"], html[data-skillswap-theme="dark"], html.dark) .account-stage {
+  background: rgba(0, 0, 0, 0.72) !important;
+  backdrop-filter: blur(16px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #FFFFFF !important;
+}
+
+:is(html[data-theme="dark"], html[data-skillswap-theme="dark"], html.dark) .account-panel {
+  background: rgba(0, 0, 0, 0.60) !important;
+  backdrop-filter: blur(16px) !important;
+  color: #FFFFFF !important;
+}
+
+/* LIGHT MODE: Pure #FFFFFF with Frosted White Glass */
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-page {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-stage {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-stage h1,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-stage p {
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel {
+  background: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(16px) !important;
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-form h2,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-form label,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-form span {
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-form input,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .social-grid button,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .mode-picker button {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(0, 0, 0, 0.16) !important;
+  color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .mode-picker button.selected {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .mode-picker button.selected strong,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .mode-picker button.selected small,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .mode-picker button.selected svg {
+  color: #FFFFFF !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-form .primary-action,
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel button[type="submit"] {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+:is(html[data-theme="light"], html[data-skillswap-theme="light"], html.light) .account-panel .auth-back {
+  color: #000000 !important;
+}
+
+

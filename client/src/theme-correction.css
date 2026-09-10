@@ -1,0 +1,1317 @@
+/* Final theme correction: Dual Monochrome System */
+:root {
+  --ss-dark-bg: #000000;
+  --ss-dark-surface: #000000;
+  --ss-dark-surface-raised: #000000;
+  --ss-dark-text: #FFFFFF;
+  --ss-dark-muted: #FFFFFF;
+  --ss-purple: #FFFFFF;
+  --ss-cyan: #FFFFFF;
+  --ss-lime: #FFFFFF;
+  --ss-light-bg: #FFFFFF;
+  --ss-light-surface: #FFFFFF;
+  --ss-light-text: #000000;
+  --ss-light-secondary: #18181B;
+  --ss-light-muted: #52525B;
+  --ss-light-border: rgba(0, 0, 0, 0.15);
+  --ss-light-purple-tint: rgba(0, 0, 0, 0.05);
+}
+
+html.dark, html.dark body, html.dark #root,
+html[data-skillswap-theme="dark"], html[data-skillswap-theme="dark"] body, html[data-skillswap-theme="dark"] #root {
+  min-height: 100%;
+  background: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.light, html.light body, html.light #root,
+html[data-skillswap-theme="light"], html[data-skillswap-theme="light"] body, html[data-skillswap-theme="light"] #root {
+  min-height: 100%;
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+button, input, textarea, select, a, .sonner-toast { transition: color .2s var(--ease-out), background-color .2s var(--ease-out), border-color .2s var(--ease-out), box-shadow .2s var(--ease-out), transform .16s var(--ease-out); }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+button:active:not(:disabled), .primary-action:active, .secondary-action:active { transform: scale(.98); }
+button:disabled { cursor: not-allowed; opacity: .52; filter: saturate(.5); }
+
+/* Black-as-primary in Dark Mode */
+.product-theme-dark.app-chrome,
+html.dark .app-chrome,
+html[data-skillswap-theme="dark"] .app-chrome {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+
+/* White-as-primary in Light Mode */
+.product-theme-light.app-chrome,
+html.light .app-chrome,
+html[data-skillswap-theme="light"] .app-chrome {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+.product-theme-dark .app-topbar,
+html.dark header.app-topbar,
+html[data-skillswap-theme="dark"] header.app-topbar {
+  background: rgba(0, 0, 0, 0.82) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+.product-theme-light .app-topbar,
+html.light header.app-topbar,
+html[data-skillswap-theme="light"] header.app-topbar {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.product-theme-dark .product-menu,
+.product-theme-dark .notification-drawer,
+html.dark .product-menu,
+html.dark .notification-drawer {
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 24px rgba(255, 255, 255, 0.06) !important;
+}
+
+.product-theme-light .product-menu,
+.product-theme-light .notification-drawer,
+html.light .product-menu,
+html.light .notification-drawer {
+  background: #FFFFFF !important;
+  backdrop-filter: blur(32px) !important;
+  -webkit-backdrop-filter: blur(32px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 24px rgba(0, 0, 0, 0.04) !important;
+}
+
+.product-theme-dark .product-menu button,
+.product-theme-dark .notification-list > button,
+html.dark .product-menu button,
+html.dark .notification-list > button {
+  color: #d7deea !important;
+}
+
+.product-theme-light .product-menu button,
+.product-theme-light .notification-list > button,
+html.light .product-menu button,
+html.light .notification-list > button {
+  color: #18181B !important;
+}
+
+.product-theme-dark .product-menu button:hover,
+.product-theme-dark .notification-list > button:hover,
+html.dark .product-menu button:hover,
+html.dark .notification-list > button:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.product-theme-light .product-menu button:hover,
+.product-theme-light .notification-list > button:hover,
+html.light .product-menu button:hover,
+html.light .notification-list > button:hover {
+  color: #000000 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+.product-theme-dark .page-hero,
+.product-theme-dark .dashboard-hero,
+html.dark .page-hero,
+html.dark .dashboard-hero {
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  border-top: 2px solid #FFFFFF !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+}
+
+.product-theme-light .page-hero,
+.product-theme-light .dashboard-hero,
+html.light .page-hero,
+html.light .dashboard-hero {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  border-top: 2px solid #000000 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+}
+
+.product-theme-dark input:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input),
+.product-theme-dark textarea:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not(.chat-input),
+.product-theme-dark select:not([class*="bg-transparent"]):not([class*="border-none"]),
+html.dark input:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input),
+html.dark textarea:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not(.chat-input),
+html.dark select:not([class*="bg-transparent"]):not([class*="border-none"]) {
+  color: #D4D4D8 !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.product-theme-light input,
+.product-theme-light textarea,
+.product-theme-light select,
+html.light input,
+html.light textarea,
+html.light select {
+  color: #000000 !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.22) !important;
+}
+
+.product-theme-dark input:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input):focus,
+.product-theme-dark textarea:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not(.chat-input):focus,
+.product-theme-dark select:not([class*="bg-transparent"]):not([class*="border-none"]):focus,
+html.dark input:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input):focus,
+html.dark textarea:not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.bg-transparent):not(.chat-input):focus,
+html.dark select:not([class*="bg-transparent"]):not([class*="border-none"]):focus {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1) !important;
+  outline: none !important;
+}
+
+.product-theme-light input:focus,
+.product-theme-light textarea:focus,
+.product-theme-light select:focus,
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #000000 !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15) !important;
+  outline: none !important;
+}
+
+.product-theme-dark .app-topbar input,
+html.dark .app-topbar input {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.product-theme-light .app-topbar input,
+html.light .app-topbar input {
+  background-color: transparent !important;
+  border: none !important;
+  color: #000000 !important;
+}
+
+.product-theme-dark .secondary-action,
+html.dark .secondary-action {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+.product-theme-dark .secondary-action:hover,
+html.dark .secondary-action:hover {
+  background: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+.product-theme-light .secondary-action,
+html.light .secondary-action {
+  background: #FFFFFF !important;
+  border: 1.5px solid #000000 !important;
+  color: #000000 !important;
+}
+
+.product-theme-light .secondary-action:hover,
+html.light .secondary-action:hover {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+/* Modals & Dialogs in Dark Mode: Pure OLED True Black */
+.product-theme-dark .portfolio-modal,
+.product-theme-dark .points-education,
+html.dark .portfolio-modal,
+html.dark .points-education {
+  background: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+}
+
+.product-theme-light .portfolio-modal,
+.product-theme-light .points-education,
+html.light .portfolio-modal,
+html.light .points-education {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  color: #000000 !important;
+}
+
+.product-theme-dark .portfolio-modal input,
+.product-theme-dark .portfolio-modal select,
+.product-theme-dark .portfolio-modal textarea,
+html.dark .portfolio-modal input,
+html.dark .portfolio-modal select,
+html.dark .portfolio-modal textarea {
+  background-color: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+}
+
+.product-theme-light .portfolio-modal input,
+.product-theme-light .portfolio-modal select,
+.product-theme-light .portfolio-modal textarea,
+html.light .portfolio-modal input,
+html.light .portfolio-modal select,
+html.light .portfolio-modal textarea {
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  color: #000000 !important;
+}
+
+.product-theme-dark .portfolio-modal input:focus,
+.product-theme-dark .portfolio-modal select:focus,
+.product-theme-dark .portfolio-modal textarea:focus,
+html.dark .portfolio-modal input:focus,
+html.dark .portfolio-modal select:focus,
+html.dark .portfolio-modal textarea:focus {
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 0 1px #FFFFFF !important;
+  outline: none !important;
+}
+
+.product-theme-light .portfolio-modal input:focus,
+.product-theme-light .portfolio-modal select:focus,
+.product-theme-light .portfolio-modal textarea:focus,
+html.light .portfolio-modal input:focus,
+html.light .portfolio-modal select:focus,
+html.light .portfolio-modal textarea:focus {
+  border-color: #000000 !important;
+  box-shadow: 0 0 0 1px #000000 !important;
+  outline: none !important;
+}
+
+
+.route-context { display: flex; align-items: center; gap: 10px; max-width: 1400px; margin: 0 auto; padding: 11px clamp(17px,4vw,58px) 0; color: var(--ss-dark-muted); font: 650 11px "DM Sans", sans-serif; }
+.route-context button { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; padding: 0 8px; border: 1px solid rgba(167,176,192,.22); border-radius: 7px; background: rgba(255,255,255,.025); color: #e5e7eb; font: inherit; cursor: pointer; }
+.route-context button:hover { border-color: rgba(8,145,178,.65); background: rgba(8,145,178,.11); color: #fff; }.route-context i { padding: 0 3px; color: #7b8494; font-style: normal; }
+
+/* Dedicated light-mode shell and product surfaces. */
+html:not(.dark) { color-scheme: light; background: var(--ss-light-bg); }
+html:not(.dark) body, html:not(.dark) #root { background: var(--ss-light-bg); color: var(--ss-light-text); }
+html:not(.dark) .app-chrome { background: radial-gradient(ellipse 85% 45% at 50% -5%, rgba(245, 158, 11, 0.14) 0%, rgba(217, 119, 6, 0.05) 45%, transparent 75%), var(--ss-light-bg); color: var(--ss-light-text); }
+html:not(.dark) .app-topbar { background: rgba(253, 251, 247, 0.94); border-color: var(--ss-light-border); box-shadow: 0 1px 3px rgba(180, 150, 100, 0.05); }
+html:not(.dark) .app-brand, html:not(.dark) .app-nav a.active { color: #B45309; }
+html:not(.dark) .app-nav a, html:not(.dark) .nav-more > button, html:not(.dark) .chrome-login { color: #57534E; }
+html:not(.dark) .app-nav a:hover, html:not(.dark) .nav-more > button:hover { color: #1C1917; background: rgba(245, 158, 11, 0.08); }
+html:not(.dark) .global-search-trigger, html:not(.dark) .profile-trigger { background: #fff; border-color: #d1d5db; color: #374151; }
+html:not(.dark) .chrome-signup, html:not(.dark) .primary-action, html:not(.dark) .discover-search button { background: #FFFFFF; color: #000000; font-weight: 700; border: 1px solid #FFFFFF; box-shadow: 0 4px 16px rgba(255,255,255,.2); }
+html:not(.dark) .chrome-signup:hover, html:not(.dark) .primary-action:hover, html:not(.dark) .discover-search button:hover { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+html:not(.dark) .secondary-action { background: #fff; color: #273449; border-color: #cfd5df; box-shadow: 0 2px 6px rgba(17,24,39,.05); }
+html:not(.dark) .secondary-action:hover { color: #B45309; border-color: #f59e0b; background: #FEF3C7; }
+html:not(.dark) .product-menu, html:not(.dark) .notification-drawer { background: #fff; color: var(--ss-light-text); border-color: var(--ss-light-border); box-shadow: 0 20px 48px rgba(17,24,39,.14); }
+html:not(.dark) .product-menu button, html:not(.dark) .notification-list > button { color: #374151; }
+html:not(.dark) .product-menu button:hover, html:not(.dark) .notification-list > button:hover { color: #B45309; background: #FEF3C7; }
+html:not(.dark) .profile-menu-head strong, html:not(.dark) .drawer-head h3 { color: var(--ss-light-text); }
+html:not(.dark) .profile-menu-head small, html:not(.dark) .notification-list small { color: var(--ss-light-muted); }
+html:not(.dark) .notification-tabs button { border-color: #d5dbe5; color: #4b5563; }
+html:not(.dark) .notification-tabs button.active { border-color: #f59e0b; background: #FEF3C7; color: #B45309; }
+html:not(.dark) .mobile-bottom-nav { background: rgba(253, 251, 247, 0.96); border-color: #dfe3ea; box-shadow: 0 -7px 22px rgba(17,24,39,.08); }
+html:not(.dark) .mobile-bottom-nav a { color: #4b5563; }
+html:not(.dark) .mobile-bottom-nav a:hover { color: #B45309; }
+html:not(.dark) .route-context { color: var(--ss-light-secondary); }
+html:not(.dark) .route-context button { border-color: #d1d5db; background: #fff; color: #374151; }
+html:not(.dark) .route-context button:hover { color: #B45309; border-color: #f59e0b; background: #FEF3C7; }
+
+/* Light page heroes, cards, marketplace, and workspace hierarchy. */
+html:not(.dark) .page-hero, html:not(.dark) .dashboard-hero, html:not(.dark) .profile-workspace-hero, html:not(.dark) .welcome-page, html:not(.dark) .professionals-page, html:not(.dark) .profile-page, html:not(.dark) .wallet-page, html:not(.dark) .messages-page { color: var(--ss-light-text); }
+html:not(.dark) .page-hero, html:not(.dark) .dashboard-hero { background: radial-gradient(circle at 87% 18%, rgba(109,40,217,.12), transparent 19rem), #fff; border-color: var(--ss-light-border); box-shadow: 0 10px 28px rgba(17,24,39,.055); }
+html:not(.dark) .page-hero::after { border-color: rgba(109,40,217,.2); }
+html:not(.dark) .page-hero h1, html:not(.dark) .dashboard-hero h1, html:not(.dark) .profile-workspace-hero h1, html:not(.dark) .welcome-copy h1, html:not(.dark) .professionals-hero h1, html:not(.dark) .wallet-hero h1 { color: var(--ss-light-text); text-shadow: none; }
+html:not(.dark) .page-hero h1 em, html:not(.dark) .dashboard-hero h1 em, html:not(.dark) .welcome-copy h1 em, html:not(.dark) .professionals-hero h1 em, html:not(.dark) .wallet-hero h1 em { color: var(--ss-purple); text-shadow: none; }
+html:not(.dark) .page-hero > p:not(.page-kicker), html:not(.dark) .dashboard-hero p:not(.page-kicker), html:not(.dark) .profile-workspace-hero p:not(.page-kicker), html:not(.dark) .welcome-copy > p, html:not(.dark) .professionals-hero p:not(.page-kicker), html:not(.dark) .wallet-hero p:not(.page-kicker), html:not(.dark) .section-heading > span { color: var(--ss-light-secondary); }
+html:not(.dark) .content-panel, html:not(.dark) .dashboard-metrics article, html:not(.dark) .mini-professional, html:not(.dark) .quick-action-grid button, html:not(.dark) .intent-cards article, html:not(.dark) .skill-card, html:not(.dark) .search-result-card, html:not(.dark) .session-list article, html:not(.dark) .match-stage, html:not(.dark) .connection-panel, html:not(.dark) .dashboard-empty, html:not(.dark) .community-post, html:not(.dark) .profile-workspace-hero, html:not(.dark) .settings-sidebar, html:not(.dark) .settings-panel, html:not(.dark) .help-grid button, html:not(.dark) .about-loop article, html:not(.dark) .welcome-recommendations, html:not(.dark) .professional-controls, html:not(.dark) .professional-card, html:not(.dark) .mini-pro, html:not(.dark) .pro-profile-hero, html:not(.dark) .profile-detail-grid article, html:not(.dark) .qualification-panel, html:not(.dark) .availability-panel, html:not(.dark) .transaction-card, html:not(.dark) .wallet-buy { background: #fff; color: var(--ss-light-text); border-color: var(--ss-light-border); box-shadow: 0 6px 19px rgba(17,24,39,.055); }
+html:not(.dark) .section-heading h2, html:not(.dark) .content-panel h2, html:not(.dark) .dashboard-metrics article strong, html:not(.dark) .mini-professional h3, html:not(.dark) .mini-professional h3, html:not(.dark) .intent-cards h3, html:not(.dark) .skill-card strong, html:not(.dark) .search-result-card strong, html:not(.dark) .session-list h3, html:not(.dark) .settings-panel h2, html:not(.dark) .setting-row strong, html:not(.dark) .setting-toggle strong, html:not(.dark) .setting-card strong, html:not(.dark) .setting-note strong, html:not(.dark) .help-grid strong, html:not(.dark) .about-loop h2 { color: var(--ss-light-text); }
+html:not(.dark) .dashboard-metrics article span, html:not(.dark) .mini-professional small, html:not(.dark) .intent-cards p, html:not(.dark) .search-result-card p, html:not(.dark) .session-list span:not(.session-orb), html:not(.dark) .panel-copy, html:not(.dark) .setting-row small, html:not(.dark) .setting-toggle small, html:not(.dark) .setting-card small, html:not(.dark) .setting-note, html:not(.dark) .help-grid p, html:not(.dark) .about-loop p, html:not(.dark) .profile-workspace-hero p:not(.page-kicker), html:not(.dark) .pro-meta, html:not(.dark) .profile-detail-grid p, html:not(.dark) .transaction-list small { color: var(--ss-light-secondary); }
+html:not(.dark) .page-kicker, html:not(.dark) .mini-professional p, html:not(.dark) .intent-cards article > span, html:not(.dark) .search-result-card span, html:not(.dark) .session-list p, html:not(.dark) .profile-skill-columns > div > span, html:not(.dark) .about-loop span { color: var(--ss-cyan); }
+html:not(.dark) .skill-card:hover, html:not(.dark) .quick-action-grid button:hover, html:not(.dark) .mini-professional > button:hover, html:not(.dark) .availability-list button:hover { border-color: #a78bfa; background: var(--ss-light-purple-tint); color: var(--ss-purple); }
+
+/* Inputs, tabs, controls and chat use intentional high-contrast light surfaces. */
+html:not(.dark) input, html:not(.dark) textarea, html:not(.dark) select, html:not(.dark) .discover-search, html:not(.dark) .pro-search, html:not(.dark) .filter-row select, html:not(.dark) .verified-filter, html:not(.dark) .chat-composer > div:first-child { background: #fff; color: var(--ss-light-text); border-color: #cfd5df; }
+html:not(.dark) input::placeholder, html:not(.dark) textarea::placeholder { color: #667085; opacity: 1; }
+html:not(.dark) input:focus, html:not(.dark) textarea:focus, html:not(.dark) select:focus { border-color: var(--ss-purple); box-shadow: 0 0 0 3px rgba(109,40,217,.14); }
+html:not(.dark) .search-tabs button, html:not(.dark) .discover-suggestions button, html:not(.dark) .skill-token-list button, html:not(.dark) .profile-skill-columns button, html:not(.dark) .profile-quick-links button, html:not(.dark) .settings-sidebar button, html:not(.dark) .settings-action, html:not(.dark) .community-composer-actions > div button { border-color: #d5dbe5; color: #374151; background: #fff; }
+html:not(.dark) .search-tabs button.active, html:not(.dark) .community-composer-actions > div button.active, html:not(.dark) .settings-sidebar button.active, html:not(.dark) .segmented button.active { color: var(--ss-purple); border-color: #c4b5fd; background: var(--ss-light-purple-tint); }
+html:not(.dark) .setting-row, html:not(.dark) .setting-toggle, html:not(.dark) .setting-card, html:not(.dark) .setting-note { background: #fff; border-color: #e0e5ed; }
+html:not(.dark) .segmented { border-color: #d8dee8; background: #f8fafc; }
+html:not(.dark) .setting-toggle i { background: #9ca3af; }
+html:not(.dark) .setting-toggle.on i { background: var(--ss-purple); }
+html:not(.dark) .empty-state { border-color: #cbd5e1; color: var(--ss-light-secondary); background: rgba(255,255,255,.64); }
+html:not(.dark) .empty-state h3 { color: var(--ss-light-text); }
+html:not(.dark) .message-feed { background: #f1f3f7; }
+html:not(.dark) .conversation-list, html:not(.dark) .chat-info, html:not(.dark) .chat-workspace, html:not(.dark) .chat-composer { background: #fff; border-color: var(--ss-light-border); }
+html:not(.dark) .conversation, html:not(.dark) .chat-person, html:not(.dark) .chat-info { color: var(--ss-light-text); }
+html:not(.dark) .conversation small, html:not(.dark) .chat-person small, html:not(.dark) .chat-info > p { color: var(--ss-light-secondary); }
+html:not(.dark) .message-bubble { background: #fff; color: var(--ss-light-text); border-color: #dfe4eb; box-shadow: 0 2px 8px rgba(17,24,39,.05); }
+html:not(.dark) .message-row.learner .message-bubble { background: var(--ss-purple); color: #fff; border-color: var(--ss-purple); }
+html:not(.dark) .message-row.learner .message-bubble small { color: #e9ddff; }
+html:not(.dark) .quick-questions button { border-color: #d8dee8; color: #374151; background: #fff; }
+html:not(.dark) .quick-questions button:hover { color: var(--ss-purple); border-color: #c4b5fd; background: var(--ss-light-purple-tint); }
+html:not(.dark) .send-button { background: var(--ss-purple); color: #fff; }
+html:not(.dark) .proposal-card { border-color: #d7c9fb; background: #faf7ff; color: var(--ss-light-text); }
+html:not(.dark) .pinned-message { color: #334155; border-color: #d7e6eb; background: #edf9fb; }
+
+/* Chat intelligence feedback remains legible in both themes. */
+.reply-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 3px; }
+.reply-actions button { min-height: 29px; padding: 0 8px; border: 1px solid rgba(0,240,255,.28); border-radius: 7px; background: rgba(0,240,255,.08); color: #c9feff; font: 750 10px "DM Sans", sans-serif; cursor: pointer; }
+.reply-actions button:hover { border-color: rgba(200,255,64,.65); background: rgba(200,255,64,.1); color: #e8ffb6; }
+.typing-bubble { display: inline-flex; align-items: center; gap: 8px; min-height: 39px; }
+.typing-bubble p { margin: 0; }
+.typing-dots { display: inline-flex; align-items: end; gap: 3px; height: 16px; }
+.typing-dots i { width: 5px; height: 5px; border-radius: 50%; background: #7df8ff; animation: chat-typing 1s ease-in-out infinite; }
+.typing-dots i:nth-child(2) { animation-delay: .15s; }.typing-dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes chat-typing { 0%, 70%, 100% { transform: translateY(0); opacity: .42; } 35% { transform: translateY(-4px); opacity: 1; } }
+html:not(.dark) .reply-actions button { border-color: #c4b5fd; background: var(--ss-light-purple-tint); color: var(--ss-purple); }
+html:not(.dark) .reply-actions button:hover { border-color: var(--ss-purple); background: #ede9fe; color: #4c1d95; }
+html:not(.dark) .typing-dots i { background: var(--ss-purple); }
+
+/* Account and landing access routes receive the same readable light vocabulary. */
+html:not(.dark) .account-page, html:not(.dark) .auth-shell, html:not(.dark) .onboarding-page { background: radial-gradient(circle at 82% 8%, rgba(109,40,217,.1), transparent 24rem), var(--ss-light-bg); color: var(--ss-light-text); }
+html:not(.dark) .account-card, html:not(.dark) .auth-card, html:not(.dark) .onboarding-card, html:not(.dark) .signup-panel, html:not(.dark) .login-panel { background: #fff; border-color: var(--ss-light-border); box-shadow: 0 16px 40px rgba(17,24,39,.1); color: var(--ss-light-text); }
+html:not(.dark) .account-page h1, html:not(.dark) .auth-shell h1, html:not(.dark) .onboarding-page h1, html:not(.dark) .account-page h2, html:not(.dark) .auth-shell h2 { color: var(--ss-light-text); text-shadow: none; }
+html:not(.dark) .account-page p, html:not(.dark) .auth-shell p, html:not(.dark) .onboarding-page p { color: var(--ss-light-secondary); }
+html:not(.dark) .site-header, html:not(.dark) .landing-header { background: rgba(255,255,255,.94); border-color: var(--ss-light-border); }
+
+/* Account settings can coexist with the template ThemeContext; scope the live product preference to its own shell. */
+.product-theme-light.app-chrome { background: radial-gradient(ellipse 85% 45% at 50% -5%, rgba(245, 158, 11, 0.14) 0%, rgba(217, 119, 6, 0.05) 45%, transparent 75%), var(--ss-light-bg); color: var(--ss-light-text); }
+.product-theme-light .app-topbar { background: rgba(253, 251, 247, 0.94); border-color: var(--ss-light-border); box-shadow: 0 1px 3px rgba(180, 150, 100, 0.05); }
+.product-theme-light .app-brand,.product-theme-light .app-nav a.active { color: #B45309; }.product-theme-light .app-nav a,.product-theme-light .nav-more > button,.product-theme-light .chrome-login { color: #57534E; }
+.product-theme-light .app-nav a:hover,.product-theme-light .nav-more > button:hover { color: #1C1917; background: rgba(245, 158, 11, 0.08); }
+.product-theme-light .chrome-signup,.product-theme-light .primary-action,.product-theme-light .discover-search button,.product-theme-light .send-button { background: #FFFFFF; color: #000000; font-weight: 700; border: 1px solid #FFFFFF; box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2); }
+.product-theme-light :is(.chrome-signup, .primary-action, .discover-search button, .send-button):hover { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+.product-theme-light .secondary-action { background: #fff; color: #273449; border-color: #cfd5df; box-shadow: 0 2px 6px rgba(17,24,39,.05); }
+.product-theme-light .product-menu,.product-theme-light .notification-drawer { background: #fff; color: var(--ss-light-text); border-color: var(--ss-light-border); box-shadow: 0 20px 48px rgba(17,24,39,.14); }
+.product-theme-light .product-menu button,.product-theme-light .notification-list > button { color: #374151; }.product-theme-light .product-menu button:hover,.product-theme-light .notification-list > button:hover { color: #B45309; background: #FEF3C7; }
+.product-theme-light .route-context { color: var(--ss-light-secondary); }.product-theme-light .route-context button { background: #fff; color: #374151; border-color: #d1d5db; }
+.product-theme-light .page-hero,.product-theme-light .dashboard-hero { background: radial-gradient(circle at 87% 18%, rgba(109,40,217,.12), transparent 19rem), #fff; border-color: var(--ss-light-border); box-shadow: 0 10px 28px rgba(17,24,39,.055); }
+.product-theme-light :is(.page-hero h1,.dashboard-hero h1,.profile-workspace-hero h1,.section-heading h2,.content-panel h2,.dashboard-metrics article strong,.mini-professional h3,.intent-cards h3,.skill-card strong,.search-result-card strong,.session-list h3,.settings-panel h2,.setting-row strong,.setting-toggle strong,.setting-card strong,.setting-note strong,.help-grid strong,.about-loop h2) { color: var(--ss-light-text); }
+.product-theme-light :is(.page-hero h1 em,.dashboard-hero h1 em) { color: var(--ss-purple); text-shadow: none; }
+.product-theme-light :is(.page-hero > p:not(.page-kicker),.dashboard-hero p:not(.page-kicker),.profile-workspace-hero p:not(.page-kicker),.section-heading > span,.dashboard-metrics article span,.mini-professional small,.intent-cards p,.search-result-card p,.session-list span:not(.session-orb),.panel-copy,.setting-row small,.setting-toggle small,.setting-card small,.setting-note,.help-grid p,.about-loop p) { color: var(--ss-light-secondary); }
+.product-theme-light :is(.content-panel,.dashboard-metrics article,.mini-professional,.quick-action-grid button,.intent-cards article,.skill-card,.search-result-card,.session-list article,.match-stage,.connection-panel,.dashboard-empty,.community-post,.profile-workspace-hero,.settings-sidebar,.settings-panel,.help-grid button,.about-loop article) { background: #fff; color: var(--ss-light-text); border-color: var(--ss-light-border); box-shadow: 0 6px 19px rgba(17,24,39,.055); }
+.product-theme-light :is(.discover-search,.pro-search,.filter-row select,.verified-filter,.profile-editor input,.profile-editor select,.settings-panel select,.inline-editor input,.community-composer textarea,.chat-composer > div:first-child) { background: #fff; color: var(--ss-light-text); border-color: #cfd5df; }
+.product-theme-light :is(.search-tabs button,.discover-suggestions button,.skill-token-list button,.profile-skill-columns button,.profile-quick-links button,.settings-sidebar button,.settings-action,.community-composer-actions > div button,.availability-list button) { background: #fff; color: #374151; border-color: #d5dbe5; }
+.product-theme-light :is(.search-tabs button.active,.community-composer-actions > div button.active,.settings-sidebar button.active,.segmented button.active) { color: var(--ss-purple); border-color: #c4b5fd; background: var(--ss-light-purple-tint); }
+.product-theme-light :is(.setting-row,.setting-toggle,.setting-card,.setting-note) { background: #fff; border-color: #e0e5ed; }.product-theme-light .segmented { background: #f8fafc; border-color: #d8dee8; }
+.product-theme-light .mobile-bottom-nav { background: rgba(255,255,255,.96); border-color: #dfe3ea; box-shadow: 0 -7px 22px rgba(17,24,39,.08); }.product-theme-light .mobile-bottom-nav a { color: #4b5563; }
+.product-theme-light :is(.professionals-hero,.wallet-hero,.pro-profile-hero,.welcome-copy,.profile-quality,.pricing-strip) { background: radial-gradient(circle at 84% 18%, rgba(109,40,217,.12), transparent 18rem), #fff; border-color: var(--ss-light-border); color: var(--ss-light-text); box-shadow: 0 8px 22px rgba(17,24,39,.05); }
+.product-theme-light :is(.professionals-hero h1,.wallet-hero h1,.pro-profile-hero h1,.pro-profile-hero h2,.profile-quality strong,.pricing-strip span) { color: var(--ss-light-text); text-shadow: none; }
+.product-theme-light :is(.professionals-hero h1 em,.wallet-hero h1 em) { color: var(--ss-purple); }.product-theme-light :is(.pro-profile-hero p,.profile-main p,.profile-quality p,.pricing-strip) { color: var(--ss-light-secondary); }
+
+/* The public landing and account screens sit outside AppChrome, so they follow the explicit account preference marker. */
+html[data-skillswap-theme="light"] .site-shell { background: var(--ss-light-bg); color: var(--ss-light-text); }
+html[data-skillswap-theme="light"] .site-header { background: rgba(255,255,255,.95); border-color: var(--ss-light-border); box-shadow: 0 1px 0 rgba(17,24,39,.04); }
+html[data-skillswap-theme="light"] .site-header :is(.brand,.main-nav a,.home-nav-link,.text-link) { color: #374151; text-shadow: none; }
+html[data-skillswap-theme="light"] .site-header :is(.main-nav a:hover,.home-nav-link:hover,.text-link:hover) { color: var(--ss-purple); }
+html[data-skillswap-theme="light"] :is(.hero,.cycle-section,.discover-section,.matching-section,.home-professionals,.points-section,.closing-section,.site-footer) { background: #fff; border-color: var(--ss-light-border); color: var(--ss-light-text); }
+html[data-skillswap-theme="light"] .hero { background: radial-gradient(circle at 78% 24%, rgba(109,40,217,.13), transparent 22rem), #fff; }
+html[data-skillswap-theme="light"] :is(.hero h1,.cycle-section h2,.discover-section h2,.matching-section h2,.home-professionals h2,.points-section h2,.closing-section h2) { color: var(--ss-light-text); text-shadow: none; }
+html[data-skillswap-theme="light"] :is(.hero h1 em,.closing-section h2 em) { color: var(--ss-purple); text-shadow: none; }
+html[data-skillswap-theme="light"] :is(.hero-description,.discover-heading > p,.matching-copy > p,.points-heading > p,.closing-section > p,.site-footer p) { color: var(--ss-light-secondary); }
+html[data-skillswap-theme="light"] :is(.button-coral,.nav-cta,.search-shell button,.selected-plan-summary button) { background: #FFFFFF; color: #000000; border-color: #FFFFFF; font-weight: 700; box-shadow: 0 0 25px rgba(255, 255, 255, 0.45); }
+html[data-skillswap-theme="light"] :is(.button-quiet,.button-paper,.home-professional-card,.category-card,.cycle-item,.cycle-detail,.loop-note,.discovery-panel,.wallet-card,.point-plan,.selected-plan-summary) { background: #fff; color: var(--ss-light-text); border-color: var(--ss-light-border); box-shadow: 0 5px 16px rgba(17,24,39,.05); }
+html[data-skillswap-theme="light"] :is(.category-card small,.cycle-detail p,.loop-note p,.discovery-panel p,.home-professional-card span,.home-professional-card small,.point-plan small,.point-plan p,.wallet-card span,.wallet-chip) { color: var(--ss-light-secondary); }
+html[data-skillswap-theme="light"] :is(.category-card strong,.cycle-detail h3,.discovery-panel h3,.home-professional-card h3,.wallet-card strong,.point-plan strong) { color: var(--ss-light-text); }
+html[data-skillswap-theme="light"] .search-shell { background: #fff; border-color: #cfd5df; color: var(--ss-purple); }.search-shell input { color: var(--ss-light-text); }
+html[data-skillswap-theme="light"] .site-footer :is(a,p) { color: #4b5563; }
+
+html[data-skillswap-theme="light"] :is(.account-page,.onboarding-page) { background: var(--ss-light-bg); color: var(--ss-light-text); }
+html[data-skillswap-theme="light"] .account-stage { background: radial-gradient(circle at 76% 30%, rgba(109,40,217,.12), transparent 18rem), #fff; }
+html[data-skillswap-theme="light"] .account-panel { background: #f6f7fb; }
+html[data-skillswap-theme="light"] :is(.account-stage h1,.auth-form h2,.onboarding-card h1,.auth-brand,.onboard-brand) { color: var(--ss-light-text); text-shadow: none; }
+html[data-skillswap-theme="light"] :is(.account-stage > p:not(.page-kicker),.account-proof,.auth-form > p:not(.page-kicker):not(.auth-footer),.auth-form label,.auth-footer,.onboard-body > p,.onboard-ready p,.ready-row) { color: var(--ss-light-secondary) !important; }
+html[data-skillswap-theme="light"] :is(.auth-form input,.social-grid button,.mode-picker button,.choice-cloud button,.onboard-option-grid button) { background: #fff; color: var(--ss-light-text); border-color: #cfd5df; }
+html[data-skillswap-theme="light"] :is(.auth-form input:focus,.social-grid button:hover,.mode-picker button.selected,.choice-cloud button.selected,.onboard-option-grid button.selected) { border-color: #a78bfa; background: var(--ss-light-purple-tint); color: var(--ss-purple); box-shadow: 0 0 0 3px rgba(109,40,217,.1); }
+html[data-skillswap-theme="light"] .onboarding-card { background: #fff; border-color: var(--ss-light-border); box-shadow: 0 22px 58px rgba(17,24,39,.1); }.product-theme-light .auth-back { color: #4b5563; }
+
+@media (prefers-reduced-motion: no-preference) { html { transition-duration: .24s; } }
+@media (prefers-reduced-motion: reduce) { html, body, *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+@media (max-width: 720px) { .route-context { padding: 9px 16px 0; }.route-context span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } }
+
+/* Light-only visibility hardening.  This block is deliberately keyed to the
+   persisted product preference so it wins even when the template's `.dark`
+   class remains present.  No dark selector or token is changed here. */
+html[data-skillswap-theme="light"] {
+  color-scheme: light;
+  background: #f7f8fc;
+  --ss-light-text: #111827;
+  --ss-light-secondary: #374151;
+  --ss-light-tertiary: #4b5563;
+  --ss-light-muted: #6b7280;
+  --ss-light-border: #e5e7eb;
+  --ss-light-input-border: #9ca3af;
+  --ss-light-primary: #6d28d9;
+  --ss-light-primary-hover: #5b21b6;
+  --ss-light-success: #047857;
+  --ss-light-warning: #92400e;
+  --ss-light-error: #b91c1c;
+}
+html[data-skillswap-theme="light"] :is(body, #root) { background: #f7f8fc; color: #111827; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.app-chrome, .wallet-page, .profile-page, .professionals-page, .messages-page, .community-page, .help-page, .settings-page, .search-page, .sessions-page, .profile-workspace) { color: #111827; }
+html[data-skillswap-theme="light"] .product-theme-light :is(h1, h2, h3, h4, h5, strong, dt, .page-title, .card-title, .transaction-list strong, .wallet-amount strong, .profile-tabbar button.active) { color: #111827; }
+html[data-skillswap-theme="light"] .product-theme-light :is(p, small, label, dd, li, .panel-copy, .form-copy, .help-copy, .transaction-list small, .notification-list small, .profile-main p, .chat-info > p) { color: #374151; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.page-kicker, .metadata, .timestamp, .balance-after, .transaction-list time, .route-context, .profile-inline, .setting-row small, .setting-toggle small) { color: #4b5563; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.hint, .placeholder-copy, .optional-copy, input::placeholder, textarea::placeholder) { color: #6b7280; opacity: 1; }
+html[data-skillswap-theme="light"] .product-theme-light :is(input, textarea, select, .inline-editor input, .inline-editor select, .community-composer textarea, .profile-editor input, .profile-editor select) { background: #fff; color: #111827; border-color: #9ca3af; }
+html[data-skillswap-theme="light"] .product-theme-light :is(input, textarea, select, .inline-editor input, .inline-editor select, .community-composer textarea, .profile-editor input, .profile-editor select)::placeholder { color: #6b7280; opacity: 1; }
+html[data-skillswap-theme="light"] .product-theme-light :is(input, textarea, select, .inline-editor input, .inline-editor select, .community-composer textarea, .profile-editor input, .profile-editor select):focus { border-color: #6d28d9; box-shadow: 0 0 0 3px rgba(109,40,217,.15); }
+html[data-skillswap-theme="light"] .product-theme-light :is(.content-panel, .wallet-buy, .transaction-card, .wallet-amount, .wallet-flow, .portfolio-modal, .points-education, .profile-workspace-hero, .profile-tab-panel, .community-composer, .community-post, .help-article, .help-grid button, .notification-drawer, .product-menu, .conversation-list, .chat-workspace, .chat-info, .chat-composer) { background: #fff; color: #111827; border-color: #e5e7eb; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.secondary-action, .settings-action, .search-tabs button, .profile-tabbar button, .quick-questions button, .community-composer-actions button, .wallet-flow span) { background: #fff; color: #111827; border-color: #d1d5db; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.secondary-action:hover, .settings-action:hover, .search-tabs button:hover, .profile-tabbar button:hover, .quick-questions button:hover, .community-composer-actions button:hover) { background: #FEF3C7; color: #B45309; border-color: #f59e0b; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.primary-action, .send-button, .chrome-signup) { background: #FFFFFF; color: #000000; font-weight: 700; border-color: #FFFFFF; box-shadow: 0 4px 16px rgba(255,255,255,.2); }
+html[data-skillswap-theme="light"] .product-theme-light :is(.primary-action:hover, .send-button:hover, .chrome-signup:hover) { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.message-bubble, .proposal-card) { background: #fff; color: #111827; border-color: #e5e7eb; }
+html[data-skillswap-theme="light"] .product-theme-light .message-row.learner .message-bubble { background: #6d28d9; color: #fff; border-color: #6d28d9; }
+html[data-skillswap-theme="light"] .product-theme-light .message-row.learner .message-bubble :is(p, small) { color: #fff; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.form-error, .error-copy) { color: #b91c1c; background: #fef2f2; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.success-copy, .positive) { color: #047857; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.warning-copy, .pending) { color: #92400e; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.mobile-bottom-nav, .app-topbar) { background: rgba(255,255,255,.97); border-color: #e5e7eb; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.mobile-bottom-nav a, .app-nav a, .nav-more > button, .chrome-login) { color: #374151; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.mobile-bottom-nav a.active, .app-nav a.active) { color: #6d28d9; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button { display: grid; gap: 4px; min-height: 104px; padding: 18px; text-align: left; border: 1px solid #e5e7eb; border-radius: 14px; background: #fff; color: #111827; box-shadow: 0 6px 19px rgba(17,24,39,.055); cursor: pointer; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button:hover { border-color: #a78bfa; background: #f3eefe; color: #5b21b6; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions small { color: #4b5563; }
+html[data-skillswap-theme="light"] .product-theme-light .history-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+html[data-skillswap-theme="light"] .product-theme-light .history-filters button { min-height: 32px; padding: 0 11px; border: 1px solid #d1d5db; border-radius: 999px; background: #fff; color: #374151; font: 700 11px "DM Sans", sans-serif; cursor: pointer; }
+html[data-skillswap-theme="light"] .product-theme-light .history-filters button.active { border-color: #6d28d9; background: #f3eefe; color: #5b21b6; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-buy button > span small { display: block; margin-top: 4px; color: #4b5563; font-weight: 500; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-buy button strong { color: #5b21b6; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-method-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 13px; padding: 0; border: 0; background: transparent; color: #5b21b6; font: 750 12px "DM Sans", sans-serif; cursor: pointer; }
+html[data-skillswap-theme="light"] .product-theme-light .payment-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+html[data-skillswap-theme="light"] .product-theme-light .payment-summary > div { padding: 12px; border: 1px solid #e5e7eb; border-radius: 10px; background: #f8fafc; }
+html[data-skillswap-theme="light"] .product-theme-light .payment-summary span { display: block; color: #4b5563; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+html[data-skillswap-theme="light"] .product-theme-light .payment-summary strong { display: block; margin-top: 5px; color: #111827; font-size: 17px; }
+html[data-skillswap-theme="light"] .product-theme-light .checkout-modal fieldset { display: grid; gap: 7px; margin: 14px 0; padding: 12px; border: 1px solid #e5e7eb; border-radius: 10px; color: #374151; }
+html[data-skillswap-theme="light"] .product-theme-light .checkout-modal legend { color: #111827; font-weight: 750; }
+@media (max-width: 720px) { html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions { grid-template-columns: 1fr; } }
+
+/* Global typography system: the type hierarchy is deliberately shared by both
+   themes. This changes no color, animation, layout, or interaction rule. */
+:root {
+  --ss-font-ui: "DM Sans", sans-serif;
+  --ss-font-display: "DM Serif Display", Georgia, serif;
+}
+html, body, button, input, textarea, select { font-family: var(--ss-font-ui); }
+
+/* Bespoke Architectural Typography: Space Grotesk, Syne, and Outfit */
+:is(h1, h2, h3, h4, h5, h6, .brand, .app-brand, .auth-brand, .onboard-brand, .home-brand, .logo-wordmark, .settings-panel h2),
+:is(.hero h1, .page-hero h1, .dashboard-hero h1, .profile-workspace-hero h1, .welcome-copy h1, .professionals-hero h1, .wallet-hero h1, .pro-profile-hero h1, .account-stage h1, .auth-form h2, .onboarding-card h1, .cycle-detail h3, .discovery-panel h3, .matching-copy h2, .points-heading h2, .closing-section h2, .section-heading h2) {
+  font-family: "Megiko", "Space Grotesk", "Syne", sans-serif !important;
+  font-weight: 750 !important;
+  letter-spacing: -.035em;
+}
+:is(.brand, .app-brand, .auth-brand, .onboard-brand) {
+  font-family: "Megiko", "Syne", "Space Grotesk", sans-serif !important;
+  letter-spacing: -.055em;
+}
+
+body, input, button, select, textarea {
+  font-family: "Outfit", "DM Sans", sans-serif !important;
+}
+
+/* Reference-inspired warm editorial palette. Every declaration in this layer is
+   keyed to the persisted light preference; approved dark-mode colors remain
+   outside this scope and therefore unchanged. */
+html[data-skillswap-theme="light"] {
+  background: #f7f4ee;
+  --ss-light-bg: #f7f4ee;
+  --ss-light-surface: #ffffff;
+  --ss-light-text: #20201d;
+  --ss-light-secondary: #4b4a45;
+  --ss-light-tertiary: #4b4a45;
+  --ss-light-muted: #77756d;
+  --ss-light-border: #ddd9d0;
+  --ss-light-input-border: #b9b5ab;
+  --ss-light-primary: #f27668;
+  --ss-light-primary-hover: #dc6055;
+  --ss-light-purple-tint: #f4d7cc;
+}
+html[data-skillswap-theme="light"] :is(body, #root) { background: #f7f4ee; color: #20201d; }
+
+/* Public landing and account access surfaces. */
+html[data-skillswap-theme="light"] .site-shell { background: radial-gradient(circle at 86% 1%, rgba(216,233,225,.9), transparent 25rem), radial-gradient(circle at 2% 28%, rgba(244,215,204,.58), transparent 30rem), #f7f4ee; color: #20201d; }
+html[data-skillswap-theme="light"] .site-header { background: rgba(251,249,244,.94); border-color: #ddd9d0; box-shadow: 0 1px 0 rgba(36,36,31,.06); }
+html[data-skillswap-theme="light"] .site-header :is(.brand,.main-nav a,.home-nav-link,.text-link) { color: #4b4a45; text-shadow: none; }
+html[data-skillswap-theme="light"] .site-header .brand,.product-theme-light .app-brand { color: #20201d; }
+html[data-skillswap-theme="light"] :is(.nav-cta,.button-coral,.search-shell button,.selected-plan-summary button) { background: #FFFFFF; color: #000000; font-weight: 700; border-color: #FFFFFF; box-shadow: 0 7px 16px rgba(255,255,255,.22); }
+html[data-skillswap-theme="light"] :is(.nav-cta:hover,.button-coral:hover,.search-shell button:hover,.selected-plan-summary button:hover) { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+html[data-skillswap-theme="light"] :is(.button-quiet,.button-paper) { color: #24241f; }
+html[data-skillswap-theme="light"] :is(.hero,.cycle-section,.discover-section,.matching-section,.points-section,.closing-section,.site-footer) { border-color: #ddd9d0; color: #20201d; }
+html[data-skillswap-theme="light"] .hero { background: radial-gradient(circle at 79% 23%, rgba(216,233,225,.96), transparent 22rem), linear-gradient(118deg,#fbf9f4 0%,#f7f4ee 46%,#f4d7cc 100%); }
+html[data-skillswap-theme="light"] :is(.hero h1,.cycle-section h2,.discover-section h2,.matching-section h2,.home-professionals h2,.points-section h2,.closing-section h2) { color: #20201d; text-shadow: none; }
+html[data-skillswap-theme="light"] :is(.hero h1 em,.closing-section h2 em) { color: #f27668; text-shadow: none; }
+html[data-skillswap-theme="light"] :is(.hero-description,.discover-heading > p,.matching-copy > p,.points-heading > p,.closing-section > p,.site-footer p) { color: #4b4a45; }
+html[data-skillswap-theme="light"] :is(.eyebrow,.discover-heading .eyebrow,.points-heading .eyebrow) { color: #355c52; text-shadow: none; }
+html[data-skillswap-theme="light"] .eyebrow-dot { background: #f27668; box-shadow: none; }
+html[data-skillswap-theme="light"] :is(.cycle-detail,.wallet-card,.discovery-panel) { color: #20201d; box-shadow: 12px 14px 0 rgba(53,92,82,.18); }
+html[data-skillswap-theme="light"] .detail-blue,.wallet-card { background: #d8e9e1; }
+html[data-skillswap-theme="light"] .detail-coral { background: #f4d7cc; }
+html[data-skillswap-theme="light"] .detail-paper { background: #f4e4a8; }
+html[data-skillswap-theme="light"] :is(.cycle-detail > p:not(.detail-eyebrow),.detail-bottom,.category-content small,.plan-heading p,.point-plan > small) { color: #4b4a45; }
+html[data-skillswap-theme="light"] .discover-section { background: #fbf9f4; }
+html[data-skillswap-theme="light"] .category-card:hover,html[data-skillswap-theme="light"] .category-card.selected,html[data-skillswap-theme="light"] .category-card.previewing { background: #d8e9e1; color: #20201d; }
+html[data-skillswap-theme="light"] :is(.category-card.previewing::before,.category-card:focus-visible::before) { border-color: #355c52; box-shadow: 0 0 18px rgba(53,92,82,.18); }
+html[data-skillswap-theme="light"] :is(.category-card.previewing .category-icon,.category-card:focus-visible .category-icon) { background: #355c52; box-shadow: 0 0 16px rgba(53,92,82,.25); }
+html[data-skillswap-theme="light"] .discovery-panel { background: #24241f; color: #fff; box-shadow: 12px 14px 0 rgba(53,92,82,.2); }
+html[data-skillswap-theme="light"] :is(.discovery-panel p,.loop-note p,.plan-heading p) { color: #d7d5ce; }
+html[data-skillswap-theme="light"] :is(.panel-meta,.panel-link,.human-discovery-note) { color: #f4e4a8; }
+html[data-skillswap-theme="light"] .skill-chips button { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.07); color: #fff; }
+html[data-skillswap-theme="light"] .skill-chips button:hover { background: #f27668; color: #fff; }
+html[data-skillswap-theme="light"] .matching-section,.points-section { background: #f7f4ee; }
+html[data-skillswap-theme="light"] .point-plan { background: #fff; color: #20201d; border-color: #ddd9d0; }
+html[data-skillswap-theme="light"] .point-plan:nth-child(2n) { background: #f4e4a8; }
+html[data-skillswap-theme="light"] .point-plan:hover,html[data-skillswap-theme="light"] .point-plan.selected { background: #d8e9e1; border-color: #355c52; }
+html[data-skillswap-theme="light"] .plan-tag { background: #f27668; color: #fff; }
+html[data-skillswap-theme="light"] .closing-section { background: #f4d7cc; }
+html[data-skillswap-theme="light"] .closing-section:before { background: #d8e9e1; border-color: rgba(53,92,82,.24); box-shadow: 0 0 0 48px rgba(53,92,82,.05),0 0 0 96px rgba(242,118,104,.045); }
+html[data-skillswap-theme="light"] .site-footer { background: #24241f; color: #fff; }
+html[data-skillswap-theme="light"] .site-footer :is(a,p) { color: #d7d5ce; }
+
+/* Preserve existing 3D geometry and motion; only remap its light-mode color grading. */
+html[data-skillswap-theme="light"] .stage-grid,html[data-skillswap-theme="light"] .mentor-stage:before { background-image: linear-gradient(rgba(53,92,82,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(53,92,82,.18) 1px,transparent 1px); }
+html[data-skillswap-theme="light"] .stage-glow-blue { background: #d8e9e1; opacity: .52; }
+html[data-skillswap-theme="light"] .stage-glow-coral { background: #f4d7cc; opacity: .5; }
+html[data-skillswap-theme="light"] .hero::before,html[data-skillswap-theme="light"] .orbit-ring { border-color: rgba(53,92,82,.42); box-shadow: 0 0 18px rgba(53,92,82,.12); }
+html[data-skillswap-theme="light"] .ring-two { border-color: rgba(242,118,104,.58); box-shadow: 0 0 18px rgba(242,118,104,.15); }
+html[data-skillswap-theme="light"] .hero-art { mix-blend-mode: multiply; filter: sepia(.2) saturate(.72) hue-rotate(310deg) contrast(.96); }
+html[data-skillswap-theme="light"] .floating-caption { background: rgba(251,249,244,.9); border-color: rgba(53,92,82,.45); color: #20201d; box-shadow: 0 0 0 1px rgba(244,215,204,.45),11px 12px 32px rgba(53,92,82,.12); }
+html[data-skillswap-theme="light"] :is(.caption-number,.caption-points) { color: #355c52; text-shadow: none; }
+html[data-skillswap-theme="light"] .hero-axis { background: linear-gradient(90deg,transparent,#d8e9e1,#f27668,transparent); box-shadow: 0 0 13px #d8e9e1; }
+html[data-skillswap-theme="light"] :is(.hero-axis span,.kinetic-particles span) { background: #f27668; box-shadow: 0 0 12px rgba(242,118,104,.65); }
+html[data-skillswap-theme="light"] .hero-axis span:nth-child(2),html[data-skillswap-theme="light"] .kinetic-particles span:nth-child(3n) { background: #355c52; box-shadow: 0 0 12px rgba(53,92,82,.58); }
+
+/* Product workspace, menus, inputs, and light-only color accents. */
+html[data-skillswap-theme="light"] .product-theme-light.app-chrome { background: radial-gradient(circle at 88% 0, rgba(216,233,225,.78), transparent 28rem), #f7f4ee; color: #20201d; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.app-topbar,.mobile-bottom-nav) { background: rgba(251,249,244,.97); border-color: #ddd9d0; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.app-nav a,.nav-more > button,.chrome-login,.mobile-bottom-nav a,.route-context) { color: #4b4a45; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.app-brand,.app-nav a.active,.mobile-bottom-nav a.active) { color: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.app-nav a:hover,.nav-more > button:hover,.mobile-bottom-nav a:hover) { background: #f4d7cc; color: #dc6055; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.page-hero,.dashboard-hero,.professionals-hero,.wallet-hero,.pro-profile-hero,.welcome-copy,.profile-quality,.pricing-strip) { background: radial-gradient(circle at 84% 18%, rgba(216,233,225,.86), transparent 18rem), #fff; border-color: #ddd9d0; box-shadow: 0 8px 22px rgba(53,92,82,.09); }
+html[data-skillswap-theme="light"] .product-theme-light :is(h1,h2,h3,h4,h5,strong,dt,.page-title,.card-title,.transaction-list strong,.wallet-amount strong,.profile-tabbar button.active) { color: #20201d; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.page-hero h1 em,.dashboard-hero h1 em,.professionals-hero h1 em,.wallet-hero h1 em,.welcome-copy h1 em,.pro-profile-hero h1 em) { color: #f27668; text-shadow: none; }
+html[data-skillswap-theme="light"] .product-theme-light :is(p,small,label,dd,li,.panel-copy,.form-copy,.help-copy,.transaction-list small,.notification-list small,.profile-main p,.chat-info > p) { color: #4b4a45; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.page-kicker,.metadata,.timestamp,.balance-after,.transaction-list time,.profile-inline) { color: #77756d; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.content-panel,.wallet-buy,.transaction-card,.wallet-flow,.portfolio-modal,.points-education,.profile-workspace-hero,.profile-tab-panel,.community-composer,.community-post,.help-article,.help-grid button,.notification-drawer,.product-menu,.conversation-list,.chat-workspace,.chat-info,.chat-composer,.settings-sidebar,.settings-panel,.setting-row,.setting-toggle,.setting-card,.setting-note) { background: #fff; color: #20201d; border-color: #ddd9d0; box-shadow: 0 6px 19px rgba(53,92,82,.07); }
+html[data-skillswap-theme="light"] .product-theme-light :is(input,textarea,select,.inline-editor input,.inline-editor select,.community-composer textarea,.profile-editor input,.profile-editor select) { background: #fff; color: #20201d; border-color: #b9b5ab; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.primary-action,.send-button,.chrome-signup,.discover-search button) { background: #FFFFFF; color: #000000; font-weight: 700; border-color: #FFFFFF; box-shadow: 0 7px 16px rgba(255,255,255,.2); }
+html[data-skillswap-theme="light"] .product-theme-light :is(.primary-action:hover,.send-button:hover,.chrome-signup:hover,.discover-search button:hover) { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.secondary-action,.settings-action,.search-tabs button,.profile-tabbar button,.quick-questions button,.community-composer-actions button,.wallet-flow span) { background: #fff; color: #24241f; border-color: #ddd9d0; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.secondary-action:hover,.settings-action:hover,.search-tabs button:hover,.profile-tabbar button:hover,.quick-questions button:hover,.community-composer-actions button:hover) { background: #f4d7cc; color: #dc6055; border-color: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.search-tabs button.active,.profile-tabbar button.active,.community-composer-actions button.active,.segmented button.active) { background: #f4d7cc; color: #dc6055; border-color: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light .setting-toggle.on i { background: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light .app-brand > span:last-child { color: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light .message-row.learner .message-bubble { background: #24241f; color: #fff; border-color: #24241f; }
+html[data-skillswap-theme="light"] .product-theme-light .message-row.learner .message-bubble :is(p,small) { color: #fff; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-amount,html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button:nth-child(1) { background: #d8e9e1; border-color: #b8d3c8; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button:nth-child(2) { background: #f4e4a8; border-color: #e4d28c; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button:nth-child(3) { background: #f4d7cc; border-color: #e8beb0; }
+html[data-skillswap-theme="light"] .product-theme-light .wallet-quick-actions button:hover { border-color: #f27668; color: #20201d; }
+html[data-skillswap-theme="light"] .product-theme-light :is(.history-filters button.active,.wallet-buy button strong,.wallet-method-link) { color: #dc6055; border-color: #f27668; }
+html[data-skillswap-theme="light"] .product-theme-light .payment-summary > div { background: #fbf9f4; border-color: #ddd9d0; }
+
+html[data-skillswap-theme="light"] :is(.account-page,.onboarding-page) { background: #f7f4ee; color: #20201d; }
+html[data-skillswap-theme="light"] .account-stage { background: radial-gradient(circle at 76% 30%, rgba(216,233,225,.85), transparent 18rem), #fbf9f4; }
+html[data-skillswap-theme="light"] .account-panel { background: #f7f4ee; }
+html[data-skillswap-theme="light"] .onboarding-card { background: #fff; border-color: #ddd9d0; box-shadow: 0 22px 58px rgba(53,92,82,.11); }
+html[data-skillswap-theme="light"] :is(.account-stage h1,.auth-form h2,.onboarding-card h1,.auth-brand,.onboard-brand) { color: #20201d; }
+html[data-skillswap-theme="light"] :is(.account-stage > p:not(.page-kicker),.account-proof,.auth-form > p:not(.page-kicker):not(.auth-footer),.auth-form label,.auth-footer,.onboard-body > p,.onboard-ready p,.ready-row) { color: #4b4a45 !important; }
+html[data-skillswap-theme="light"] :is(.auth-form input,.social-grid button,.mode-picker button,.choice-cloud button,.onboard-option-grid button) { background: #fff; color: #20201d; border-color: #b9b5ab; }
+html[data-skillswap-theme="light"] :is(.auth-form .primary-action,.account-panel .primary-action,.onboarding-card .primary-action,.onboarding-page .primary-action) { background: #FFFFFF; color: #000000; font-weight: 700; border-color: #FFFFFF; box-shadow: 0 7px 16px rgba(255,255,255,.2); }
+html[data-skillswap-theme="light"] :is(.auth-form .primary-action:hover,.account-panel .primary-action:hover,.onboarding-card .primary-action:hover,.onboarding-page .primary-action:hover) { background: #FFFFFF; color: #000000; border-color: #FFFFFF; }
+html[data-skillswap-theme="light"] .auth-brand span,html[data-skillswap-theme="light"] .onboard-brand span { color: #f27668; text-shadow: none; }
+html[data-skillswap-theme="light"] .account-stage::before { border-color: rgba(53,92,82,.26); box-shadow: 0 0 0 42px rgba(216,233,225,.42),0 0 0 84px rgba(244,215,204,.28); }
+html[data-skillswap-theme="light"] .account-stage::after { background: linear-gradient(transparent,rgba(242,118,104,.62),transparent); box-shadow: 0 0 18px rgba(242,118,104,.32); }
+html[data-skillswap-theme="light"] .account-orbit { border-color: rgba(53,92,82,.48); box-shadow: 0 0 24px rgba(53,92,82,.14),inset 0 0 28px rgba(216,233,225,.42); }
+html[data-skillswap-theme="light"] .account-orbit > span { color: #fff; background: radial-gradient(circle at 32% 25%,#fff,#d8e9e1 24%,#355c52 63%,#24241f); border-color: rgba(255,255,255,.8); box-shadow: inset -13px -14px 25px rgba(36,36,31,.34),0 0 35px rgba(53,92,82,.34); }
+html[data-skillswap-theme="light"] .account-orbit i { background: #f4e4a8; box-shadow: 0 0 14px rgba(244,228,168,.76); }
+html[data-skillswap-theme="light"] .account-orbit i:nth-child(2) { background: #f27668; box-shadow: 0 0 14px rgba(242,118,104,.62); }
+html[data-skillswap-theme="light"] .account-orbit i:nth-child(3) { background: #355c52; box-shadow: 0 0 14px rgba(53,92,82,.52); }
+html[data-skillswap-theme="light"] .account-proof,html[data-skillswap-theme="light"] .account-proof svg { border-color: rgba(53,92,82,.22); color: #355c52; }
+html[data-skillswap-theme="light"] .signup-kinetic { border-color: rgba(53,92,82,.35); }
+html[data-skillswap-theme="light"] :is(.signup-kinetic::before,.signup-kinetic::after) { border-color: rgba(242,118,104,.43); }
+html[data-skillswap-theme="light"] .signup-kinetic::after { border-color: rgba(244,228,168,.7); }
+html[data-skillswap-theme="light"] .signup-kinetic span { border-color: rgba(53,92,82,.38); color: #20201d; background: rgba(251,249,244,.86); }
+html[data-skillswap-theme="light"] .signup-kinetic i { color: #f27668; }
+html[data-skillswap-theme="light"] .signup-kinetic b { color: #355c52; text-shadow: 0 0 18px rgba(53,92,82,.22); }
+html[data-skillswap-theme="light"] .onboarding-page { background: radial-gradient(circle at 30% 18%,rgba(216,233,225,.7),transparent 25rem),radial-gradient(circle at 70% 82%,rgba(244,215,204,.6),transparent 25rem),#f7f4ee; }
+html[data-skillswap-theme="light"] .onboarding-orbits i { border-color: rgba(53,92,82,.22); }
+html[data-skillswap-theme="light"] .onboarding-orbits i:nth-child(2) { border-color: rgba(242,118,104,.32); }
+html[data-skillswap-theme="light"] .onboarding-orbits i:nth-child(3) { border-color: rgba(244,228,168,.68); }
+
+/* UI/UX Pro Max Pure White Main Action Buttons (Every Main Action Button Pure White) */
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+),
+:is(html, html.dark, html:not(.dark), .product-theme-light, html[data-skillswap-theme="light"]) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) {
+  background: #E4E4E7 !important;
+  background-color: #E4E4E7 !important;
+  background-image: none !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 700 !important;
+  border: 1px solid #E4E4E7 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
+  text-shadow: none !important;
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg, span, b, strong, i, p, *),
+:is(html, html.dark, html:not(.dark), .product-theme-light, html[data-skillswap-theme="light"]) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg, span, b, strong, i, p, *) {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg.fill-black, svg.lucide-zap, svg.lucide-gem, svg[data-filled="true"]),
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg.fill-black, svg.lucide-zap, svg.lucide-gem, svg[data-filled="true"]) :is(path, polygon) {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) svg:not(.fill-black):not(.lucide-zap):not(.lucide-gem) {
+  fill: none;
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):hover,
+:is(html, html.dark, html:not(.dark), .product-theme-light, html[data-skillswap-theme="light"]) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):hover {
+  background: #CBD5E1 !important;
+  background-color: #CBD5E1 !important;
+  background-image: none !important;
+  color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):active,
+:is(html, html.dark, html:not(.dark), .product-theme-light, html[data-skillswap-theme="light"]) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):active {
+  background: #71717A !important;
+  background-color: #71717A !important;
+  transform: translateY(1px);
+}
+
+/* Explicit Propose Swap, Trade Skill, Buy Now & Find Matches Action Buttons */
+.propose-swap-btn,
+button.propose-swap-btn,
+.trade-skill-btn,
+button.trade-skill-btn,
+.buy-now-btn,
+button.buy-now-btn,
+.find-matches-btn,
+button.find-matches-btn,
+.popular-chip,
+button.popular-chip,
+.proof-btn,
+button.proof-btn,
+.timebank-ledger-btn,
+button.timebank-ledger-btn,
+.simulate-learner-btn,
+button.simulate-learner-btn,
+.discover-mentors-btn,
+button.discover-mentors-btn {
+  background: #E4E4E7 !important;
+  background-color: #E4E4E7 !important;
+  color: #000000 !important;
+  border: 1px solid #E4E4E7 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
+}
+
+.propose-swap-btn:hover,
+button.propose-swap-btn:hover,
+.trade-skill-btn:hover,
+button.trade-skill-btn:hover,
+.buy-now-btn:hover,
+button.buy-now-btn:hover,
+.find-matches-btn:hover,
+button.find-matches-btn:hover,
+.popular-chip:hover,
+button.popular-chip:hover,
+.proof-btn:hover,
+button.proof-btn:hover,
+.timebank-ledger-btn:hover,
+button.timebank-ledger-btn:hover,
+.simulate-learner-btn:hover,
+button.simulate-learner-btn:hover,
+.discover-mentors-btn:hover,
+button.discover-mentors-btn:hover {
+  background: #D4D4D8 !important;
+  background-color: #D4D4D8 !important;
+  color: #000000 !important;
+  border-color: #D4D4D8 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+.secondary-action,
+button.secondary-action {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #D4D4D8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.secondary-action:hover,
+button.secondary-action:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.page-kicker,
+span.page-kicker,
+p.page-kicker {
+  color: #A1A1AA !important;
+  text-shadow: none !important;
+}
+
+/* ABSOLUTE RESET: Zero border, zero outline, zero box-shadow for all search inputs and borderless inputs */
+:is(html, html.dark, html[data-skillswap-theme="dark"], html.light, body, .app-chrome) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+) {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+:is(html, html.dark, html[data-skillswap-theme="dark"], html.light, body, .app-chrome) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus,
+:is(html, html.dark, html[data-skillswap-theme="dark"], html.light, body, .app-chrome) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus-visible {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+

@@ -1,0 +1,155 @@
+.border-glow-card {
+  --edge-proximity: 0;
+  --cursor-angle: 45deg;
+  --mouse-x: 50%;
+  --mouse-y: 0%;
+  --edge-sensitivity: 15;
+  --color-sensitivity: calc(var(--edge-sensitivity) + 15);
+  --border-radius: 20px;
+  --glow-padding: 30px;
+  --cone-spread: 35;
+
+  position: relative;
+  border-radius: var(--border-radius);
+  isolation: isolate;
+  background: var(--card-bg, linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(14, 30, 60, 0.32) 50%, rgba(8, 14, 26, 0.65) 100%)) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 12px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15) !important;
+  /* Scoped transition: NEVER use transition: all because it causes frame drops & flickering during pointermove! */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  /* GPU Hardware Acceleration & Layer Isolation */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: border-color, box-shadow;
+}
+
+.border-glow-card:hover {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow:
+    0 12px 40px 0 rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 16px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .border-glow-card,
+.border-glow-card--light {
+  background: var(--card-bg, #FFFFFF) !important;
+  background-color: var(--card-bg, #FFFFFF) !important;
+  border-color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow:
+    0 0 0 1px #000000,
+    0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .border-glow-card:hover,
+.border-glow-card--light:hover {
+  border-color: #000000 !important;
+  box-shadow:
+    0 0 0 2px #000000,
+    0 8px 30px rgba(0, 0, 0, 0.16) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .border-glow-inner,
+.border-glow-card--light .border-glow-inner {
+  color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .border-glow-card::before,
+.border-glow-card--light::before {
+  background: radial-gradient(
+    450px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+    rgba(0, 0, 0, 0.14) 0%,
+    rgba(0, 0, 0, 0.06) 30%,
+    transparent 70%
+  ) !important;
+  filter: blur(12px) !important;
+  opacity: 0.85 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .border-glow-card > .edge-light,
+.border-glow-card--light > .edge-light {
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+    #000000 0%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 100%
+  ) border-box !important;
+}
+
+/* Subtle specular aura radiating softly around the card */
+.border-glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--border-radius) + 3px);
+  background: radial-gradient(
+    380px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.03) 60%,
+    transparent 80%
+  );
+  filter: blur(14px);
+  z-index: -1;
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.border-glow-card:hover::before {
+  opacity: 0.65;
+}
+
+/* Dynamic specular hotspot tracking cursor along the border */
+.border-glow-card > .edge-light {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  border: 1px solid transparent;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.25) 30%,
+    rgba(255, 255, 255, 0.06) 70%,
+    transparent 100%
+  ) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.85;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.border-glow-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}

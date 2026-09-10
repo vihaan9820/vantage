@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap - Discover</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-container": "#97999a",
+                            "tertiary": "#c5c7c8",
+                            "surface": "#131313",
+                            "on-secondary": "#1a2b6a",
+                            "on-secondary-fixed-variant": "#334282",
+                            "on-surface": "#e5e2e1",
+                            "on-error": "#690005",
+                            "on-secondary-container": "#a2b1f9",
+                            "primary-container": "#8b8dff",
+                            "inverse-primary": "#4f51bf",
+                            "surface-bright": "#393939",
+                            "primary-fixed": "#e1dfff",
+                            "surface-container-highest": "#353534",
+                            "inverse-surface": "#e5e2e1",
+                            "surface-dim": "#131313",
+                            "on-tertiary-fixed-variant": "#454748",
+                            "on-tertiary-fixed": "#191c1d",
+                            "outline-variant": "#464553",
+                            "on-error-container": "#ffdad6",
+                            "primary-fixed-dim": "#c1c1ff",
+                            "on-secondary-fixed": "#001354",
+                            "surface-container-lowest": "#0e0e0e",
+                            "surface-tint": "#c1c1ff",
+                            "secondary": "#b8c4ff",
+                            "on-primary-fixed": "#08006b",
+                            "surface-variant": "#353534",
+                            "error": "#ffb4ab",
+                            "surface-container-high": "#2a2a2a",
+                            "outline": "#918f9e",
+                            "inverse-on-surface": "#313030",
+                            "secondary-container": "#334282",
+                            "tertiary-fixed": "#e1e3e4",
+                            "on-tertiary-container": "#2f3132",
+                            "on-background": "#e5e2e1",
+                            "background": "#131313",
+                            "on-surface-variant": "#c7c5d5",
+                            "secondary-fixed": "#dde1ff",
+                            "on-primary": "#1e1990",
+                            "surface-container-low": "#1c1b1b",
+                            "error-container": "#93000a",
+                            "on-tertiary": "#2e3132",
+                            "on-primary-container": "#1e1b90",
+                            "secondary-fixed-dim": "#b8c4ff",
+                            "surface-container": "#201f1f",
+                            "tertiary-fixed-dim": "#c5c7c8",
+                            "on-primary-fixed-variant": "#3737a6",
+                            "primary": "#c1c1ff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "section-gap": "80px",
+                            "margin-desktop": "48px",
+                            "stack-sm": "8px",
+                            "margin-mobile": "16px",
+                            "stack-lg": "32px",
+                            "container-max": "1280px",
+                            "gutter": "24px",
+                            "stack-md": "16px",
+                            "unit": "4px"
+                    },
+                    "fontFamily": {
+                            "display-lg": ["Plus Jakarta Sans"],
+                            "headline-md": ["Plus Jakarta Sans"],
+                            "label-sm": ["Inter"],
+                            "headline-lg-mobile": ["Plus Jakarta Sans"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Plus Jakarta Sans"],
+                            "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                            "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                            "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal lists */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(26, 26, 28, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex h-screen w-72 fixed left-0 top-0 z-[60] bg-surface-container-low border-r border-white/5 shadow-2xl flex-col p-stack-md gap-stack-sm">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">S</div>
+<div>
+<h1 class="text-headline-md font-display-lg text-primary text-lg">SkillSwap Pro</h1>
+<p class="text-label-sm font-label-sm text-tertiary">Expert Mentor</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-body-md text-body-md font-medium">Home</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-4 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined fill" data-icon="explore">explore</span>
+<span class="font-body-md text-body-md">Discover</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="event_repeat">event_repeat</span>
+<span class="font-body-md text-body-md font-medium">Sessions</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md font-medium">Community</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-body-md text-body-md font-medium">Messages</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md font-medium">Wallet</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="person_pin">person_pin</span>
+<span class="font-body-md text-body-md font-medium">Profile</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary-fixed transition-colors">
+                Host a Session
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="md:ml-72 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full md:w-[calc(100%-18rem)] z-50 bg-surface/80 backdrop-blur-lg shadow-sm border-b border-white/10 flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="md:hidden">
+<span class="text-headline-md font-display-lg font-bold text-primary">SkillSwap</span>
+</div>
+<div class="hidden md:flex flex-1 items-center justify-end max-w-md ml-auto mr-8 relative">
+<!-- Search on right per JSON -->
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border border-outline-variant rounded-full py-2 pl-12 pr-4 text-on-surface focus:outline-none focus:border-primary transition-colors focus:ring-1 focus:ring-primary/50" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant font-medium">
+<button class="hover:text-primary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</button>
+<button class="hover:text-primary transition-colors duration-200 active:scale-95 transition-transform relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<img class="w-10 h-10 rounded-full border border-white/10 object-cover hidden md:block" data-alt="A close-up portrait of an elegant professional in their late 20s against a dark studio background with subtle cool rim lighting, showcasing a polished and aspirational aesthetic suitable for a premium social learning platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Bco6ngk7iwv0EwjIiPtC-ulZx3PR3hnKeDfiGutppbCbdOQ4kZSe7HQUPs3DWoQxX1qEVL-WoaEVwkrqONrHXwvCocjdqVRZmKTtIQhwEGuI2SpvdG9ff68YkdbjmaelNh-Q8A_wd6n4vkpqj3r1hkrc1yeup-6NARISBXT405O1KKDgCnfLV0nLhwnyZJfzaBiZ9uRN4VZd5IZ-bsA7I4qW8m4PoJrogMIEhVYE-wen8mfnKgRT"/>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 pt-24 md:pt-32 pb-32 md:pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Hero Search Section -->
+<section class="mb-section-gap max-w-3xl">
+<h2 class="font-display-lg text-display-lg text-on-background mb-6">What do you want to learn?</h2>
+<div class="relative glass-panel rounded-2xl p-2 flex items-center shadow-lg">
+<span class="material-symbols-outlined ml-4 text-primary text-3xl" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none text-body-lg text-on-surface placeholder:text-on-surface-variant/50 focus:ring-0 px-4 py-3" placeholder="Try 'Cinematic Color Grading' or 'React Native Hooks'" type="text"/>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold hover:bg-primary-fixed transition-colors">Explore</button>
+</div>
+<!-- Quick Filters -->
+<div class="flex items-center gap-3 mt-6 overflow-x-auto hide-scrollbar pb-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant mr-2 whitespace-nowrap uppercase tracking-wider">Filters:</span>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container text-on-surface text-label-sm font-label-sm hover:border-primary/50 transition-colors whitespace-nowrap flex items-center gap-1">
+                        Any Duration <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container text-on-surface text-label-sm font-label-sm hover:border-primary/50 transition-colors whitespace-nowrap flex items-center gap-1">
+                        Point Cost <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container text-on-surface text-label-sm font-label-sm hover:border-primary/50 transition-colors whitespace-nowrap flex items-center gap-1">
+                        Availability <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-headline-md text-headline-md text-on-background">Categories</h3>
+<a class="text-primary font-medium hover:underline text-body-md" href="#">View all</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
+<!-- Design Card (Large) -->
+<div class="md:col-span-2 relative rounded-2xl overflow-hidden group cursor-pointer border border-white/5 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A moody, high-contrast flat lay of design tools including a sleek stylus, a dark-mode tablet displaying abstract UI elements, and minimal physical color swatches on a deep charcoal desk surface with dramatic directional lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDd4wh0g92rtbh5PGmu3-lgckv8BtGKdduk0iH97qXptxoj4UWSLw8NwEFXj88MGPNjXcU1jX-peeLa0ZaBtstjrrT_VRiMaLDaDBDUgAZeLIEl7zyVfy-SFIUVoN3dXLcm6c6WG2XI-qhreV_LpP_y_MeEAS_-IqgkA4DHPGdjQKotk1-xba_TEQ8p8ug_mQzQhr-DAOdeOpgHBdcClNGIr5P8AFIZ9WiX6sdDkRoYmWqwKvFfQfK4')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<h4 class="font-headline-md text-headline-md text-on-background mb-1">Design</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-1">UI/UX, Branding, 3D Modeling</p>
+</div>
+</div>
+<!-- Photography Card -->
+<div class="relative rounded-2xl overflow-hidden group cursor-pointer border border-white/5 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A close-up shot of a premium vintage camera lens reflecting soft, moody studio lights in a dark environment, emphasizing optical glass and metallic textures in a sophisticated, muted color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9YffvlpGkJe9gRjY2bYdnkx0zuhduC3wlBtXU4sXpGnMLLqmkrFhNORbLgvnNHmsc1GJTlokVGPb8TEEw7fUp5Rohec8B5lLvsF6v28AYRxWOgBlLAzruuBFJKRYeEOTAVPqfCwd1ioi6z7xznuZe0KbrQyQ4C_f3ccBUxbjn9YTWYio213OkUDa1ho-E34REgsU59PrYOw36l-EO7g5aMRuqnbuFzmvuQ8aksVX_vK9XfLHsWqbX')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<h4 class="font-headline-md text-headline-md text-on-background mb-1">Photography</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-1">Portrait, Street, Editing</p>
+</div>
+</div>
+<!-- Music Card -->
+<div class="relative rounded-2xl overflow-hidden group cursor-pointer border border-white/5 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A moody, atmospheric shot of a high-end digital audio workstation interface on a glowing screen next to a mechanical keyboard and studio monitors, bathed in subtle deep purple and charcoal tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_aFYazOeA0Ao2bOQNOY2b9JixsTY7tXlmwVWhhU_54vL5tBv8YdDU0iyK82ueUgfF2a9vdWJFUVmGnF2h77uCbbp2LjewbzdL2Gm0a2uQHhRspyroz4iHpH_wHBCcFrqKO8EaZy1rbTosbBabWxrriXwI3ao2bKk53Iv0kXkacU9xTi3covFHOh9gBDPl07UVEgm6gS6JyBb02cw0jqMYqELkNndzV4xBuy6T45wa0gp5swHfkdny')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<h4 class="font-headline-md text-headline-md text-on-background mb-1">Music</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-1">Production, Theory, Vocals</p>
+</div>
+</div>
+<!-- Fitness Card (Spans 2 cols on tablet, 1 on desktop but wider layout makes it fit) -->
+<div class="md:col-span-2 relative rounded-2xl overflow-hidden group cursor-pointer border border-white/5 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A stark, minimalist image of matte black kettlebells and a sleek yoga mat on a dark concrete floor, lit by a single dramatic spotlight creating deep shadows, embodying a premium fitness aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1Q5s6TWOgzxxHlqrIHCC0PYy43ZjpgWp1nK4OVVzqX68wJNJr2Ky_wILGDFmIit1R4EDrY-u6zqSN9jflnYYwzEifAppDk_upcrF8UzTlqjojYBa8yI-ZedYKG3Ah-YvzWPlY0MNOK-6F5SvCimuo7IFZR6EDRbL323CjBJOITp04vP4SMFtoS02Y4eIm18OEaGJDfZ5MknL9eM67E1IbJhZYsPy94IcodV1Tb2QaA1XJ2MZs1jSd')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full flex justify-between items-end">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-1">Fitness &amp; Wellness</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-1">Yoga, HIIT, Nutrition planning</p>
+</div>
+<span class="material-symbols-outlined text-primary bg-primary-container/20 p-2 rounded-full backdrop-blur-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending & Featured -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-headline-md text-headline-md text-on-background">Featured Mentors</h3>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span></button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Editorial Card 1 -->
+<div class="bg-surface-container-low rounded-2xl border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_20px_40px_rgba(0,0,0,0.4)] group hover:border-primary/30 transition-colors">
+<div class="md:w-2/5 h-64 md:h-auto relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A moody, professional portrait of a creative director in a dimly lit studio environment, working intently on a large digital tablet, conveying expertise and a high-end contemporary aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCfBsaIGvVq9nbN8ix0FHskHQnkcw1Cbln40AbUiL6uj1XUump-zGjDdTf7Tba6lZKokKBf0_O4b9qFVYv4dME5xF9HyYFN4I-P9FYCRgXfiJ3DifnzXm8wvu_66tEUCWw3Vnp3M2WxZMdI1uIYwutSW2n7uzYt4RWk47c1YEY2-W8rU0rJr3lF12X5xzCKwvPv0MLPvM-yGI1zfDVvep6IzFXfbsX8PRpP8MxOijFsB0gnZnOyUPc')"></div>
+</div>
+<div class="p-6 md:p-8 flex flex-col justify-center flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-primary-container/20 text-primary text-label-sm font-label-sm px-2 py-1 rounded">UX DESIGN</span>
+<span class="flex items-center text-tertiary text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px] mr-1 text-secondary" data-icon="star">star</span> 4.9 (120)</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">Advanced Design Systems</h4>
+<p class="text-body-md text-on-surface-variant mb-6 line-clamp-2">Master the art of creating scalable, token-driven design systems for enterprise applications with senior designer Elena Rostova.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-white/10" data-alt="A small, circular avatar portrait of an elegant professional woman against a dark background, matching the overall premium dark mode design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkTRIGaJC3jDdDT4RLW5vi13FfPcvB3_5aIx4J_mwiLSyEvp979sMwbNXmtdVKhisZXnew2fDwriDI8lRwbb5xRZJPspCH62C0SzUdtHZPC80VFV6RIaWQftl9w0VYB7jbugGvbAK18fryWv9q5hlmdzxB_n_7Jx3ch1pgl-LA8BDyY7NQaCCCcTBCyORVhuF2v6H7-Kd2aF04s2klO-u0tRHzmCgVruWWZisZKOYS2g8HL7Ye431b"/>
+<span class="text-body-md text-on-surface font-medium">Elena Rostova</span>
+</div>
+<div class="text-right">
+<span class="block text-body-md font-bold text-primary">500 pts</span>
+<span class="block text-label-sm font-label-sm text-tertiary">/ session</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Editorial Card 2 -->
+<div class="bg-surface-container-low rounded-2xl border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_20px_40px_rgba(0,0,0,0.4)] group hover:border-primary/30 transition-colors">
+<div class="md:w-2/5 h-64 md:h-auto relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="An atmospheric, low-key lighting shot of a modern music production setup, focusing on a tactile synthesizer and MIDI controller, evoking a sense of deep focus and creative flow in a dark studio setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoQ4AmvWS-hyM31dkjqMQiPhaoYqW517JnPHPiaSwCLjKYZxe82Fq-awuI0RsuqfbYdkbskGyt7d7BWjORHPiZyLcdXl5aK7ZsmcEaW2QW4ewem3MNzmbsp9f9fMbXjHjlOsHPapbqjArXpAqXYgd5JEEjisBQp8Cz9acKZuf6u8OVR7PZiM8ZTCjYZK1JkHz7s-m9fae4-gAFgknkF_7WTKI3JGYEO_g9z0nplUDC8-ouDnPxPSQb')"></div>
+</div>
+<div class="p-6 md:p-8 flex flex-col justify-center flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-primary-container/20 text-primary text-label-sm font-label-sm px-2 py-1 rounded">MUSIC PROD</span>
+<span class="flex items-center text-tertiary text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px] mr-1 text-secondary" data-icon="star">star</span> 5.0 (84)</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">Cinematic Soundscapes</h4>
+<p class="text-body-md text-on-surface-variant mb-6 line-clamp-2">Learn to build immersive, tension-filled atmospheric tracks for film and games using modern granular synthesis techniques.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-white/10" data-alt="A small, circular avatar portrait of an edgy, contemporary male music producer in a dark setting, fitting the premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2e3e_Z86Bd-qBOf5Fehdz_YeXwJXkAOl2FDgjPY4DGim3LR8y-z8Kmue97ijxi_8ScM8gRl33QWwjPMUMW1CvQB4g_zZbJ5_SfrZuncNIUw3b7ZUMP7xzrHK6HQ8f-7N4aAWpbmhvzXM1huQ3g0GcsPfj18gJNlaKL3bSI92n5TBdDxLfhaMGlG_8m4GY6rQv-QQYYlZ1xfNmwc27Lp5oE8TfDBAotyj7qWmaSqE8IIIG8MKbunqL"/>
+<span class="text-body-md text-on-surface font-medium">Marcus Chen</span>
+</div>
+<div class="text-right">
+<span class="block text-body-md font-bold text-primary">450 pts</span>
+<span class="block text-label-sm font-label-sm text-tertiary">/ session</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-section-gap border-t border-outline-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1 mb-8 md:mb-0">
+<div class="text-headline-lg font-display-lg text-on-surface mb-4">SkillSwap</div>
+<p class="text-tertiary-container font-body-md text-body-md mb-6 max-w-xs">Connecting lifelong learners with expert mentors in a premium social marketplace.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-headline-md text-body-lg font-bold text-on-surface">Platform</h5>
+<a class="text-tertiary-container font-body-md text-body-md hover:text-primary underline-offset-4 hover:underline transition-all" href="#">About</a>
+<a class="text-tertiary-container font-body-md text-body-md hover:text-primary underline-offset-4 hover:underline transition-all" href="#">Careers</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-headline-md text-body-lg font-bold text-on-surface">Legal</h5>
+<a class="text-tertiary-container font-body-md text-body-md hover:text-primary underline-offset-4 hover:underline transition-all" href="#">Privacy</a>
+<a class="text-tertiary-container font-body-md text-body-md hover:text-primary underline-offset-4 hover:underline transition-all" href="#">Terms</a>
+<a class="text-tertiary-container font-body-md text-body-md hover:text-primary underline-offset-4 hover:underline transition-all" href="#">Safety</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-headline-md text-body-lg font-bold text-on-surface">Connect</h5>
+<div class="flex gap-4">
+<!-- Social placeholders -->
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop max-w-container-max mx-auto mt-12 pt-8 border-t border-white/5">
+<p class="text-tertiary-container font-body-md text-body-md">© 2024 SkillSwap Editorial. All rights reserved.</p>
+</div>
+</footer>
+</div>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden flex justify-around items-center h-16 px-4 pb-safe bg-surface/90 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] touch-none transition-all duration-300">
+<a class="flex flex-col items-center text-on-surface-variant active:bg-surface-variant p-1 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center text-primary bg-primary-container/20 rounded-full py-1 px-4 active:bg-surface-variant" href="#">
+<span class="material-symbols-outlined fill" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant active:bg-surface-variant p-1 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-sm text-label-sm mt-1">Sessions</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant active:bg-surface-variant p-1 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-label-sm text-label-sm mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant active:bg-surface-variant p-1 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm mt-1">Wallet</span>
+</a>
+</nav>
+</body></html>

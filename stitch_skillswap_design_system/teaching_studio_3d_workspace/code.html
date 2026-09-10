@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap - Teaching Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#3737a6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-primary-fixed": "#08006b",
+                        "on-error": "#690005",
+                        "on-tertiary": "#2e3132",
+                        "inverse-on-surface": "#313030",
+                        "background": "#08090f",
+                        "primary-fixed": "#e1dfff",
+                        "surface-bright": "#393939",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#464553",
+                        "secondary": "#b8c4ff",
+                        "error-container": "#93000a",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-container": "#1e1b90",
+                        "primary": "#c1c1ff",
+                        "secondary-container": "#334282",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-fixed": "#dde1ff",
+                        "on-secondary-container": "#a2b1f9",
+                        "on-primary": "#1e1990",
+                        "surface-container-high": "#2a2a2a",
+                        "outline": "#918f9e",
+                        "surface-dim": "#131313",
+                        "surface-container": "#201f1f",
+                        "tertiary-container": "#97999a",
+                        "on-secondary": "#1a2b6a",
+                        "primary-container": "#8b8dff",
+                        "inverse-primary": "#4f51bf",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#001354",
+                        "tertiary-fixed": "#e1e3e4",
+                        "on-secondary-fixed-variant": "#334282",
+                        "primary-fixed-dim": "#c1c1ff",
+                        "tertiary": "#c5c7c8",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#c1c1ff",
+                        "on-tertiary-container": "#2f3132",
+                        "surface": "#131313",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-surface-variant": "#c7c5d5",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-variant": "#353534",
+                        "secondary-fixed-dim": "#b8c4ff",
+                        "on-tertiary-fixed": "#191c1d",
+                        "on-background": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "section-gap": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(26, 26, 28, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .gradient-border-card {
+            position: relative;
+            background: rgba(26, 26, 28, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 0.75rem;
+            z-index: 1;
+        }
+        
+        .gradient-border-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 0.85rem;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #8a2be2 100%);
+            z-index: -1;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .gradient-border-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 3D Tilt Effect Utilities */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.1s ease-out;
+        }
+        
+        .tilt-content {
+            transform: translateZ(30px);
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(1.2); }
+        }
+
+        body {
+            background-color: #08090f;
+            color: #e5e2e1;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Background Shader -->
+<div class="fixed inset-0 z-[-1] pointer-events-none opacity-60">
+<!-- STITCH_SHADER_START:ANIMATION_8 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_8" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_8');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Create animated aurora-like noise
+    float noise = sin(uv.x * 10.0 + u_time) * cos(uv.y * 10.0 + u_time * 0.5);
+    noise += sin(uv.y * 5.0 - u_time * 0.8) * cos(uv.x * 5.0 + u_time * 0.3);
+    
+    // Define brand colors
+    vec3 spaceBlack = vec3(0.03, 0.035, 0.06); // #08090f
+    vec3 electricViolet = vec3(0.55, 0.48, 1.0); // #8b8dff (from design system)
+    vec3 cyanNeon = vec3(0.0, 0.94, 1.0); // #00f0ff
+    
+    // Create soft radial gradients
+    float dist1 = distance(uv, vec2(0.2 + 0.1 * sin(u_time * 0.5), 0.3 + 0.1 * cos(u_time * 0.3)));
+    float dist2 = distance(uv, vec2(0.8 + 0.1 * cos(u_time * 0.4), 0.7 + 0.1 * sin(u_time * 0.6)));
+    
+    vec3 color = spaceBlack;
+    color = mix(color, electricViolet, smoothstep(0.5, 0.0, dist1) * 0.3);
+    color = mix(color, cyanNeon, smoothstep(0.4, 0.0, dist2) * 0.2);
+    
+    // Add subtle animated noise/glow
+    color += noise * 0.02;
+    
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_8 -->
+</div>
+<!-- SideNavBar (Web Only) -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-surface-container-low text-primary font-body-md text-body-md h-screen w-72 fixed left-0 top-0 border-r border-white/5 shadow-2xl flex-col p-stack-md gap-stack-sm z-40">
+<div class="mb-stack-lg flex flex-col gap-2">
+<div class="text-headline-md font-display-lg text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                SkillSwap Pro
+            </div>
+<div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Expert Mentor</div>
+</div>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span>Discover</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-xl font-bold hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_repeat</span>
+<span>Sessions</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>Community</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span>Messages</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Wallet</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-xl hover:bg-surface-variant/50 transition-all cursor-pointer active:scale-[0.98] flex items-center gap-4 px-4 py-3 mt-auto" href="#">
+<span class="material-symbols-outlined">person_pin</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col md:flex-row relative z-10 p-margin-desktop gap-gutter max-w-[1920px] mx-auto w-full">
+<!-- Center Canvas -->
+<div class="flex-1 flex flex-col gap-section-gap">
+<!-- Hero / Header Section -->
+<section class="relative rounded-2xl overflow-hidden glass-panel p-stack-lg min-h-[300px] flex items-center border-l-4 border-l-primary">
+<div class="absolute inset-0 z-0 opacity-40">
+<!-- STITCH_THREEJS_START:ANIMATION_9 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_9');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const container = document.getElementById('threejs-container');
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Create orbital rings
+const createRing = (radius, color, rotationX, rotationY) => {
+    const geometry = new THREE.TorusGeometry(radius, 0.02, 16, 100);
+    const material = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.6 });
+    const ring = new THREE.Mesh(geometry, material);
+    ring.rotation.x = rotationX;
+    ring.rotation.y = rotationY;
+    return ring;
+};
+
+const ring1 = createRing(2, 0x8b8dff, Math.PI / 3, 0);
+const ring2 = createRing(2.2, 0x00f0ff, -Math.PI / 4, Math.PI / 6);
+const ring3 = createRing(2.4, 0xc8ff40, Math.PI / 2, -Math.PI / 8);
+
+scene.add(ring1);
+scene.add(ring2);
+scene.add(ring3);
+
+// Central glowing sphere (Atom core)
+const coreGeo = new THREE.IcosahedronGeometry(0.5, 2);
+const coreMat = new THREE.MeshPhongMaterial({ 
+    color: 0x8b8dff, 
+    emissive: 0x8b8dff, 
+    emissiveIntensity: 2,
+    shininess: 100 
+});
+const core = new THREE.Mesh(coreGeo, coreMat);
+scene.add(core);
+
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(0, 0, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0x404040));
+
+function animate() {
+    requestAnimationFrame(animate);
+    
+    ring1.rotation.z += 0.01;
+    ring2.rotation.z += 0.008;
+    ring3.rotation.z += 0.012;
+    
+    core.rotation.y += 0.005;
+    core.rotation.x += 0.005;
+    
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const newWidth = container.clientWidth || window.innerWidth;
+    const newHeight = container.clientHeight || window.innerHeight;
+    camera.aspect = newWidth / newHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(newWidth, newHeight);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_9 -->
+</div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-stack-lg">
+<div class="max-w-xl">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-unit">Teaching Studio</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your offerings, track your sessions, and grow your mentor reputation.</p>
+</div>
+<!-- Gems Balance Card -->
+<div class="gradient-border-card p-stack-md flex flex-col gap-2 min-w-[240px]">
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span>Gems Balance</span>
+<span class="material-symbols-outlined text-primary text-sm">diamond</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">
+                            20
+                        </div>
+<div class="text-[#00f2fe] font-body-md text-body-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +8 this week
+                        </div>
+</div>
+</div>
+</section>
+<!-- Active Offerings Grid -->
+<section class="flex flex-col gap-stack-md">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Offerings</h2>
+<button class="text-primary font-label-sm text-label-sm uppercase tracking-wider hover:text-primary-fixed transition-colors">View All History</button>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+<!-- Listing 1 -->
+<div class="glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm tilt-card" onmouseleave="resetTilt(this)" onmousemove="tiltEffect(event, this)">
+<div class="tilt-content flex flex-col h-full justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2 bg-surface-container/50 px-3 py-1 rounded-full border border-white/5">
+<div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
+<span class="font-label-sm text-label-sm text-amber-400">⏳ Waiting for Learner</span>
+</div>
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-primary">
+                                        15 <span class="material-symbols-outlined text-sm">diamond</span>
+</div>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Advanced Portrait Photography</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Master lighting techniques, composition, and post-processing for professional-grade portraits.</p>
+</div>
+<div class="mt-stack-lg pt-stack-md border-t border-white/10 flex justify-between items-center">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border-2 border-[#1a1a1c] flex items-center justify-center text-xs text-on-surface-variant material-symbols-outlined">person</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-surface-variant hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-colors active:scale-95">Edit Listing</button>
+</div>
+</div>
+</div>
+<!-- Listing 2 -->
+<div class="glass-panel rounded-xl p-stack-md flex flex-col gap-stack-sm tilt-card border-l-2 border-l-secondary" onmouseleave="resetTilt(this)" onmousemove="tiltEffect(event, this)">
+<div class="tilt-content flex flex-col h-full justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2 bg-secondary-container/30 px-3 py-1 rounded-full border border-secondary/20">
+<div class="w-2 h-2 rounded-full bg-secondary pulse-dot"></div>
+<span class="font-label-sm text-label-sm text-secondary">📅 Booked by David Chen</span>
+</div>
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-primary">
+                                        20 <span class="material-symbols-outlined text-sm">diamond</span>
+</div>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">React Performance Tuning</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Deep dive into memoization, rendering cycles, and state management optimization for complex React applications.</p>
+</div>
+<div class="mt-stack-lg pt-stack-md border-t border-white/10 flex flex-col gap-3">
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base">schedule</span> Today, 3:00 PM EST
+                                </div>
+<button class="w-full py-3 rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-label-sm text-label-sm uppercase tracking-widest transition-all active:scale-[0.98] shadow-[0_0_15px_rgba(193,193,255,0.3)]">Complete Session &amp; Transfer Gems</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar: Wallet Pipeline -->
+<aside class="w-full md:w-80 flex flex-col gap-stack-md shrink-0">
+<div class="glass-panel rounded-xl p-stack-md h-full flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md border-b border-white/10 pb-4">Wallet Pipeline</h3>
+<div class="flex gap-2 mb-stack-md bg-surface-container/50 p-1 rounded-lg">
+<button class="flex-1 py-1 px-2 rounded-md bg-surface-variant text-on-surface font-label-sm text-label-sm text-center">All</button>
+<button class="flex-1 py-1 px-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm text-center transition-colors">Earned</button>
+<button class="flex-1 py-1 px-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm text-center transition-colors">Spent</button>
+</div>
+<div class="flex flex-col gap-4 overflow-y-auto mb-stack-lg flex-1">
+<!-- Transaction 1 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface">UI Design Review</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">2 days ago</div>
+</div>
+</div>
+<div class="font-body-md text-body-md text-[#00f2fe]">+5</div>
+</div>
+<!-- Transaction 2 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface">Python Basics</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">4 days ago</div>
+</div>
+</div>
+<div class="font-body-md text-body-md text-error">-2</div>
+</div>
+</div>
+<!-- UPI QR Code Generator placeholder -->
+<div class="mt-auto border-t border-white/10 pt-stack-md flex flex-col items-center text-center">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Top up Gems</h4>
+<div class="w-32 h-32 bg-white rounded-lg p-2 mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-black">qr_code_2</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Scan to purchase via UPI</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-margin-desktop right-margin-desktop z-50 gradient-border-card p-4 rounded-full flex items-center justify-center shadow-[0_10px_40px_rgba(0,242,254,0.3)] hover:scale-105 active:scale-95 transition-transform group" onclick="toggleModal()">
+<span class="material-symbols-outlined text-white text-2xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+<!-- Glassmorphic Modal -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-4" id="offerModal">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleModal()"></div>
+<div class="relative glass-panel w-full max-w-lg rounded-2xl p-stack-lg border border-white/20 shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+<div class="flex justify-between items-center mb-stack-md border-b border-white/10 pb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Offer Another Skill</h2>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="toggleModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-stack-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Skill Title</label>
+<input class="w-full bg-surface-container/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="e.g., Intro to Machine Learning" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Description</label>
+<textarea class="w-full bg-surface-container/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="What will the learner achieve?" rows="3"></textarea>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Gem Rate (per session)</label>
+<div class="flex items-center gap-2">
+<input class="w-32 bg-surface-container/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="10" type="number"/>
+<span class="material-symbols-outlined text-primary">diamond</span>
+</div>
+</div>
+<button class="mt-4 w-full py-3 rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-label-sm text-label-sm uppercase tracking-widest transition-all active:scale-[0.98]" onclick="toggleModal()" type="button">Publish Offering</button>
+</form>
+</div>
+</div>
+<script>
+        // 3D Tilt Effect for Cards
+        function tiltEffect(event, element) {
+            const rect = element.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -10; // Max rotation degrees
+            const rotateY = ((x - centerX) / centerX) * 10;
+            
+            element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        function resetTilt(element) {
+            element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        }
+
+        // Modal Toggle
+        function toggleModal() {
+            const modal = document.getElementById('offerModal');
+            const content = document.getElementById('modalContent');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                // Small delay to allow display:flex to apply before animating opacity/transform
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300); // Wait for transition
+            }
+        }
+    </script>
+</body></html>

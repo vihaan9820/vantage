@@ -1,0 +1,220 @@
+/* UI/UX Pro Max guided refinements: shared interaction quality, glassmorphism, responsive polish, and accessibility. */
+
+/* Default Readable UI Sans System: Outfit, DM Sans, System */
+html, body, button, input, select, textarea {
+  font-family: "Outfit", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Vantage Bold Typography: Exclusively for Headings and Brand Wordmarks */
+h1, h2, h3, h4, h5, h6,
+.app-brand, .auth-brand, .onboard-brand, .logo-wordmark,
+.settings-panel h2, .section-heading h2 {
+  font-family: "Megiko", "Space Grotesk", "Syne", sans-serif !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em !important;
+}
+
+:where(button, a, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+:where(button, [role="button"]):disabled,
+:where([aria-disabled="true"]) {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+/* Cursor pointer on all interactive elements */
+:where(button, a, select, summary, [role="button"], .skill-card, .search-result-card, .portfolio-card, .point-plan, .transaction-list > div, .home-professional-card, .mini-pro) {
+  cursor: pointer;
+}
+
+.form-error[role="alert"] {
+  margin: 2px 0 0;
+  padding: 10px 12px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  color: inherit;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+:where(input, select, textarea)[aria-invalid="true"] {
+  border-width: 2px;
+}
+
+.checkout-pending-note {
+  min-height: 1.35rem;
+  margin: 10px 0 0;
+  color: inherit;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select {
+  min-height: 44px;
+}
+
+.app-topbar :where(.global-search-trigger, .notification-button, .profile-trigger, .app-menu),
+.route-context > button,
+.mobile-bottom-nav > a {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.app-topbar :where(.global-search-trigger, .notification-button, .profile-trigger, .app-menu),
+.route-context > button,
+.mobile-bottom-nav > a,
+.product-menu button,
+.notification-tabs button {
+  transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out), transform 160ms var(--ease-out);
+}
+
+.app-topbar :where(.global-search-trigger, .notification-button, .profile-trigger, .app-menu):active,
+.route-context > button:active,
+.mobile-bottom-nav > a:active,
+.product-menu button:active,
+.notification-tabs button:active {
+  transform: scale(0.97);
+}
+
+.mobile-bottom-nav > a[aria-current="page"] {
+  color: #FFFFFF;
+}
+
+.wallet-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0 28px;
+}
+
+.wallet-quick-actions > button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 3px;
+  align-items: center;
+  min-height: 82px;
+  padding: 16px;
+  text-align: left;
+  border-radius: 14px;
+  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+.wallet-quick-actions > button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.12);
+}
+
+.wallet-quick-actions > button > svg {
+  grid-row: 1 / span 2;
+}
+
+.wallet-quick-actions > button > span,
+.wallet-quick-actions > button > small {
+  min-width: 0;
+}
+
+.wallet-quick-actions > button > small {
+  grid-column: 2;
+  line-height: 1.45;
+}
+
+/* Glassmorphism & Depth Refinements */
+.content-panel,
+.transaction-card,
+.wallet-buy,
+.profile-editor,
+.community-composer,
+.search-results,
+.portfolio-modal,
+.points-education {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+/* Smooth Interactive Card Hover States */
+.skill-card,
+.search-result-card,
+.home-professional-card,
+.mini-pro,
+.point-plan {
+  transition: transform 220ms var(--ease-out), border-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+
+.skill-card:hover,
+.search-result-card:hover,
+.home-professional-card:hover,
+.mini-pro:hover,
+.point-plan:hover,
+.category-card:hover,
+.category-card.selected,
+.content-panel:hover,
+.card-3d:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.48) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Light Theme Contrast Support */
+:where(button, a, input, textarea, select, [role="button"]):focus-visible {
+  outline-color: #FFFFFF;
+}
+
+.mobile-bottom-nav > a[aria-current="page"] {
+  color: #FFFFFF;
+}
+
+html[data-skillswap-theme="light"] .form-error[role="alert"],
+.product-theme-light .form-error[role="alert"] {
+  color: #b94138;
+}
+
+html[data-skillswap-theme="light"] :where(input, select, textarea)[aria-invalid="true"],
+.product-theme-light :where(input, select, textarea)[aria-invalid="true"] {
+  border-color: #d85f55 !important;
+  box-shadow: 0 0 0 3px rgba(216, 95, 85, 0.14);
+}
+
+@media (max-width: 680px) {
+  .app-topbar :where(.global-search-trigger, .notification-button, .profile-trigger, .app-menu) {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .mobile-bottom-nav > a {
+    min-height: 52px;
+  }
+
+  .product-menu button,
+  .notification-tabs button {
+    min-height: 44px;
+  }
+
+  .wallet-quick-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 16px 0 22px;
+  }
+
+  .wallet-quick-actions > button {
+    min-height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

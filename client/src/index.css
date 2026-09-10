@@ -1,0 +1,2934 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Megiko";
+  src: url("/fonts/Megiko.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Morenn";
+  src: url("/fonts/Morenn.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-megiko: "Megiko", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-morenn: "Megiko", "Morenn", serif;
+  --font-display: "Megiko", "Outfit", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --card: #000000;
+  --card-foreground: #FFFFFF;
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FFFFFF;
+  --secondary-foreground: #000000;
+  --accent: #FFFFFF;
+  --accent-foreground: #000000;
+  --highlight: #FFFFFF;
+  --border: rgba(255, 255, 255, 0.15);
+  --ring: #FFFFFF;
+  --ink: #000000;
+  --paper: #FFFFFF;
+  --paper-dim: #FFFFFF;
+  --coral: #FFFFFF;
+  --blue: #FFFFFF;
+  --line: rgba(255, 255, 255, 0.18);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Primary Black & Secondary Pure White Tokens */
+  --stitch-surface: #000000;
+  --stitch-surface-dim: #000000;
+  --stitch-surface-bright: #050505;
+  --stitch-surface-container-lowest: #000000;
+  --stitch-surface-container-low: #000000;
+  --stitch-surface-container: #000000;
+  --stitch-surface-container-high: #000000;
+  --stitch-surface-container-highest: #000000;
+  --stitch-on-surface: #FFFFFF;
+  --stitch-on-surface-variant: #FFFFFF;
+  --stitch-primary: #000000;
+  --stitch-primary-container: #000000;
+  --stitch-on-primary: #FFFFFF;
+  --stitch-secondary: #FFFFFF;
+  --stitch-on-secondary: #000000;
+  --stitch-tertiary: #FFFFFF;
+  --stitch-outline: rgba(255, 255, 255, 0.25);
+  --stitch-outline-variant: rgba(255, 255, 255, 0.15);
+  --stitch-error: #FFFFFF;
+
+  /* Mobile Safe Area & Notch Insets */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000000;
+  color-scheme: dark;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF;
+  font-family: "Outfit", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-megiko,
+.font-morenn,
+.font-editorial,
+.font-brand-serif {
+  font-family: "Megiko", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Megiko", "Outfit", sans-serif;
+  font-weight: 700;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+input, select, textarea {
+  color: #F8FAFC;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Eliminate any boxy outlines on transparent or search-embedded inputs everywhere */
+input.border-none,
+input[class*="border-none"],
+input[class*="bg-transparent"],
+input:focus,
+.discover-search input,
+.search-shell input,
+.global-search-input,
+[class*="search"] input {
+  border: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* rahuldotdev/glassmorphism - Signature Multi-layer Inset & Translucent Specular Elevation */
+.glass-panel,
+.card-glass,
+.rahul-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(10, 10, 16, 0.7);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 0 15px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.25s ease;
+}
+
+.glass-panel:hover,
+.card-glass:hover,
+.rahul-glass:hover {
+  backdrop-filter: blur(20px) saturate(220%);
+  -webkit-backdrop-filter: blur(20px) saturate(220%);
+  border-color: rgba(255, 255, 255, 0.35);
+  border-top-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 20px 4px rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* rahuldotdev 3D Refined Cards */
+.card-3d {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(10, 10, 16, 0.7);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 0 15px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+.card-3d:hover {
+  transform: translateY(-2px);
+  backdrop-filter: blur(20px) saturate(220%);
+  -webkit-backdrop-filter: blur(20px) saturate(220%);
+  border-color: rgba(255, 255, 255, 0.35);
+  border-top-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 20px 4px rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Minimalist Clean Typography */
+.gradient-heading {
+  color: #FFFFFF !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.gradient-heading-hard {
+  color: #FFFFFF;
+}
+
+.gradient-accent {
+  color: #FFFFFF;
+}
+
+.gradient-accent-hard {
+  color: #FFFFFF;
+}
+
+.hard-gradient-line {
+  display: none;
+}
+
+.btn-hard-gradient {
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.btn-hard-gradient:hover {
+  background: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.35);
+}
+.btn-hard-gradient:active {
+  transform: translateY(1px);
+}
+
+.btn-3d {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 10px;
+  background: #FFFFFF;
+  color: #000000;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.btn-3d:hover {
+  background: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.35);
+}
+.btn-3d:active {
+  transform: translateY(1px);
+}
+
+.btn-3d-emerald {
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.btn-3d-emerald:hover {
+  background: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.35);
+}
+.btn-3d-emerald:active {
+  transform: translateY(1px);
+}
+
+/* Micro-Interaction Keyframes */
+@keyframes popoverIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-popover {
+  animation: popoverIn 0.16s ease-out forwards;
+  transform-origin: top right;
+}
+
+@keyframes fadeInUpSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUpSmooth 0.35s ease-out both;
+}
+
+.pulse-badge-emerald {
+  display: inline-block;
+}
+
+.shimmer-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+.float-3d {
+  animation: float3d 4s ease-in-out infinite;
+}
+
+.gradient-border-card {
+  position: relative;
+  background: rgba(10, 10, 12, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+}
+
+.tilt-card {
+  transition: transform 0.15s ease-out;
+}
+
+/* Minimalist Studio Ambient Lighting - Calibrated for high text contrast */
+.glow-orb-indigo,
+.glow-orb-emerald,
+.glow-orb-violet,
+.glow-orb-amber,
+.glow-orb-mono {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientFloat 14s ease-in-out infinite alternate;
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-18px) scale(1.06);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(14px) scale(0.96);
+    opacity: 0.65;
+  }
+}
+
+@keyframes whiteGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 45px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 65px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Hero Stage Ambient Specular Glow & Spotlight - Subtle vignette accents */
+.stage-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.stage-glow-blue {
+  width: 480px;
+  height: 480px;
+  top: 8%;
+  right: 12%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.025) 45%, transparent 70%);
+  animation: ambientFloat 10s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.stage-glow-coral {
+  width: 400px;
+  height: 400px;
+  bottom: 10%;
+  left: 8%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 70%);
+  animation: ambientFloat 14s ease-in-out infinite alternate-reverse;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hero-spotlight {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%) translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  width: min(1200px, 96vw);
+  height: 520px;
+  background: radial-gradient(ellipse 65% 55% at 50% 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =============================================================================
+   RAHULDOTDEV GLASSMORPHISM - TRANSLUCENT TEXT CONTAINERS
+   Ensures text headings and copy are 100% legible, crisp, and high-contrast
+   over animated WebGL fluid surfaces and glowing background orbs.
+   ============================================================================= */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 2.5rem);
+  max-width: 80rem;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+}
+
+.hero-copy,
+.hero-copy.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(8, 8, 14, 0.82) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 1.75rem !important;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) !important;
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.75),
+    inset 0 0 24px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5) !important;
+  position: relative !important;
+  z-index: 20 !important;
+  max-width: 44rem !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+.hero-copy:hover {
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  border-top-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 24px 64px 0 rgba(0, 0, 0, 0.85),
+    inset 0 0 28px 4px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7) !important;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.35rem, 4.5vw, 3.85rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+  margin: 0.85rem 0 1rem !important;
+  font-weight: 800 !important;
+}
+
+.hero-copy h1 em {
+  color: #FFFFFF !important;
+  font-style: italic !important;
+  font-family: "DM Serif Display", serif !important;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 1.25vw, 1.125rem) !important;
+  line-height: 1.65 !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  margin-bottom: 1.75rem !important;
+  max-width: 38rem !important;
+}
+
+.hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+  margin-bottom: 2rem !important;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+  margin-top: 0.5rem;
+}
+
+.hero-facts > div {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 10px rgba(255, 255, 255, 0.03) !important;
+  border-radius: 12px;
+  padding: 0.85rem 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.25rem !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-facts > div:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.06) !important;
+}
+
+.hero-facts strong {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+}
+
+.hero-facts span {
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  line-height: 1.3 !important;
+}
+
+.eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #FFFFFF !important;
+  width: fit-content !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 8px #FFFFFF;
+  display: inline-block;
+}
+
+.section-intro.narrow-intro,
+.section-intro.narrow-intro.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 8, 14, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 1.5rem !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 1.75rem !important;
+  box-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.55),
+    inset 0 0 18px 2px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
+  max-width: 44rem;
+  margin-bottom: 2rem;
+}
+
+.discover-heading,
+.discover-heading.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 8, 14, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 1.5rem !important;
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 3vw, 2.25rem) !important;
+  box-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.55),
+    inset 0 0 18px 2px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
+  max-width: 48rem;
+  margin-bottom: 2rem;
+}
+
+.matching-copy,
+.matching-copy.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(8, 8, 14, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 1.75rem !important;
+  padding: clamp(1.5rem, 3vw, 2.25rem) !important;
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.65),
+    inset 0 0 20px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  max-width: 38rem;
+}
+
+.home-professionals-heading,
+.home-professionals-heading.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 8, 14, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 1.5rem !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 1.75rem !important;
+  box-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.55),
+    inset 0 0 18px 2px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
+  margin-bottom: 2rem;
+}
+
+.points-heading,
+.points-heading.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(8, 8, 14, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 1.5rem !important;
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 3vw, 2.25rem) !important;
+  box-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.55),
+    inset 0 0 18px 2px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
+  max-width: 48rem;
+  margin-bottom: 2rem;
+}
+
+.closing-card,
+.closing-card.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(8, 8, 14, 0.82) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 2rem !important;
+  padding: clamp(2rem, 4vw, 3.25rem) !important;
+  box-shadow: 0 20px 64px 0 rgba(0, 0, 0, 0.75),
+    inset 0 0 24px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5) !important;
+  position: relative !important;
+  z-index: 20 !important;
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.tilt-content {
+  transform: translateZ(24px);
+}
+
+.pulse-dot {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Standard Buttons & Kickers */
+.page-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 800;
+}
+
+.primary-action {
+  appearance: none;
+  border: 1px solid #FFFFFF;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 10px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FFFFFF;
+  color: #000000;
+  padding: 0 18px;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.primary-action:hover {
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.primary-action:active {
+  background: #FFFFFF;
+  transform: translateY(1px);
+}
+
+.secondary-action {
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 10px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #000000;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #FFFFFF;
+  padding: 0 16px;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.secondary-action:hover {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.secondary-action:active {
+  transform: translateY(1px);
+}
+
+/* Modals & Dialogs */
+.portfolio-modal, .points-education {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  width: min(540px, calc(100vw - 32px));
+  max-height: min(90vh, 700px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  background: #000000;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.portfolio-modal > button:first-of-type {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  border: 0;
+  background: transparent;
+  color: #918f9e;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10;
+  transition: color 0.15s;
+}
+
+.portfolio-modal > button:first-of-type:hover {
+  color: #ffffff;
+}
+
+/* Modal Portal Backdrop Overlay & Perspective Escape */
+.modal-portal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 16px !important;
+  overflow-y: auto !important;
+}
+
+.modal-portal-overlay .portfolio-modal,
+.modal-portal-overlay .points-education,
+.modal-portal-overlay .checkout-modal,
+.modal-portal-overlay .upi-modal {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: auto !important;
+  max-height: calc(100vh - 32px) !important;
+  z-index: 100000 !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.98), 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+.modal-portal-overlay .portfolio-modal > button:first-of-type {
+  color: #ffffff !important;
+  opacity: 0.75 !important;
+}
+
+.modal-portal-overlay .portfolio-modal > button:first-of-type:hover {
+  opacity: 1 !important;
+}
+
+@media (max-width: 640px) {
+  .modal-portal-overlay {
+    padding: 10px !important;
+    align-items: flex-end !important;
+  }
+  .modal-portal-overlay .portfolio-modal,
+  .modal-portal-overlay .points-education,
+  .modal-portal-overlay .checkout-modal,
+  .modal-portal-overlay .upi-modal {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+    max-height: calc(100vh - 24px) !important;
+  }
+}
+
+/* Touch-friendly table & data-grid horizontal scroll wrapper */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.payment-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.payment-summary span {
+  display: block;
+  font-size: 11px;
+  color: #918f9e;
+  margin-bottom: 2px;
+}
+
+.payment-summary strong {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.form-error[role="alert"], .form-error {
+  color: #ffb4ab;
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+input[aria-invalid="true"] {
+  border-color: #ffb4ab !important;
+}
+
+/* App Header & Navigation styling */
+.app-topbar {
+  height: 68px;
+  position: sticky;
+  z-index: 40;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(8, 9, 15, 0.85);
+  backdrop-filter: blur(20px);
+}
+
+.app-brand {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-brand span {
+  color: #c1c1ff;
+}
+
+.app-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.global-search-trigger {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #918f9e;
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.global-search-trigger:hover {
+  border-color: rgba(193, 193, 255, 0.4);
+  color: #ffffff;
+}
+
+.notification-button {
+  border: 0;
+  background: transparent;
+  color: #918f9e;
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  transition: color 0.15s;
+}
+
+.notification-button:hover {
+  color: #ffffff;
+}
+
+.notification-button b {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  background: #c1c1ff;
+  color: #1e1990;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.wallet-pill {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid rgba(193, 193, 255, 0.25);
+  background: rgba(193, 193, 255, 0.08);
+  color: #c1c1ff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.15s;
+}
+
+.wallet-pill:hover {
+  background: rgba(193, 193, 255, 0.15);
+  border-color: #c1c1ff;
+}
+
+.profile-trigger {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-trigger span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(139, 141, 255, 0.2);
+  color: #c1c1ff;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.notification-drawer {
+  position: fixed;
+  right: 16px;
+  top: 76px;
+  width: min(380px, calc(100vw - 32px));
+  max-height: 480px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+
+.notification-tabs button {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: transparent;
+  border: 0;
+  color: #918f9e;
+}
+
+.notification-tabs button.active {
+  background: #c1c1ff;
+  color: #1e1990;
+  font-weight: 700;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.notification-list button {
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0;
+  color: #e5e2e1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.notice-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c1c1ff;
+  flex-shrink: 0;
+}
+
+.notice-empty {
+  text-align: center;
+  padding: 24px;
+  color: #918f9e;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(19, 19, 19, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50;
+    padding: 0 12px;
+  }
+}
+
+.mobile-bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #918f9e;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mobile-bottom-nav a[aria-current="page"] {
+  color: #c1c1ff;
+}
+
+.product-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 8px;
+  min-width: 200px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.product-menu button {
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 0;
+  background: transparent;
+  color: #e5e2e1;
+  font-size: 12px;
+  transition: background 0.15s;
+}
+
+.product-menu button:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.product-menu .menu-danger {
+  color: #ffb4ab;
+}
+
+.profile-menu-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 4px;
+}
+
+.profile-menu-head span {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(139, 141, 255, 0.2);
+  color: #c1c1ff;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.profile-menu-head strong {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.profile-menu-head small {
+  font-size: 11px;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   PRIMARY BLACK & SECONDARY PURE WHITE MONOCHROME DESIGN SYSTEM
+   ========================================================================== */
+html,
+body,
+html.dark,
+html.dark #root,
+html[data-skillswap-theme="dark"],
+html[data-skillswap-theme="dark"] #root,
+.product-theme-dark,
+.product-theme-dark.app-chrome {
+  --background: #000000 !important;
+  --foreground: #FFFFFF !important;
+  --card: #000000 !important;
+  --card-foreground: #FFFFFF !important;
+  --primary: #000000 !important;
+  --primary-foreground: #FFFFFF !important;
+  --secondary: #FFFFFF !important;
+  --secondary-foreground: #000000 !important;
+  --border: rgba(255, 255, 255, 0.15) !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+
+html.light,
+html.light body,
+html.light #root,
+html[data-skillswap-theme="light"],
+html[data-skillswap-theme="light"] body,
+html[data-skillswap-theme="light"] #root,
+.product-theme-light,
+.product-theme-light body,
+.product-theme-light.app-chrome {
+  --background: #FFFFFF !important;
+  --foreground: #000000 !important;
+  --card: #FFFFFF !important;
+  --card-foreground: #000000 !important;
+  --primary: #D4AF37 !important;
+  --primary-foreground: #000000 !important;
+  --secondary: #FAF7F0 !important;
+  --secondary-foreground: #000000 !important;
+  --border: rgba(212, 175, 55, 0.28) !important;
+  --ring: #D4AF37 !important;
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+html.light body,
+html[data-skillswap-theme="light"] body,
+.product-theme-light body {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+
+/* Primary buttons in Dark Mode: Pure White with Black text */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) {
+  background: #E4E4E7 !important;
+  background-color: #E4E4E7 !important;
+  background-image: none !important;
+  color: #09090B !important;
+  -webkit-text-fill-color: #09090B !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45), 0 0 12px rgba(228, 228, 231, 0.12) !important;
+}
+
+/* Primary buttons in Light Mode: Pure Black with White text */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) {
+  background: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #C5A059 100%) !important;
+  background-color: #D4AF37 !important;
+  background-image: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #C5A059 100%) !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1px solid #C5A059 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* Primary buttons child elements in Dark Mode: Black text/stroke */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg, span, b, strong, i, p, *) {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+/* Primary buttons child elements in Light Mode: White text/stroke */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg, span, b, strong, i, p, *) {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg.fill-black, svg.lucide-zap, svg.lucide-gem, svg[data-filled="true"]),
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) :is(svg.fill-black, svg.lucide-zap, svg.lucide-gem, svg[data-filled="true"]) :is(path, polygon) {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+) svg:not(.fill-black):not(.lucide-zap):not(.lucide-gem) {
+  fill: none;
+}
+
+/* Primary buttons hover in Dark Mode: Pure White specular glow */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):hover {
+  background: #F4F4F5 !important;
+  background-color: #F4F4F5 !important;
+  background-image: none !important;
+  color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 16px rgba(228, 228, 231, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+/* Primary buttons hover in Light Mode: Charcoal depth */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):hover {
+  background: linear-gradient(135deg, #DFB843 0%, #F5DE88 50%, #D4AF37 100%) !important;
+  background-color: #DFB843 !important;
+  background-image: linear-gradient(135deg, #DFB843 0%, #F5DE88 50%, #D4AF37 100%) !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: #D4AF37 !important;
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5) !important;
+  transform: translateY(-2px);
+}
+
+
+:is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+/* Primary buttons active in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):active {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  transform: translateY(1px);
+}
+
+/* Primary buttons active in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  button[data-slot="button"][data-variant="default"],
+  .onboard-actions .primary-action,
+  button[type="submit"]:not(.secondary-action):not(.text-button):not(.button-quiet):not(.button-paper):not(.p-2):not([aria-label*="Close"])
+):active {
+  background: #18181B !important;
+  background-color: #18181B !important;
+  transform: translateY(1px);
+}
+
+
+/* Explicit Propose Swap, Trade Skill, Buy Now & Find Matches Action Buttons */
+.propose-swap-btn,
+button.propose-swap-btn,
+.trade-skill-btn,
+button.trade-skill-btn,
+.buy-now-btn,
+button.buy-now-btn,
+.find-matches-btn,
+button.find-matches-btn,
+.popular-chip,
+button.popular-chip,
+.proof-btn,
+button.proof-btn,
+.timebank-ledger-btn,
+button.timebank-ledger-btn,
+.simulate-learner-btn,
+button.simulate-learner-btn,
+.discover-mentors-btn,
+button.discover-mentors-btn {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+.propose-swap-btn:hover,
+button.propose-swap-btn:hover,
+.trade-skill-btn:hover,
+button.trade-skill-btn:hover,
+.buy-now-btn:hover,
+button.buy-now-btn:hover,
+.find-matches-btn:hover,
+button.find-matches-btn:hover,
+.popular-chip:hover,
+button.popular-chip:hover,
+.proof-btn:hover,
+button.proof-btn:hover,
+.timebank-ledger-btn:hover,
+button.timebank-ledger-btn:hover,
+.simulate-learner-btn:hover,
+button.simulate-learner-btn:hover,
+.discover-mentors-btn:hover,
+button.discover-mentors-btn:hover {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.7), 0 0 80px rgba(255, 255, 255, 0.35), 0 6px 24px rgba(0, 0, 0, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+/* Secondary buttons in Dark Mode: Solid Black surface with crisp White border and White text */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .secondary-action,
+  .button-quiet,
+  .button-paper,
+  .settings-action,
+  button.secondary-action
+) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .secondary-action:hover,
+  .button-quiet:hover,
+  .button-paper:hover,
+  .settings-action:hover,
+  button.secondary-action:hover
+) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+/* Secondary buttons in Light Mode: Pure White surface with Black border and Black text */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action,
+  .button-quiet,
+  .button-paper,
+  .settings-action,
+  button.secondary-action
+) {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #000000 !important;
+  color: #000000 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action:hover,
+  .button-quiet:hover,
+  .button-paper:hover,
+  .settings-action:hover,
+  button.secondary-action:hover
+) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+  color: #FFFFFF !important;
+}
+
+/* Panels, Cards & Modals in Dark Mode: Pure Black with crisp specular highlight & glowing borders */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .content-panel,
+  .portfolio-modal,
+  .points-education,
+  .notification-drawer,
+/* Panels, Cards & Modals in Dark Mode: Translucent with backdrop blur and oceanic navy glass gradient */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .content-panel,
+  .portfolio-modal,
+  .points-education,
+  .notification-drawer,
+  .product-menu,
+  .onboarding-card,
+  .account-panel,
+  .discovery-panel,
+  .category-card,
+  .wallet-card,
+  .point-plan,
+  .home-professional-card,
+  .skill-card,
+  .search-result-card,
+  .cycle-detail,
+  .anime-skill-card
+) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(14, 30, 60, 0.30) 50%, rgba(8, 14, 26, 0.65) 100%) !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 12px rgba(255, 255, 255, 0.03) !important;
+  color: #FFFFFF !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .content-panel,
+  .portfolio-modal,
+  .transaction-card,
+  .skill-card,
+  .search-result-card,
+  .home-professional-card,
+  .point-plan,
+  .mini-pro,
+  .category-card,
+  .cycle-detail,
+  .anime-skill-card
+):hover {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  border-top-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 0 18px rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+/* rahuldotdev Glassmorphism Surfaces in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .glass-panel,
+  .card-3d,
+  .card-glass,
+  .rahul-glass
+) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(14, 32, 66, 0.32) 50%, rgba(8, 14, 26, 0.65) 100%) !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 10px 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .glass-panel,
+  .card-3d,
+  .card-glass,
+  .rahul-glass
+):hover {
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-top-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.65),
+    inset 0 0 12px 2px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.28) !important;
+  transform: translateY(-2px);
+}
+
+/* Panels, Cards & Modals in Light Mode: Pure Monochrome White with crisp black borders */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .content-panel,
+  .portfolio-modal,
+  .points-education,
+  .notification-drawer,
+  .product-menu,
+  .onboarding-card,
+  .account-panel,
+  .discovery-panel,
+  .category-card,
+  .wallet-card,
+  .point-plan,
+  .home-professional-card,
+  .skill-card,
+  .search-result-card,
+  .cycle-detail
+) {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+  border-top: 2px solid #000000 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(0, 0, 0, 0.04) !important;
+  color: #000000 !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .content-panel,
+  .portfolio-modal,
+  .transaction-card,
+  .skill-card,
+  .search-result-card,
+  .home-professional-card,
+  .point-plan,
+  .mini-pro,
+  .category-card,
+  .cycle-detail
+):hover {
+  border-color: #000000 !important;
+  border-top-color: #000000 !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 #000000 !important;
+  transform: translateY(-2px);
+}
+
+/* rahuldotdev Glassmorphism Surfaces in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .glass-panel,
+  .card-3d,
+  .card-glass,
+  .rahul-glass
+) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.35) 100%) !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 15px 2px rgba(255, 255, 255, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8) !important;
+  color: #000000 !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .glass-panel,
+  .card-3d,
+  .card-glass,
+  .rahul-glass
+):hover {
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  border-top-color: #FFFFFF !important;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15),
+    inset 0 0 20px 4px rgba(255, 255, 255, 0.7),
+    inset 0 1px 0 0 #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+/* App Bar & Navigation: Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(.app-topbar, .site-header, .mobile-bottom-nav) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.95), inset 0 -1px 0 0 rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+/* App Bar & Navigation: Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(.app-topbar, .site-header, .mobile-bottom-nav) {
+  background: rgba(255, 255, 255, 0.94) !important;
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 0 #000000 !important;
+  color: #000000 !important;
+}
+
+/* Typography in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  h1, h2, h3, h4, h5, h6, strong, b,
+  .app-brand, .brand, .card-title, .page-title
+) {
+  color: #F1F5F9 !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(h1 em, h2 em, .brand-accent) {
+  color: #F8FAFC !important;
+  text-shadow: none !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  p,
+  span:not(.primary-action *):not(.text-black):not(.text-black *):not([class*="text-black"]):not([class*="text-black"] *):not(nav a.bg-white *),
+  small:not(.text-black):not(.text-black *),
+  label, dd, li
+) {
+  color: #E2E8F0 !important;
+}
+
+/* Typography in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  h1, h2, h3, h4, h5, h6, strong, b,
+  .app-brand, .brand, .card-title, .page-title
+) {
+  color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(h1 em, h2 em, .brand-accent) {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  p, span:not(.primary-action *), small, label, dd, li
+) {
+  color: #18181B !important;
+}
+
+/* Inputs, Textareas, Selects in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input),
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.chat-input),
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none)
+) {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #D4D4D8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  input:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input):focus,
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.chat-input):focus,
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):focus
+) {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  outline: none !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Inputs, Textareas, Selects in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]),
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]),
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"])
+) {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.22) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  input:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):focus,
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):focus,
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):focus
+) {
+  border-color: #000000 !important;
+  outline: 2px solid #000000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Base shell & sections in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) .site-shell {
+  background: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .page-hero,
+  .account-stage,
+  .hero,
+  .discover-section,
+  .matching-section,
+  .closing-section,
+  .cycle-section,
+  .points-section
+) {
+  background: transparent !important;
+  background-image: none !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+}
+
+/* Base shell & sections in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .site-shell {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .page-hero,
+  .account-stage,
+  .hero,
+  .discover-section,
+  .matching-section,
+  .closing-section,
+  .cycle-section,
+  .points-section
+) {
+  background: transparent !important;
+  background-image: none !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #000000 !important;
+}
+
+.page-hero::after,
+.hero::before,
+.account-orbit {
+  display: none !important;
+}
+
+
+/* =============================================================================
+   ABSOLUTE PURE BLACK & PURE WHITE MONOCHROME DESIGN SYSTEM
+   - Eradicates all muddy greys (zinc, gray, slate, neutral, muted).
+   - Enforces Pure Black (#000000) for all backgrounds/surfaces.
+   - Enforces Pure White (#FFFFFF) for all readable text & headings.
+   - Preserves Pure White main buttons with high-contrast Pure Black text.
+   - Crisp specular white translucent borders.
+   ============================================================================= */
+
+/* Universal Pure White Text Override in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  p,
+  span,
+  small,
+  label,
+  dd,
+  dt,
+  li,
+  a:not(.primary-action):not(.buy-now-btn):not(.trade-skill-btn):not(.find-matches-btn):not(.cta-btn),
+  sub,
+  sup,
+  time,
+  figcaption,
+  blockquote,
+  .page-kicker,
+  span.page-kicker,
+  p.page-kicker,
+  .text-zinc-100,
+  .text-zinc-200,
+  .text-zinc-300,
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-zinc-600,
+  .text-zinc-700,
+  .text-gray-100,
+  .text-gray-200,
+  .text-gray-300,
+  .text-gray-400,
+  .text-gray-500,
+  .text-gray-600,
+  .text-neutral-100,
+  .text-neutral-200,
+  .text-neutral-300,
+  .text-neutral-400,
+  .text-neutral-500,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500,
+  .text-muted,
+  .text-muted-foreground,
+  .text-stone-300,
+  .text-stone-400,
+  .text-stone-500
+):not(.primary-action):not(.primary-action *):not(.buy-now-btn):not(.buy-now-btn *):not(.trade-skill-btn):not(.trade-skill-btn *):not(.find-matches-btn):not(.find-matches-btn *):not(.cta-btn):not(.cta-btn *):not(.btn-hard-gradient):not(.btn-hard-gradient *):not(.btn-3d):not(.btn-3d *):not(.btn-3d-emerald):not(.btn-3d-emerald *):not(.discover-search button):not(.discover-search button *):not(.search-shell button):not(.search-shell button *):not(.send-button):not(.send-button *):not(.checkout-btn):not(.checkout-btn *):not(.book-session-btn):not(.book-session-btn *):not(.confirm-btn):not(.confirm-btn *):not(button[data-slot="button"][data-variant="default"]):not(button[data-slot="button"][data-variant="default"] *):not(.text-black):not(.text-black *) {
+  color: #FFFFFF !important;
+}
+
+/* Ensure SVG icons that had zinc/gray classes become pure white in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  svg.text-zinc-400,
+  svg.text-zinc-500,
+  svg.text-zinc-600,
+  svg.text-gray-400,
+  svg.text-gray-500,
+  svg.text-slate-400,
+  svg.text-muted-foreground
+):not(.primary-action *):not(.buy-now-btn *):not(.trade-skill-btn *):not(.find-matches-btn *):not(.text-black *) {
+  color: #FFFFFF !important;
+  stroke: currentColor;
+}
+
+/* Crisp White Borders in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .border-zinc-900,
+  .border-zinc-800,
+  .border-zinc-700,
+  .border-gray-900,
+  .border-gray-800,
+  .border-gray-700,
+  .border-neutral-800,
+  .border-slate-800,
+  .border-white\/\[0\.06\],
+  .border-white\/\[0\.08\],
+  .border-white\/\[0\.1\]
+) {
+  border-color: rgba(255, 255, 255, 0.38) !important;
+}
+
+/* Universal Form Inputs in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input),
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none),
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.chat-input)
+) {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #D4D4D8 !important;
+  box-shadow: none !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not([placeholder*="Search"]):not([placeholder*="search"]):not([type="search"]):not(.search-clean-input),
+  select:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none),
+  textarea:not(.bg-transparent):not([class*="bg-transparent"]):not([class*="border-none"]):not(.border-none):not(.chat-input)
+):focus {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15) !important;
+  outline: none !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  ::placeholder,
+  .placeholder-zinc-500::placeholder,
+  .placeholder-zinc-400::placeholder,
+  .placeholder-gray-500::placeholder,
+  .placeholder-gray-400::placeholder
+) {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .bg-zinc-950,
+  .bg-zinc-900,
+  .bg-gray-950,
+  .bg-gray-900,
+  .bg-neutral-950,
+  .bg-neutral-900
+) {
+  background-color: #000000 !important;
+}
+
+/* High-Contrast Frosted White Pills & Eyebrows in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(.eyebrow, .page-kicker, .caption-number, .cycle-index, .tag) {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) .eyebrow-dot {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF !important;
+}
+
+/* Pure White Selected & Active States in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .cycle-item.active,
+  .category-card.selected,
+  .point-plan.selected,
+  .search-tabs button.active,
+  .discover-catalog > aside > button.active,
+  .segmented button.active,
+  .active-tab,
+  .choice-cloud button.selected,
+  .onboard-option-grid button.selected,
+  .mode-picker button.selected
+) {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 70px rgba(255, 255, 255, 0.3) !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .cycle-item.active,
+  .category-card.selected,
+  .point-plan.selected,
+  .search-tabs button.active,
+  .discover-catalog > aside > button.active,
+  .segmented button.active,
+  .active-tab,
+  .choice-cloud button.selected,
+  .onboard-option-grid button.selected,
+  .mode-picker button.selected
+) :is(*, span, strong, small, svg, p, div, b, h3) {
+  color: #000000 !important;
+}
+
+/* Interactive Skill Chips in Dark Mode */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(.skill-chips button, .discover-suggestions button) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.2s ease !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(.skill-chips button:hover, .discover-suggestions button:hover) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.7) !important;
+  transform: translateY(-2px) !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(.skill-chips button:hover, .discover-suggestions button:hover) * {
+  color: #000000 !important;
+}
+
+/* =============================================================================
+   ABSOLUTE PURE MONOCHROME LIGHT MODE SYSTEM
+   - Crisp Pure White (#FFFFFF) for page & surface backgrounds
+   - Pure Black (#000000) for all text, headings, badges, and primary action buttons
+   - High-contrast pure black buttons with white text
+   - Crisp dark monochrome borders & subtle elevation
+   ============================================================================= */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  h1, h2, h3, h4, h5, h6,
+  p,
+  span:not(.primary-action *):not(.btn-primary *):not(.badge-black *):not(button[type="submit"] *):not(.popular-chip *):not(.trade-skill-btn *):not(.buy-now-btn *):not(.find-matches-btn *),
+  small,
+  label,
+  dd,
+  dt,
+  li,
+  a:not(.primary-action):not(.buy-now-btn):not(.trade-skill-btn):not(.find-matches-btn):not(.cta-btn),
+  sub,
+  sup,
+  time,
+  figcaption,
+  blockquote,
+  .page-kicker,
+  span.page-kicker,
+  p.page-kicker,
+  .text-white,
+  .text-zinc-50,
+  .text-zinc-100,
+  .text-zinc-200,
+  .text-zinc-300,
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-zinc-600,
+  .text-zinc-700,
+  .text-gray-50,
+  .text-gray-100,
+  .text-gray-200,
+  .text-gray-300,
+  .text-gray-400,
+  .text-gray-500,
+  .text-gray-600,
+  .text-neutral-50,
+  .text-neutral-100,
+  .text-neutral-200,
+  .text-neutral-300,
+  .text-neutral-400,
+  .text-neutral-500,
+  .text-slate-50,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500,
+  .text-muted,
+  .text-muted-foreground
+):not(.primary-action *):not(.btn-primary *):not(.badge-black *):not(button[type="submit"] *):not(.popular-chip *):not(.trade-skill-btn *):not(.buy-now-btn *):not(.find-matches-btn *) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  svg.text-zinc-400,
+  svg.text-zinc-500,
+  svg.text-zinc-600,
+  svg.text-gray-400,
+  svg.text-gray-500,
+  svg.text-slate-400,
+  svg.text-white,
+  svg.text-muted-foreground,
+  .text-white > svg
+):not(.primary-action *):not(.buy-now-btn *):not(.trade-skill-btn *):not(.find-matches-btn *):not(button[type="submit"] *):not(.badge-black *) {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  svg.fill-white,
+  svg[fill="#ffffff"],
+  svg[fill="#FFFFFF"],
+  svg[fill="white"]
+):not(.primary-action *):not(.buy-now-btn *):not(.trade-skill-btn *):not(.find-matches-btn *):not(button[type="submit"] *):not(.badge-black *) {
+  fill: #000000 !important;
+}
+
+/* Borders in Light Mode: Crisp dark lines instead of white */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .border-white,
+  .border-white\/5,
+  .border-white\/10,
+  .border-white\/15,
+  .border-white\/20,
+  .border-white\/25,
+  .border-white\/30,
+  .border-white\/35,
+  .border-white\/40,
+  .border-white\/45,
+  .border-white\/50,
+  .border-white\/60,
+  .border-white\/\[0\.06\],
+  .border-white\/\[0\.08\],
+  .border-white\/\[0\.1\],
+  .border-zinc-900,
+  .border-zinc-800,
+  .border-zinc-700,
+  .border-gray-900,
+  .border-gray-800,
+  .border-gray-700,
+  .border-neutral-800,
+  .border-slate-800
+):not(.primary-action):not(.btn-primary):not(button[type="submit"]):not(.popular-chip):not(.badge-white) {
+  border-color: rgba(0, 0, 0, 0.16) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .border-t-white,
+  .border-t-white\/80,
+  .border-t-white\/60,
+  .border-t-white\/40,
+  .border-t-white\/20
+) {
+  border-top-color: #000000 !important;
+}
+
+/* Surfaces in Light Mode: Crisp Pure White instead of Obsidian Black */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .bg-black,
+  .bg-black\/95,
+  .bg-black\/90,
+  .bg-black\/85,
+  .bg-black\/80,
+  .bg-black\/75,
+  .bg-black\/70,
+  .bg-black\/65,
+  .bg-black\/60,
+  .bg-black\/50,
+  .bg-black\/40,
+  .bg-black\/30,
+  .bg-zinc-950,
+  .bg-zinc-900,
+  .bg-zinc-950\/80,
+  .bg-zinc-900\/60,
+  .bg-zinc-900\/80,
+  .bg-zinc-900\/90,
+  .bg-gray-950,
+  .bg-gray-900,
+  .bg-neutral-950,
+  .bg-neutral-900,
+  .content-panel,
+  .anime-skill-card,
+  .room-card,
+  .session-card
+):not(.primary-action):not(.btn-primary):not(.badge-black):not(button[type="submit"]):not(.popular-chip):not(.trade-skill-btn):not(.buy-now-btn):not(.find-matches-btn) {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+}
+
+/* Translucent white highlights invert to translucent dark tints in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .bg-white\/5,
+  .bg-white\/10,
+  .bg-white\/15,
+  .bg-white\/20,
+  .bg-white\/\[0\.03\],
+  .bg-white\/\[0\.04\],
+  .bg-white\/\[0\.05\],
+  .bg-white\/\[0\.06\],
+  .bg-white\/\[0\.08\],
+  .bg-white\/\[0\.1\]
+):not(.primary-action):not(.btn-primary):not(button[type="submit"]):not(.popular-chip):not(.badge-white) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Eliminate glowing orbs & dark haze in Light Mode */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .glow-orb-indigo,
+  .glow-orb-emerald,
+  .glow-orb-violet,
+  .glow-orb-amber,
+  .glow-orb-mono,
+  .stage-glow,
+  .stage-glow-blue,
+  .stage-glow-coral,
+  .hero-spotlight,
+  .specular-glow
+) {
+  display: none !important;
+}
+
+/* Frosted pills & eyebrows in Light Mode: White & Gold */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(.eyebrow, .page-kicker, .caption-number, .cycle-index, .tag) {
+  background: rgba(212, 175, 55, 0.12) !important;
+  border: 1px solid rgba(212, 175, 55, 0.35) !important;
+  box-shadow: 0 1px 4px rgba(212, 175, 55, 0.08) !important;
+  color: #8C6B14 !important;
+  font-weight: 700 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) .eyebrow-dot {
+  background: #D4AF37 !important;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Selected & Active States in Light Mode: Gold Accent */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .cycle-item.active,
+  .category-card.selected,
+  .point-plan.selected,
+  .search-tabs button.active,
+  .discover-catalog > aside > button.active,
+  .segmented button.active,
+  .active-tab,
+  .choice-cloud button.selected,
+  .onboard-option-grid button.selected,
+  .mode-picker button.selected
+) {
+  background: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #C5A059 100%) !important;
+  background-color: #D4AF37 !important;
+  color: #000000 !important;
+  border: 1px solid #C5A059 !important;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .cycle-item.active,
+  .category-card.selected,
+  .point-plan.selected,
+  .search-tabs button.active,
+  .discover-catalog > aside > button.active,
+  .segmented button.active,
+  .active-tab,
+  .choice-cloud button.selected,
+  .onboard-option-grid button.selected,
+  .mode-picker button.selected
+) :is(*, span, strong, small, svg, p, div, b, h3) {
+  color: #000000 !important;
+}
+
+/* Skill Chips in Light Mode: White with Gold Border */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(.skill-chips button, .discover-suggestions button) {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(212, 175, 55, 0.35) !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 4px rgba(212, 175, 55, 0.08) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(.skill-chips button:hover, .discover-suggestions button:hover) {
+  background: linear-gradient(135deg, #D4AF37 0%, #E5C158 100%) !important;
+  color: #000000 !important;
+  border-color: #D4AF37 !important;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(.skill-chips button:hover, .discover-suggestions button:hover) * {
+  color: #000000 !important;
+}
+
+/* ==========================================================================
+   Scroll-Rise Component Animation System
+   Smooth, luxury upward rise animation triggered as user scrolls down
+   ========================================================================== */
+
+.scroll-rise {
+  opacity: 0;
+  transform: translateY(36px) scale(0.985);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-rise.is-risen,
+[data-scroll-rise].is-risen {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  will-change: auto;
+}
+
+/* Stagger delay helpers for child components rising in sequence */
+.scroll-rise-stagger > *:nth-child(1) { transition-delay: 50ms; }
+.scroll-rise-stagger > *:nth-child(2) { transition-delay: 110ms; }
+.scroll-rise-stagger > *:nth-child(3) { transition-delay: 170ms; }
+.scroll-rise-stagger > *:nth-child(4) { transition-delay: 230ms; }
+.scroll-rise-stagger > *:nth-child(5) { transition-delay: 290ms; }
+.scroll-rise-stagger > *:nth-child(6) { transition-delay: 350ms; }
+.scroll-rise-stagger > *:nth-child(7) { transition-delay: 410ms; }
+.scroll-rise-stagger > *:nth-child(8) { transition-delay: 470ms; }
+
+.rise-delay-1 { transition-delay: 60ms !important; }
+.rise-delay-2 { transition-delay: 120ms !important; }
+.rise-delay-3 { transition-delay: 180ms !important; }
+.rise-delay-4 { transition-delay: 240ms !important; }
+.rise-delay-5 { transition-delay: 300ms !important; }
+.rise-delay-6 { transition-delay: 360ms !important; }
+
+/* Reduced motion & accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-rise,
+  [data-scroll-rise] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ABSOLUTE RESET: Zero border, zero outline, zero box-shadow for all search inputs and borderless inputs */
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+) {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus,
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus-visible {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+

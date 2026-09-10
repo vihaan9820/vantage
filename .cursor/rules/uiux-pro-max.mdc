@@ -1,0 +1,12 @@
+---
+description: UI/UX Pro Max design system, bento-grid, glassmorphism, and color hierarchy standards
+globs: **/*.{tsx,jsx,ts,js,css}
+---
+
+# UI/UX Pro Max Guidelines
+
+When building or updating UI components:
+- **Palette**: Electric Indigo (`#6366F1`), Emerald Green (`#10B981`), Warm Amber (`#F59E0B`), and Deep Slate (`#0B0F17`).
+- **Cards**: Use `.glass-panel` or `.gradient-border-card` with frosted glass blur and 1px crisp borders.
+- **Micro-interactions**: Use spring button scales (`:active: scale(0.97)`), smooth hover translations, and stagger animations.
+- **Hierarchy**: Exactly one clear `<h1>` per page, responsive Bento-Grid layouts, and accessible focus outlines.

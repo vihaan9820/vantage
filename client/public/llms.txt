@@ -1,0 +1,30 @@
+# SkillSwap
+
+> SkillSwap is a peer-to-peer skill barter and reciprocal knowledge exchange platform. Creators, engineers, designers, and specialists trade expertise 1-on-1 without exchanging fiat currency.
+
+## Core Architecture & Barter Economics
+- **Zero-Fiat Knowledge Barter**: Direct trade where users match based on what they want to learn and what they can teach (e.g., teaching Next.js in exchange for 3D Blender modeling or conversational Italian).
+- **TimeBank Escrow System**: Platform credits earned by verified teaching hours and redeemed for learning sessions from other community members.
+- **Mutual Compatibility Matcher**: Two-way weighted scoring algorithm that indexes teaching proficiencies against seeking wishlists to deliver instant reciprocity matches (up to 98% compatibility).
+- **5-Stage Barter Deal Pipeline**: Proposed -> Accepted -> Scheduled -> In Session -> Completed.
+- **Verified Proof Matrix**: Portfolio verification, verifiable credentials, and peer karma endorsements.
+
+## Primary Public Endpoints
+- Homepage & Barter Matchmaker: https://skillswap.io/
+- Discover Skills & Mentors: https://skillswap.io/discover
+- Instant Compatibility Matches: https://skillswap.io/matches
+- Verified Professionals Directory: https://skillswap.io/professionals
+- Learning Pathways: https://skillswap.io/learn
+- Teaching Hub: https://skillswap.io/teach
+- Community Exchange Forum: https://skillswap.io/community
+- Platform Mission & Manifesto: https://skillswap.io/about
+- Help Center & FAQ: https://skillswap.io/help
+
+## Technology Stack
+- Frontend: React 19, TypeScript, Vite, Tailwind CSS v4, Wouter client routing, Lucide icons, AnimeJS micro-interactions.
+- State: SkillSwap Reciprocity Context with local persistence and Supabase backend integration.
+- API & Security: Express API, strict CORS, CSP headers, rate-limiting, and sanitized inputs.
+
+## Canonical Identity
+- Website: https://skillswap.io
+- Status: Production Ready

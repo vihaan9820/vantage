@@ -1,0 +1,758 @@
+/**
+ * SkillSwap — Dual Monochrome Button System
+ * Dark Mode: Pure White Buttons with Pure Black Text
+ * Light Mode: Pure Black Buttons with Pure White Text
+ */
+
+/* =============================================================================
+   DARK MODE BUTTONS: Pure White Background (#FFFFFF) & Pure Black Text (#000000)
+   ============================================================================= */
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  button[data-slot="button"][data-variant="default"]
+) {
+  background: #E4E4E7 !important;
+  background-color: #E4E4E7 !important;
+  background-image: none !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1px solid #E4E4E7 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  cursor: pointer !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+):hover {
+  background: #D4D4D8 !important;
+  background-color: #D4D4D8 !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: #D4D4D8 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55) !important;
+  transform: translateY(-1px) !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn
+):active {
+  transform: translateY(1px) !important;
+  background: #A1A1AA !important;
+  background-color: #A1A1AA !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+) :is(*, span, p, label, strong, b, div, a, em, i, small) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn
+) :is(svg.fill-black, svg[fill="black"], svg[fill="#000000"], svg[fill="currentColor"]) {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+
+/* =============================================================================
+   LIGHT MODE BUTTONS: Pure Black Background (#000000) & Pure White Text (#FFFFFF)
+   ============================================================================= */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .nav-cta,
+  button.nav-cta,
+  a.nav-cta,
+  .button-coral,
+  button.button-coral,
+  .selected-plan-summary button,
+  .btn-hard-gradient,
+  .btn-3d,
+  .btn-3d-emerald,
+  .discover-search button,
+  .search-shell button,
+  .send-button,
+  button.send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn,
+  button[data-slot="button"][data-variant="default"],
+  button[style*="#FFFFFF"]:not(.secondary-action):not(.proof-btn),
+  button[style*="rgb(255, 255, 255)"]:not(.secondary-action):not(.proof-btn),
+  a[style*="#FFFFFF"]:not(.secondary-action):not(.proof-btn),
+  a[style*="rgb(255, 255, 255)"]:not(.secondary-action):not(.proof-btn)
+) {
+  background: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #C5A059 100%) !important;
+  background-color: #D4AF37 !important;
+  background-image: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #C5A059 100%) !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1px solid #C5A059 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  cursor: pointer !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  button[style*="#FFFFFF"],
+  button[style*="rgb(255, 255, 255)"],
+  a[style*="#FFFFFF"],
+  a[style*="rgb(255, 255, 255)"]
+):not(.secondary-action):not(.proof-btn) :is(*, span, p, label, strong, b, div, a, em, i, small) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  button[style*="#FFFFFF"],
+  button[style*="rgb(255, 255, 255)"],
+  a[style*="#FFFFFF"],
+  a[style*="rgb(255, 255, 255)"]
+):not(.secondary-action):not(.proof-btn) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  button[style*="#FFFFFF"],
+  button[style*="rgb(255, 255, 255)"],
+  a[style*="#FFFFFF"],
+  a[style*="rgb(255, 255, 255)"]
+):not(.secondary-action):not(.proof-btn) :is(svg.fill-black, svg.fill-white, svg[fill="black"], svg[fill="#000000"], svg[fill="#ffffff"], svg[fill="currentColor"]) {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  a.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+):hover {
+  background: linear-gradient(135deg, #DFB843 0%, #F5DE88 50%, #D4AF37 100%) !important;
+  background-color: #DFB843 !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: #D4AF37 !important;
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5) !important;
+  transform: translateY(-1px) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn
+):active {
+  transform: translateY(1px) !important;
+  background: #B8860B !important;
+  background-color: #B8860B !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  a.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  a.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+) :is(*, span, p, label, strong, b, div, a, em, i, small) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  a.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn,
+  .btn-primary,
+  button.btn-primary,
+  .btn--primary,
+  button.btn--primary,
+  .chrome-signup,
+  a.chrome-signup,
+  button.chrome-signup,
+  .discover-search button,
+  .send-button,
+  .checkout-btn,
+  .book-session-btn,
+  .confirm-btn,
+  .cta-btn
+) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .popular-chip,
+  button.popular-chip,
+  .proof-btn,
+  button.proof-btn,
+  .timebank-ledger-btn,
+  button.timebank-ledger-btn,
+  .simulate-learner-btn,
+  button.simulate-learner-btn,
+  .discover-mentors-btn,
+  button.discover-mentors-btn,
+  .trade-skill-btn,
+  button.trade-skill-btn,
+  .find-matches-btn,
+  button.find-matches-btn,
+  .primary-action,
+  button.primary-action,
+  .buy-now-btn,
+  button.buy-now-btn,
+  .propose-swap-btn,
+  button.propose-swap-btn
+) :is(svg.fill-black, svg.fill-white, svg[fill="black"], svg[fill="#000000"], svg[fill="#ffffff"], svg[fill="currentColor"]) {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/**
+ * Chat Composer & Transparent Inputs / Textareas
+ * Completely eliminate any unwanted borders, outlines, rings, or box-shadows.
+ */
+:is(
+  .chat-composer textarea,
+  footer textarea,
+  textarea.bg-transparent,
+  input.bg-transparent,
+  textarea[class*="bg-transparent"],
+  input[class*="bg-transparent"],
+  textarea[class*="border-none"],
+  input[class*="border-none"],
+  textarea.chat-input,
+  .chat-input
+) {
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+:is(
+  .chat-composer textarea,
+  footer textarea,
+  textarea.bg-transparent,
+  input.bg-transparent,
+  textarea[class*="bg-transparent"],
+  input[class*="bg-transparent"],
+  textarea[class*="border-none"],
+  input[class*="border-none"],
+  textarea.chat-input,
+  .chat-input
+):focus,
+:is(
+  .chat-composer textarea,
+  footer textarea,
+  textarea.bg-transparent,
+  input.bg-transparent,
+  textarea[class*="bg-transparent"],
+  input[class*="bg-transparent"],
+  textarea[class*="border-none"],
+  input[class*="border-none"],
+  textarea.chat-input,
+  .chat-input
+):focus-visible {
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* =============================================================================
+   SECONDARY & OUTLINE ACTIONS IN LIGHT MODE
+   - Pure White Background (#FFFFFF)
+   - Luxury Gold Accent Border & Crisp Black Text
+   - Soft Gold Specular Glow on hover
+   ============================================================================= */
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action,
+  button.secondary-action,
+  a.secondary-action,
+  .button-quiet,
+  .button-paper
+) {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
+  box-shadow: 0 1px 4px rgba(212, 175, 55, 0.08) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action:hover,
+  button.secondary-action:hover,
+  a.secondary-action:hover,
+  .button-quiet:hover,
+  .button-paper:hover
+) {
+  background: rgba(212, 175, 55, 0.08) !important;
+  background-color: rgba(212, 175, 55, 0.08) !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: #D4AF37 !important;
+  box-shadow: 0 3px 12px rgba(212, 175, 55, 0.25) !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action,
+  button.secondary-action,
+  a.secondary-action,
+  .button-quiet,
+  .button-paper
+) :is(*, span, p, label, strong, b, div, a, em, i, small) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html.light, html[data-skillswap-theme="light"], .product-theme-light) :is(
+  .secondary-action,
+  button.secondary-action,
+  a.secondary-action,
+  .button-quiet,
+  .button-paper
+) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* =============================================================================
+   Vantage Bold: ONLY for Headings & Brand Wordmarks
+   Rest (body, buttons, inputs, controls, paragraphs) stays default
+   ============================================================================= */
+h1, h2, h3, h4, h5, h6,
+.font-megiko, .font-morenn, .font-editorial,
+.vantage-heading {
+  font-family: "Megiko", "Space Grotesk", "Syne", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+body, #root, button, input, select, textarea {
+  font-family: "Outfit", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* ABSOLUTE RESET: Zero border, zero outline, zero box-shadow for all search inputs and borderless inputs */
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+) {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus,
+:is(html, html.dark, html.light, body, .app-chrome, .product-theme-dark) :is(
+  input[class*="border-none"],
+  input[class*="bg-transparent"],
+  input.border-none,
+  input.bg-transparent,
+  .discover-search input,
+  .search-shell input,
+  .global-search-input,
+  .search-clean-input,
+  [class*="search"] input,
+  div[class*="bg-black"] input,
+  section[class*="Filter"] input,
+  input[type="search"],
+  input[placeholder*="Search"],
+  input[placeholder*="search"]
+):focus-visible {
+  border: 0 none transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: 0 none transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+
