@@ -203,7 +203,12 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+const isProd = process.env.NODE_ENV === "production";
+const plugins = [
+  react(),
+  tailwindcss(),
+  ...(!isProd ? [jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()] : []),
+];
 
 export default defineConfig({
   plugins,

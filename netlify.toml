@@ -1,0 +1,18 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+  VITE_SUPABASE_URL = "https://yhbgukystflgmwubtyvo.supabase.co"
+  VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloYmd1a3lzdGZsZ213dWJ0eXZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5Njk4ODMsImV4cCI6MjEwMzU0NTg4M30.C3V2M2Wppg26OE9snqvFbbSmIaxasWNsZWw1i87VUnw"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
