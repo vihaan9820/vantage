@@ -37,7 +37,7 @@ if (!process.env.ADMIN_API_KEY) {
   console.log(`🔒 Ephemeral ADMIN_API_KEY generated for this session: ${ADMIN_API_KEY}`);
 }
 
-export function requireAdminAuth(req: express.Request, res: express.Response, next: express.NextFunction) {
+export function requireAdminAuth(req: any, res: any, next: any) {
   const authHeader = req.headers["authorization"] || req.headers["x-admin-token"];
   const token = typeof authHeader === "string" ? authHeader.replace(/^Bearer\s+/i, "").trim() : null;
   if (!token) {
@@ -82,7 +82,7 @@ export function createApp() {
   app.set("trust proxy", 1);
 
   // Maximum Security Fortress Headers Middleware
-  app.use((_req, res, next) => {
+  app.use((_req: any, res: any, next: any) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "SAMEORIGIN");
     res.setHeader("X-XSS-Protection", "1; mode=block");
@@ -98,7 +98,7 @@ export function createApp() {
   });
 
   // Strict CORS Security Middleware
-  app.use((req, res, next) => {
+  app.use((req: any, res: any, next: any) => {
     const origin = req.headers.origin;
     const allowedOrigins = [
       "http://localhost:5173",
@@ -132,7 +132,7 @@ export function createApp() {
   });
 
   // Health check endpoints for cloud orchestrators (Vercel, Render, Railway, Fly, AWS)
-  const healthHandler: express.RequestHandler = (_req, res) => {
+  const healthHandler = (_req: any, res: any) => {
     res.status(200).json({
       status: "healthy",
       uptime: Math.floor(process.uptime()),
@@ -152,7 +152,7 @@ export function createApp() {
   apiRouter.post(
     "/razorpay/webhook",
     express.raw({ type: "application/json" }),
-    async (req, res) => {
+    async (req: any, res: any) => {
       const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
       const signature = req.headers["x-razorpay-signature"] as string;
 
@@ -193,7 +193,7 @@ export function createApp() {
   apiRouter.use(express.json({ limit: "50kb" }));
 
   // Strict Content-Type enforcement on mutating endpoints
-  apiRouter.use((req, res, next) => {
+  apiRouter.use((req: any, res: any, next: any) => {
     if (req.method === "POST" && !req.path.endsWith("/razorpay/webhook")) {
       const contentType = req.headers["content-type"] || "";
       if (!contentType.includes("application/json")) {
@@ -207,7 +207,7 @@ export function createApp() {
 
   // Sliding Window API Rate Limiter
   const apiRateLimiter = new Map<string, { count: number; windowStart: number }>();
-  apiRouter.use((req, res, next) => {
+  apiRouter.use((req: any, res: any, next: any) => {
     if (req.path.endsWith("/razorpay/webhook")) return next();
 
     const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0].trim() || req.ip || req.socket.remoteAddress || "client";
@@ -232,7 +232,7 @@ export function createApp() {
   });
 
   // 2a. Submit Direct UPI Payment for Bank Settlement Verification
-  apiRouter.post("/payments/submit-upi", (req, res) => {
+  apiRouter.post("/payments/submit-upi", (req: any, res: any) => {
     const ip = req.ip || req.socket.remoteAddress || "client";
     const now = Date.now();
 
@@ -373,12 +373,12 @@ export function createApp() {
   });
 
   // 2b. Admin-Only: Get all pending payments for settlement verification
-  apiRouter.get("/payments/pending", requireAdminAuth, (_req, res) => {
+  apiRouter.get("/payments/pending", requireAdminAuth, (_req: any, res: any) => {
     res.json({ payments: pendingPayments });
   });
 
   // 2c. Admin-Only: Verify & Credit Points
-  apiRouter.post("/payments/approve", requireAdminAuth, (req, res) => {
+  apiRouter.post("/payments/approve", requireAdminAuth, (req: any, res: any) => {
     const { paymentId, utr } = req.body;
     const payment = pendingPayments.find(
       (p) => (paymentId && p.id === paymentId) || (utr && p.utr === utr)
@@ -412,7 +412,7 @@ export function createApp() {
   });
 
   // 2d. Admin-Only: Reject Fraudulent / Unconfirmed UTR
-  apiRouter.post("/payments/reject", requireAdminAuth, (req, res) => {
+  apiRouter.post("/payments/reject", requireAdminAuth, (req: any, res: any) => {
     const { paymentId, utr, reason } = req.body;
     const payment = pendingPayments.find(
       (p) => (paymentId && p.id === paymentId) || (utr && p.utr === utr)
@@ -435,7 +435,7 @@ export function createApp() {
   });
 
   // 2e. Public Status Check of a specific UTR
-  apiRouter.post("/payments/verify-upi", (req, res) => {
+  apiRouter.post("/payments/verify-upi", (req: any, res: any) => {
     const { utr } = req.body;
     if (!utr || typeof utr !== "string") {
       return res.status(400).json({ verified: false, error: "UTR is required." });
@@ -471,7 +471,7 @@ export function createApp() {
   });
 
   // 3. Create Razorpay Order with Strict Boundary Validation
-  apiRouter.post("/razorpay/create-order", async (req, res) => {
+  apiRouter.post("/razorpay/create-order", async (req: any, res: any) => {
     try {
       if (!razorpay) {
         return res.status(500).json({
@@ -514,7 +514,7 @@ export function createApp() {
   });
 
   // 4. Verify Razorpay Payment Signature
-  apiRouter.post("/razorpay/verify-payment", async (req, res) => {
+  apiRouter.post("/razorpay/verify-payment", async (req: any, res: any) => {
     try {
       if (!razorpayKeySecret) {
         return res.status(500).json({ error: "RAZORPAY_KEY_SECRET is not configured." });
