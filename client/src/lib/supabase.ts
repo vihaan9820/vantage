@@ -14,10 +14,15 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 });
 
 export async function signInWithGithub() {
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "https://vantage-skillswap.netlify.app";
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: typeof window !== "undefined" ? `${window.location.origin}/dashboard` : undefined,
+      redirectTo: `${origin}/dashboard`,
     },
   });
 
@@ -28,10 +33,15 @@ export async function signInWithGithub() {
 }
 
 export async function signInWithGoogle() {
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "https://vantage-skillswap.netlify.app";
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: typeof window !== "undefined" ? `${window.location.origin}/dashboard` : undefined,
+      redirectTo: `${origin}/dashboard`,
     },
   });
 
