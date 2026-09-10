@@ -1,5 +1,5 @@
 import { ArrowRight, Eye, EyeOff, KeyRound, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { toast } from "sonner";
 import { useAccount } from "@/contexts/AccountContext";
@@ -10,7 +10,7 @@ import { FerrofluidBackground } from "@/components/FerrofluidBackground";
 
 export default function Login() {
   const [, navigate] = useLocation();
-  const { logIn, updateCredential, signInWithGoogle, signInWithGithub } = useAccount();
+  const { account, logIn, updateCredential, signInWithGoogle, signInWithGithub } = useAccount();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +19,12 @@ export default function Login() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [recoveryError, setRecoveryError] = useState("");
+
+  useEffect(() => {
+    if (account) {
+      navigate(account.onboardingComplete ? "/dashboard" : "/onboarding");
+    }
+  }, [account, navigate]);
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();

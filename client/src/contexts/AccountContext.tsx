@@ -273,6 +273,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
           }
           return nextAccount;
         });
+
+        // Clean up OAuth hash tokens from browser URL
+        if (typeof window !== "undefined" && window.location.hash.includes("access_token")) {
+          const cleanUrl = window.location.pathname === "/login" || window.location.pathname === "/signup"
+            ? "/dashboard"
+            : window.location.pathname + window.location.search;
+          window.history.replaceState(null, "", cleanUrl);
+        }
       }
     });
 

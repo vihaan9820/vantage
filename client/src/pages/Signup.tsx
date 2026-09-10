@@ -1,5 +1,5 @@
 import { ArrowRight, Check, Eye, EyeOff, ImagePlus, LockKeyhole, Mail, MapPin, UserRound } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { toast } from "sonner";
 import { type AccountMode, useAccount } from "@/contexts/AccountContext";
@@ -16,7 +16,7 @@ const modes: { id: AccountMode; title: string; detail: string }[] = [
 
 export default function Signup() {
   const [, navigate] = useLocation();
-  const { createAccount, signInWithGoogle, signInWithGithub } = useAccount();
+  const { account, createAccount, signInWithGoogle, signInWithGithub } = useAccount();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +29,12 @@ export default function Signup() {
   const [photo, setPhoto] = useState("");
   const [policy, setPolicy] = useState<"Terms" | "Privacy Policy" | null>(null);
   const [registeredReward, setRegisteredReward] = useState(false);
+
+  useEffect(() => {
+    if (account) {
+      navigate(account.onboardingComplete ? "/dashboard" : "/onboarding");
+    }
+  }, [account, navigate]);
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
