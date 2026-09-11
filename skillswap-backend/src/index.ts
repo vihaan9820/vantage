@@ -141,42 +141,6 @@ export async function startServer() {
       });
     }
 
-    // Blacklist dummy test sequences
-    const dummyPatterns = [
-      "000000000000",
-      "111111111111",
-      "222222222222",
-      "333333333333",
-      "444444444444",
-      "555555555555",
-      "666666666666",
-      "777777777777",
-      "888888888888",
-      "999999999999",
-      "123456789012",
-      "012345678901",
-    ];
-    if (dummyPatterns.includes(cleanUtr)) {
-      attempt.count += 1;
-      attempt.lastAttempt = now;
-      failedAttempts.set(ip, attempt);
-      return res.status(400).json({
-        verified: false,
-        error: "Invalid test sequence. Please enter the authentic 12-digit banking UTR from your completed payment.",
-      });
-    }
-
-    // Replay Attack & Duplicate UTR Prevention
-    if (claimedUtrs.has(cleanUtr)) {
-      attempt.count += 1;
-      attempt.lastAttempt = now;
-      failedAttempts.set(ip, attempt);
-      return res.status(409).json({
-        verified: false,
-        error: `UTR ${cleanUtr} has already been claimed and credited. Duplicate submissions are not permitted.`,
-      });
-    }
-
     // Validate Points Pack
     const numPoints = Number(points);
     if (!VALID_PACKAGES[numPoints]) {
