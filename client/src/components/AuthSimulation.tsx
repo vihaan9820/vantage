@@ -111,21 +111,38 @@ export function PolicyPreview({
           {onAccept ? (
             <button
               type="button"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-black text-xs font-black uppercase tracking-wider hover:bg-zinc-200 transition-colors shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
+              style={{
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
+                WebkitTextFillColor: "#000000",
+                border: "1px solid #FFFFFF",
+              }}
+              className="primary-action w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-black text-xs font-black uppercase tracking-wider hover:bg-zinc-200 transition-colors shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
               onClick={() => {
                 onAccept();
                 onClose();
               }}
             >
-              <Check size={16} /> Accept & Agree
+              <Check size={16} className="text-black" style={{ color: "#000000" }} />
+              <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>
+                Accept & Agree
+              </span>
             </button>
           ) : (
             <button
               type="button"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-black text-xs font-bold uppercase tracking-wider hover:bg-zinc-200 transition-colors"
+              style={{
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
+                WebkitTextFillColor: "#000000",
+                border: "1px solid #FFFFFF",
+              }}
+              className="primary-action w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-black text-xs font-bold uppercase tracking-wider hover:bg-zinc-200 transition-colors cursor-pointer"
               onClick={onClose}
             >
-              I Understand
+              <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>
+                I Understand
+              </span>
             </button>
           )}
         </div>

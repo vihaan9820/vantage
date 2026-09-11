@@ -37,6 +37,8 @@ describe("SkillSwap Homepage, Registration & Privacy Integration", () => {
     expect(privacySource).toContain("Zero Third-Party Selling");
     expect(privacySource).toContain("Peer-to-Peer Encryption");
     expect(privacySource).toContain("Transparent TimeBank Ledger");
+    expect(privacySource).toContain('color: "#000000"');
+    expect(privacySource).toContain("Get Started (+20 Pts)");
   });
 
   it("applies translucent glassmorphic blocks on the homepage for clean visual hierarchy", () => {

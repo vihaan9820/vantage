@@ -5,6 +5,94 @@
  */
 
 /* =============================================================================
+   UNIVERSAL WHITE BUTTON CONTRAST DEFENSE
+   ============================================================================= */
+:is(html, html.dark, html.light, body, #root, .app-chrome, .product-theme-dark, .product-theme-light) :is(
+  .bg-white.text-black,
+  .bg-white,
+  button.bg-white,
+  a.bg-white,
+  .primary-action.bg-white,
+  button.primary-action.bg-white,
+  a.primary-action.bg-white,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  a[href="/signup"].bg-white,
+  a[href*="/signup"].bg-white
+) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html, html.dark, html.light, body, #root, .app-chrome, .product-theme-dark, .product-theme-light) :is(
+  .bg-white.text-black,
+  .bg-white,
+  button.bg-white,
+  a.bg-white,
+  .primary-action.bg-white,
+  button.primary-action.bg-white,
+  a.primary-action.bg-white,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  a[href="/signup"].bg-white,
+  a[href*="/signup"].bg-white
+) :is(*, span, p, strong, b, small, a) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html, html.dark, html.light, body, #root, .app-chrome, .product-theme-dark, .product-theme-light) :is(
+  .bg-white.text-black,
+  .bg-white,
+  button.bg-white,
+  a.bg-white,
+  .primary-action.bg-white,
+  button.primary-action.bg-white,
+  a.primary-action.bg-white,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  a[href="/signup"].bg-white,
+  a[href*="/signup"].bg-white
+) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+:is(html, html.dark, html.light, body, #root, .app-chrome, .product-theme-dark, .product-theme-light) :is(
+  .bg-white.text-black,
+  .bg-white,
+  button.bg-white,
+  a.bg-white,
+  .primary-action.bg-white,
+  button.primary-action.bg-white,
+  a.primary-action.bg-white,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  a[href="/signup"].bg-white,
+  a[href*="/signup"].bg-white
+):hover :is(*, span, p, strong, b, small, a) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+:is(html, html.dark, html.light, body, #root, .app-chrome, .product-theme-dark, .product-theme-light) :is(
+  .bg-white.text-black,
+  .bg-white,
+  button.bg-white,
+  a.bg-white,
+  .primary-action.bg-white,
+  button.primary-action.bg-white,
+  a.primary-action.bg-white,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  a[href="/signup"].bg-white,
+  a[href*="/signup"].bg-white
+):hover svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* =============================================================================
    DARK MODE BUTTONS: Pure White Background (#FFFFFF) & Pure Black Text (#000000)
    ============================================================================= */
 :is(html.dark, html[data-skillswap-theme="dark"], .product-theme-dark) :is(
@@ -56,6 +144,11 @@
   .book-session-btn,
   .confirm-btn,
   .cta-btn,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  button.bg-white,
+  a.bg-white,
+  .bg-white.text-black,
   button[data-slot="button"][data-variant="default"]
 ) {
   background: #E4E4E7 !important;
@@ -107,7 +200,12 @@
   .checkout-btn,
   .book-session-btn,
   .confirm-btn,
-  .cta-btn
+  .cta-btn,
+  .quick-teach-btn,
+  button.quick-teach-btn,
+  button.bg-white,
+  a.bg-white,
+  .bg-white.text-black
 ):hover {
   background: #D4D4D8 !important;
   background-color: #D4D4D8 !important;

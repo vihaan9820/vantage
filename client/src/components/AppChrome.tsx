@@ -465,12 +465,13 @@ export function AppChrome({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => setQuickTeachOpen(true)}
                 title="Teach a Skill (Alt+T)"
-                className="quick-teach-btn flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all border border-white/40 bg-white text-black hover:bg-zinc-200 shadow-[0_0_14px_rgba(255,255,255,0.25)] shrink-0"
+                style={{ backgroundColor: "#FFFFFF", color: "#000000", border: "1px solid #FFFFFF" }}
+                className="quick-teach-btn flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-white text-black hover:bg-zinc-200 shadow-[0_0_14px_rgba(255,255,255,0.25)] shrink-0 cursor-pointer"
                 aria-label="Teach a skill"
               >
-                <GraduationCap size={14} className="shrink-0" />
-                <span className="hidden min-[420px]:inline font-extrabold">+ Teach</span>
-                <span className="hidden xl:inline text-[9px] font-mono opacity-60 ml-0.5 uppercase tracking-wider px-1 py-0.5 rounded bg-black/10 text-black">
+                <GraduationCap size={14} className="shrink-0 text-black" style={{ color: "#000000" }} />
+                <span className="hidden min-[420px]:inline font-extrabold text-black" style={{ color: "#000000" }}>+ Teach</span>
+                <span className="hidden xl:inline text-[9px] font-mono opacity-60 ml-0.5 uppercase tracking-wider px-1 py-0.5 rounded bg-black/10 text-black" style={{ color: "#000000" }}>
                   Alt+T
                 </span>
               </button>

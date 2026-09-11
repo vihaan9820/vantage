@@ -223,7 +223,10 @@ export default function NotFound() {
                         <div className="p-2.5 rounded-xl bg-white/10 border border-white/30 text-white group-hover:bg-white group-hover:text-black transition-colors">
                           <Icon size={18} />
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-white px-2 py-0.5 rounded-md font-mono">
+                        <span
+                          className="text-[10px] font-bold uppercase tracking-wider text-black bg-white px-2 py-0.5 rounded-md font-mono"
+                          style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000" }}
+                        >
                           {dest.badge}
                         </span>
                       </div>

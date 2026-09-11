@@ -51,11 +51,11 @@ export default function GetStarted() {
           </Link>
           <Link
             href="/signup"
-            style={{ backgroundColor: "#FFFFFF", color: "#000000" }}
+            style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" }}
             className="text-xs font-bold text-black bg-white hover:bg-zinc-200 px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-colors shadow-sm whitespace-nowrap"
           >
-            <span className="hidden min-[420px]:inline">Sign up (+20 Pts)</span>
-            <span className="inline min-[420px]:hidden">Sign up</span>
+            <span className="hidden min-[420px]:inline" style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Sign up (+20 Pts)</span>
+            <span className="inline min-[420px]:hidden" style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Sign up</span>
           </Link>
         </div>
       </header>
@@ -95,13 +95,19 @@ export default function GetStarted() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-12 scroll-rise-stagger">
           {/* Option 1: New Member / Claim +20 Pts */}
           <div className="scroll-rise rise-delay-1 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/30 bg-black/85 backdrop-blur-xl relative flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.85)] hover:border-white/60 transition-all duration-300 group">
-            <div className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-white text-black font-extrabold text-[10px] tracking-wider uppercase shadow-md flex items-center gap-1.5">
-              <Gem size={12} /> +20 Starter Bonus Included
+            <div
+              className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-white text-black font-extrabold text-[10px] tracking-wider uppercase shadow-md flex items-center gap-1.5"
+              style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000" }}
+            >
+              <Gem size={12} style={{ color: "#000000" }} /> <span style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>+20 Starter Bonus Included</span>
             </div>
 
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center font-black text-xl mb-5 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                <UserPlus size={24} />
+              <div
+                className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center font-black text-xl mb-5 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                style={{ backgroundColor: "#FFFFFF", color: "#000000" }}
+              >
+                <UserPlus size={24} style={{ color: "#000000" }} />
               </div>
 
               <h2 className="font-megiko font-morenn font-bold text-2xl sm:text-3xl text-white tracking-tight mb-2">Create New Account</h2>
@@ -127,10 +133,11 @@ export default function GetStarted() {
 
             <Link
               href="/signup"
-              style={{ backgroundColor: "#FFFFFF", color: "#000000" }}
+              style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" }}
               className="w-full py-3.5 px-6 rounded-xl bg-white text-black font-extrabold text-sm flex items-center justify-center gap-2 hover:bg-zinc-200 transition-all shadow-lg hover:shadow-white/20 active:scale-[0.99] cursor-pointer"
             >
-              Get Started Free (+20 Pts) <ArrowRight size={17} />
+              <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Get Started Free (+20 Pts)</span>
+              <ArrowRight size={17} style={{ color: "#000000" }} />
             </Link>
           </div>
 

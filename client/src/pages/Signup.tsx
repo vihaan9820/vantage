@@ -243,8 +243,11 @@ export default function Signup() {
       {registeredReward && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
           <div className="glass-panel w-full max-w-md rounded-3xl border border-white/30 bg-black/95 p-8 text-center shadow-2xl relative">
-            <div className="w-16 h-16 rounded-2xl bg-white text-black mx-auto mb-5 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.4)]">
-              <span className="text-3xl font-black">★</span>
+            <div
+              className="w-16 h-16 rounded-2xl bg-white text-black mx-auto mb-5 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+              style={{ backgroundColor: "#FFFFFF", color: "#000000" }}
+            >
+              <span className="text-3xl font-black" style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>★</span>
             </div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-mono font-bold uppercase tracking-wider mb-3">
               ★ Starter Welcome Reward
@@ -267,13 +270,14 @@ export default function Signup() {
             </div>
             <button
               type="button"
+              style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" }}
               className="w-full py-3.5 px-6 rounded-xl bg-white text-black font-black text-sm uppercase tracking-wider hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2"
               onClick={() => {
                 toast.success("Account initialized with 20 Skill Points!");
                 navigate("/onboarding");
               }}
             >
-              Get Started & Set Up Profile <ArrowRight size={18} />
+              <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Get Started & Set Up Profile</span> <ArrowRight size={18} style={{ color: "#000000" }} />
             </button>
           </div>
         </div>

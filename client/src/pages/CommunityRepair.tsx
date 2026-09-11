@@ -182,13 +182,15 @@ export default function CommunityRepair() {
 
         <div className="flex flex-wrap gap-2.5">
           <button
-            className="primary-action text-xs px-5 py-2.5 bg-white text-black font-bold hover:bg-zinc-200 border border-white"
+            style={{ backgroundColor: "#FFFFFF", color: "#000000", border: "1px solid #FFFFFF" }}
+            className="primary-action text-xs px-5 py-2.5 bg-white text-black font-bold hover:bg-zinc-200 border border-white cursor-pointer"
             onClick={() => {
               setType("Create Post");
               setComposerOpen(true);
             }}
           >
-            <Plus size={16} /> Create Post
+            <Plus size={16} className="text-black" style={{ color: "#000000" }} />
+            <span style={{ color: "#000000", fontWeight: 800 }}>Create Post</span>
           </button>
           <button
             className="secondary-action text-xs px-5 py-2.5"
@@ -338,11 +340,13 @@ export default function CommunityRepair() {
                 Cancel
               </button>
               <button
-                className="primary-action text-xs px-6 bg-white text-black font-bold hover:bg-zinc-200 border border-white disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{ backgroundColor: "#FFFFFF", color: "#000000", border: "1px solid #FFFFFF" }}
+                className="primary-action text-xs px-6 bg-white text-black font-bold hover:bg-zinc-200 border border-white disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                 disabled={!draft.trim() && attachments.length === 0}
                 onClick={publish}
               >
-                Publish Post <Send size={14} className="text-black" />
+                <span style={{ color: "#000000", fontWeight: 800 }}>Publish Post</span>{" "}
+                <Send size={14} className="text-black ml-1 inline" style={{ color: "#000000" }} />
               </button>
             </div>
           </div>

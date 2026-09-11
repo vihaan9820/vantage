@@ -102,9 +102,11 @@ export default function HelpRepair() {
               <span className="text-xs text-gray-400">Was this article helpful?</span>
               <button
                 className={`secondary-action text-xs px-3 py-1.5 ${helpful === "yes" ? "bg-white text-black font-bold" : ""}`}
+                style={helpful === "yes" ? { backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" } : undefined}
                 onClick={() => setHelpful("yes")}
               >
-                <ThumbsUp size={13} /> Yes
+                <ThumbsUp size={13} style={helpful === "yes" ? { color: "#000000" } : undefined} />
+                <span style={helpful === "yes" ? { color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 } : undefined}>Yes</span>
               </button>
               <button
                 className={`secondary-action text-xs px-3 py-1.5 ${helpful === "no" ? "bg-red-400/20 text-red-400" : ""}`}
@@ -179,12 +181,13 @@ export default function HelpRepair() {
               </p>
               <button
                 className="primary-action text-xs mt-3 bg-white text-black font-bold hover:bg-zinc-200"
+                style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" }}
                 onClick={() => {
                   setSubmitted(false);
                   setSupportOpen(false);
                 }}
               >
-                Close
+                <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Close</span>
               </button>
             </div>
           ) : (
@@ -197,10 +200,11 @@ export default function HelpRepair() {
               />
               <button
                 className="primary-action text-xs justify-center bg-white text-black font-bold hover:bg-zinc-200"
+                style={{ backgroundColor: "#FFFFFF", color: "#000000", WebkitTextFillColor: "#000000", border: "1px solid #FFFFFF" }}
                 disabled={!supportMessage.trim()}
                 onClick={() => setSubmitted(true)}
               >
-                Submit Support Request
+                <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>Submit Support Request</span>
               </button>
             </div>
           )}

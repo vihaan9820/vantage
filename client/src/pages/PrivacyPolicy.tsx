@@ -113,9 +113,17 @@ export default function PrivacyPolicy() {
             <p className="text-xs text-zinc-400">© 2026 Vantage. Pure knowledge barter with zero cash fees.</p>
             <Link
               href="/signup"
-              className="px-5 py-2.5 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer"
+              style={{
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
+                WebkitTextFillColor: "#000000",
+                border: "1px solid #FFFFFF",
+              }}
+              className="primary-action px-5 py-2.5 rounded-xl bg-white text-black font-extrabold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-all shadow-lg cursor-pointer flex items-center justify-center gap-1.5"
             >
-              Get Started (+20 Pts)
+              <span style={{ color: "#000000", WebkitTextFillColor: "#000000", fontWeight: 900 }}>
+                Get Started (+20 Pts)
+              </span>
             </Link>
           </div>
         </div>
