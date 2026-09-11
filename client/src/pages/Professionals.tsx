@@ -101,17 +101,19 @@ function ProfessionalCard({
             </div>
           </div>
 
-          {/* Seeking Skills */}
-          <div className="mt-3 flex flex-col gap-1.5">
-            <span className="text-[11px] font-medium text-zinc-400">Seeking</span>
-            <div className="flex flex-wrap gap-1.5">
-              {professional.seekingSkills.slice(0, 3).map((s) => (
-                <span key={s.skill} className="px-2 py-0.5 rounded-md bg-transparent border border-white/[0.06] text-zinc-400 text-xs font-normal">
-                  {s.skill}
-                </span>
-              ))}
+          {/* Seeking Skills (Hidden for Learners Only) */}
+          {account?.mode !== "learn" && (
+            <div className="mt-3 flex flex-col gap-1.5">
+              <span className="text-[11px] font-medium text-zinc-400">Seeking</span>
+              <div className="flex flex-wrap gap-1.5">
+                {professional.seekingSkills.slice(0, 3).map((s) => (
+                  <span key={s.skill} className="px-2 py-0.5 rounded-md bg-transparent border border-white/[0.06] text-zinc-400 text-xs font-normal">
+                    {s.skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="pt-3 mt-4 border-t border-white/[0.06]">
@@ -163,6 +165,7 @@ function ProfessionalCard({
 
 export default function Professionals() {
   const [location] = useLocation();
+  const { account } = useAccount();
   const querySkill = new URLSearchParams(window.location.search).get("skill") ?? "";
   const [search, setSearch] = useState("");
   const [skill, setSkill] = useState("All skills");
@@ -230,7 +233,9 @@ export default function Professionals() {
             Learn from people who know it.
           </h1>
           <p className="text-base text-zinc-400 leading-relaxed">
-            Discover verified mentors, propose 1-on-1 skill barter swaps, and gain hands-on guidance across creative and technical disciplines.
+            {account?.mode === "learn"
+              ? "Discover verified mentors, book hands-on guidance with Gems across creative and technical disciplines."
+              : "Discover verified mentors, propose 1-on-1 skill barter swaps, and gain hands-on guidance across creative and technical disciplines."}
           </p>
         </div>
 
@@ -239,7 +244,9 @@ export default function Professionals() {
           <span className="text-xs text-zinc-400 font-medium uppercase tracking-wider mt-1">
             Mentors Available
           </span>
-          <p className="text-xs text-zinc-400 mt-1">Direct 1:1 barter</p>
+          <p className="text-xs text-zinc-400 mt-1">
+            {account?.mode === "learn" ? "Book with Gems" : "Direct 1:1 barter"}
+          </p>
         </div>
       </section>
 

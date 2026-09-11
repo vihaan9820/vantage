@@ -428,6 +428,7 @@ export function Dashboard() {
   const { theme } = useTheme();
   const isLight = theme === "light";
   const name = account?.name?.split(" ")[0] ?? "there";
+  const isLearnerOnly = account?.mode === "learn";
 
   const dashboardRef = useRef<HTMLDivElement>(null);
 
@@ -466,10 +467,17 @@ export function Dashboard() {
     setMatchHasRun(true);
     const bestScore = scoredPartners[0]?.score ?? 72;
     const topMatch = scoredPartners[0]?.partner.name ?? "a partner";
-    toast.success(
-      `Found ${scoredPartners.length} compatible barter partners! Top match: ${topMatch} (${bestScore}% compatibility)`,
-      { duration: 4000 }
-    );
+    if (isLearnerOnly) {
+      toast.success(
+        `Found ${scoredPartners.length} verified mentors for your learning goal! Top mentor: ${topMatch}`,
+        { duration: 4000 }
+      );
+    } else {
+      toast.success(
+        `Found ${scoredPartners.length} compatible barter partners! Top match: ${topMatch} (${bestScore}% compatibility)`,
+        { duration: 4000 }
+      );
+    }
   };
 
   const handleSwapSkills = () => {
@@ -529,23 +537,35 @@ export function Dashboard() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="text-xs font-bold text-white bg-white/20 px-3.5 py-1.5 rounded-full border border-white/50 inline-flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                <Zap size={13} className="text-white fill-white" /> Peer-to-Peer Knowledge Trade
+                {isLearnerOnly ? (
+                  <>
+                    <Gem size={13} className="text-white fill-white" /> Direct 1:1 Mentorship
+                  </>
+                ) : (
+                  <>
+                    <Zap size={13} className="text-white fill-white" /> Peer-to-Peer Knowledge Trade
+                  </>
+                )}
               </span>
-              <button
-                type="button"
-                onClick={() => setQuickTeachOpen(true)}
-                className="text-xs font-extrabold px-3 py-1.5 rounded-xl border border-white bg-white text-black hover:bg-zinc-200 transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.3)] cursor-pointer"
-                title="List a skill you can teach to earn barter credits"
-              >
-                <GraduationCap size={14} />
-                <span>+ Offer to Teach a Skill</span>
-              </button>
+              {!isLearnerOnly && (
+                <button
+                  type="button"
+                  onClick={() => setQuickTeachOpen(true)}
+                  className="text-xs font-extrabold px-3 py-1.5 rounded-xl border border-white bg-white text-black hover:bg-zinc-200 transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.3)] cursor-pointer"
+                  title="List a skill you can teach to earn barter credits"
+                >
+                  <GraduationCap size={14} />
+                  <span>+ Offer to Teach a Skill</span>
+                </button>
+              )}
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
-              Trade your skills, master anything.
+              {isLearnerOnly ? "Learn from top mentors, master anything." : "Trade your skills, master anything."}
             </h1>
             <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-normal">
-              Zero money involved. Connect 1-on-1 with verified creators and engineers. Teach Next.js for 3D Blender modeling, or trade conversational Italian for Python backend.
+              {isLearnerOnly
+                ? "Connect 1-on-1 with verified creators and engineers. Book dedicated sessions with Gems to accelerate your craft."
+                : "Zero money involved. Connect 1-on-1 with verified creators and engineers. Teach Next.js for 3D Blender modeling, or trade conversational Italian for Python backend."}
             </p>
           </div>
 
@@ -556,90 +576,129 @@ export function Dashboard() {
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]" />
                 <span className="text-white font-bold text-xs uppercase tracking-wider">
-                  Live Mutual Compatibility:
+                  {isLearnerOnly ? "Top Mentor Compatibility:" : "Live Mutual Compatibility:"}
                 </span>
                 <span className="text-black font-mono text-xs font-black px-2.5 py-1 rounded-md bg-white border border-white shadow-[0_0_15px_rgba(255,255,255,0.6)]">
                   {topScore}% Match
                 </span>
               </div>
               <span className="text-zinc-300 text-xs hidden sm:inline font-medium">
-                Top match: <strong className="text-white font-bold">{topPartner.name}</strong>
+                Top mentor: <strong className="text-white font-bold">{topPartner.name}</strong>
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto,1fr] gap-3 items-center">
-              {/* Left Input: Learn */}
+            {isLearnerOnly ? (
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <Compass size={14} className="text-white" /> I want to learn...
+                  <Compass size={14} className="text-white" /> What do you want to learn?
                 </label>
                 <input
                   type="text"
                   value={learnGoal}
                   onChange={(e) => setLearnGoal(e.target.value.slice(0, 80))}
                   maxLength={80}
-                  placeholder="e.g. UI/UX Design, Italian, Python"
+                  placeholder="e.g. UI/UX Design, Italian, Python backend, Blender"
                   className="w-full bg-white/10 border-2 border-white/45 focus:border-white focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/60 focus:outline-none focus:shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all font-semibold"
                 />
               </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto,1fr] gap-3 items-center">
+                {/* Left Input: Learn */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                    <Compass size={14} className="text-white" /> I want to learn...
+                  </label>
+                  <input
+                    type="text"
+                    value={learnGoal}
+                    onChange={(e) => setLearnGoal(e.target.value.slice(0, 80))}
+                    maxLength={80}
+                    placeholder="e.g. UI/UX Design, Italian, Python"
+                    className="w-full bg-white/10 border-2 border-white/45 focus:border-white focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/60 focus:outline-none focus:shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all font-semibold"
+                  />
+                </div>
 
-              {/* Center Swap Button */}
-              <button
-                type="button"
-                onClick={handleSwapSkills}
-                title="Swap Learn & Offer roles"
-                className="self-center sm:self-end my-1 sm:my-0 mb-0.5 p-3 rounded-xl bg-white/10 hover:bg-white hover:text-black border-2 border-white/45 text-white transition-all flex items-center justify-center font-black text-base shadow-sm cursor-pointer"
-              >
-                <span>⇄</span>
-              </button>
-
-              {/* Right Input: Offer */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <GraduationCap size={14} className="text-white" /> I can offer...
-                </label>
-                <input
-                  type="text"
-                  value={offerSkill}
-                  onChange={(e) => setOfferSkill(e.target.value.slice(0, 80))}
-                  maxLength={80}
-                  placeholder="e.g. Next.js, Copywriting, Guitar"
-                  className="w-full bg-white/10 border-2 border-white/45 focus:border-white focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/60 focus:outline-none focus:shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all font-semibold"
-                />
-              </div>
-            </div>
-
-            {/* Quick Filter Chips */}
-            <div className="flex items-center gap-2 flex-wrap pt-1 text-xs">
-              <span className="text-zinc-300 font-bold">Popular:</span>
-              {[
-                { label: "UI/UX ⇄ Next.js", learn: "UI/UX Design", offer: "Next.js" },
-                { label: "Python ⇄ Japanese", learn: "Python & AI", offer: "Japanese" },
-                { label: "3D Blender ⇄ React", learn: "3D Blender", offer: "React" },
-                { label: "Guitar ⇄ Marketing", learn: "Guitar & Mixing", offer: "Digital Marketing" },
-              ].map((preset) => (
+                {/* Center Swap Button */}
                 <button
                   type="button"
-                  key={preset.label}
-                  onClick={() => {
-                    setLearnGoal(preset.learn);
-                    setOfferSkill(preset.offer);
-                  }}
-                  className="popular-chip px-3 py-1.5 rounded-lg border font-bold text-xs transition-all shadow-sm cursor-pointer"
+                  onClick={handleSwapSkills}
+                  title="Swap Learn & Offer roles"
+                  className="self-center sm:self-end my-1 sm:my-0 mb-0.5 p-3 rounded-xl bg-white/10 hover:bg-white hover:text-black border-2 border-white/45 text-white transition-all flex items-center justify-center font-black text-base shadow-sm cursor-pointer"
                 >
-                  <span>{preset.label}</span>
+                  <span>⇄</span>
                 </button>
-              ))}
-            </div>
+
+                {/* Right Input: Offer */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                    <GraduationCap size={14} className="text-white" /> I can offer...
+                  </label>
+                  <input
+                    type="text"
+                    value={offerSkill}
+                    onChange={(e) => setOfferSkill(e.target.value.slice(0, 80))}
+                    maxLength={80}
+                    placeholder="e.g. Next.js, Copywriting, Guitar"
+                    className="w-full bg-white/10 border-2 border-white/45 focus:border-white focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/60 focus:outline-none focus:shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all font-semibold"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Quick Filter Chips */}
+            {isLearnerOnly ? (
+              <div className="flex items-center gap-2 flex-wrap pt-1 text-xs">
+                <span className="text-zinc-300 font-bold">Popular:</span>
+                {["UI/UX Design", "Python & AI", "3D Blender", "React & Next.js", "Digital Marketing"].map((topic) => (
+                  <button
+                    type="button"
+                    key={topic}
+                    onClick={() => setLearnGoal(topic)}
+                    className="popular-chip px-3 py-1.5 rounded-lg border font-bold text-xs transition-all shadow-sm cursor-pointer"
+                  >
+                    <span>{topic}</span>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 flex-wrap pt-1 text-xs">
+                <span className="text-zinc-300 font-bold">Popular:</span>
+                {[
+                  { label: "UI/UX ⇄ Next.js", learn: "UI/UX Design", offer: "Next.js" },
+                  { label: "Python ⇄ Japanese", learn: "Python & AI", offer: "Japanese" },
+                  { label: "3D Blender ⇄ React", learn: "3D Blender", offer: "React" },
+                  { label: "Guitar ⇄ Marketing", learn: "Guitar & Mixing", offer: "Digital Marketing" },
+                ].map((preset) => (
+                  <button
+                    type="button"
+                    key={preset.label}
+                    onClick={() => {
+                      setLearnGoal(preset.learn);
+                      setOfferSkill(preset.offer);
+                    }}
+                    className="popular-chip px-3 py-1.5 rounded-lg border font-bold text-xs transition-all shadow-sm cursor-pointer"
+                  >
+                    <span>{preset.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
 
             <button
               type="submit"
               className="primary-action find-matches-btn w-full mt-1 justify-center font-black text-sm py-3.5 rounded-xl cursor-pointer border flex items-center gap-2 transition-all shadow-md"
             >
-              <Zap size={18} className="shrink-0" />
-              <span>
-                Find Instant Matches — {scoredPartners.length} Partners Found
-              </span>
+              {isLearnerOnly ? (
+                <>
+                  <UsersRound size={18} className="shrink-0" />
+                  <span>Find Verified Mentors — {scoredPartners.length} Available</span>
+                </>
+              ) : (
+                <>
+                  <Zap size={18} className="shrink-0" />
+                  <span>Find Instant Matches — {scoredPartners.length} Partners Found</span>
+                </>
+              )}
             </button>
           </form>
         </div>
@@ -660,7 +719,7 @@ export function Dashboard() {
               <div className="flex items-center justify-between pb-3 border-b border-white/20">
                 <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
-                  Top Mutual Match
+                  {isLearnerOnly ? "Recommended Mentor" : "Top Mutual Match"}
                 </span>
                 <span className={`font-mono text-xs font-black px-2.5 py-1 rounded-md border ${isLight ? "bg-black text-white border-black shadow-[0_2px_8px_rgba(0,0,0,0.25)]" : "text-black bg-white border-white shadow-[0_0_15px_rgba(255,255,255,0.6)]"}`}>
                   {topScore}% Compatible
@@ -693,26 +752,45 @@ export function Dashboard() {
                 </div>
               </div>
 
-              {/* 2-Way Knowledge Exchange Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-white/[0.04] border border-white/20">
-                <div className="flex flex-col gap-1 p-2 rounded-lg bg-black/60 border border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider flex items-center gap-1">
-                    <Compass size={11} className="text-white" /> They Teach You
-                  </span>
-                  <strong className="text-xs font-bold text-white truncate">
-                    {learnGoal || topPartner.primarySkill}
-                  </strong>
+              {/* Knowledge / Specialty Grid */}
+              {isLearnerOnly ? (
+                <div className="flex flex-col gap-2 p-3 rounded-xl bg-white/[0.04] border border-white/20">
+                  <div className="flex flex-col gap-1 p-2 rounded-lg bg-black/60 border border-white/10">
+                    <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider flex items-center gap-1">
+                      <Compass size={11} className="text-white" /> Specialty to Learn
+                    </span>
+                    <strong className="text-xs font-bold text-white truncate">
+                      {learnGoal || topPartner.primarySkill}
+                    </strong>
+                  </div>
+                  <div className="flex items-center justify-between px-1 text-xs text-zinc-300">
+                    <span className="text-zinc-400">Direct booking rate:</span>
+                    <span className="font-bold text-white flex items-center gap-1">
+                      <Gem size={12} className="text-sky-400 fill-sky-400" /> {topPartner.price ?? 6} Gems / hr
+                    </span>
+                  </div>
                 </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-white/[0.04] border border-white/20">
+                  <div className="flex flex-col gap-1 p-2 rounded-lg bg-black/60 border border-white/10">
+                    <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider flex items-center gap-1">
+                      <Compass size={11} className="text-white" /> They Teach You
+                    </span>
+                    <strong className="text-xs font-bold text-white truncate">
+                      {learnGoal || topPartner.primarySkill}
+                    </strong>
+                  </div>
 
-                <div className="flex flex-col gap-1 p-2 rounded-lg bg-black/60 border border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider flex items-center gap-1">
-                    <GraduationCap size={11} className="text-white" /> You Teach Them
-                  </span>
-                  <strong className="text-xs font-bold text-white truncate">
-                    {offerSkill || "Next.js & Frontend"}
-                  </strong>
+                  <div className="flex flex-col gap-1 p-2 rounded-lg bg-black/60 border border-white/10">
+                    <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider flex items-center gap-1">
+                      <GraduationCap size={11} className="text-white" /> You Teach Them
+                    </span>
+                    <strong className="text-xs font-bold text-white truncate">
+                      {offerSkill || "Next.js & Frontend"}
+                    </strong>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Barter Meta Details */}
               <div className="flex justify-between items-center text-xs text-zinc-300 pt-1 px-1">
@@ -721,7 +799,7 @@ export function Dashboard() {
                   <span>{topPartner.slots?.[0] || "Tomorrow · 6:00 PM"}</span>
                 </span>
                 <span className="text-[11px] font-semibold text-white bg-white/10 px-2 py-0.5 rounded border border-white/20">
-                  1:1 Video Room
+                  {isLearnerOnly ? `💎 ${topPartner.price ?? 6} Gems` : "1:1 Video Room"}
                 </span>
               </div>
 
@@ -731,7 +809,7 @@ export function Dashboard() {
                   onClick={() => setSelectedProposalPartner(topPartner)}
                   className="primary-action trade-skill-btn propose-swap-btn rounded-xl text-xs font-black py-2.5 px-3 text-center justify-center col-span-2 flex items-center gap-1.5 shadow-md transition-all cursor-pointer border"
                 >
-                  {account?.mode === "learn" ? (
+                  {isLearnerOnly ? (
                     <>
                       <Gem size={14} className="shrink-0 text-white fill-white" />
                       <span>Book with Gems</span>
@@ -755,7 +833,7 @@ export function Dashboard() {
               {/* Trust Metric Footer */}
               <div className="flex items-center justify-center gap-2 text-[10px] text-zinc-400 pt-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                <span>Zero-fee barter escrow</span>
+                <span>{isLearnerOnly ? "Instant Gems confirmation" : "Zero-fee barter escrow"}</span>
                 <span>·</span>
                 <span>Identity verified</span>
               </div>
@@ -764,92 +842,96 @@ export function Dashboard() {
         </div>
       </section>
 
-      {/* 2. Active Swap Hub Pipeline & Upcoming Live Session */}
-      <section className="flex flex-col gap-6">
-        <div className="flex justify-between items-end">
-          <div>
-            <p className="page-kicker">EXCHANGE PIPELINE</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Active Swap Hub</h2>
-          </div>
-          <div className="flex gap-2">
-            <span className="text-xs text-zinc-400 font-semibold bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-              {activeProposals.length} Total Trades in Pipeline
-            </span>
-          </div>
-        </div>
-
-        {/* 4-Stage Status Pipeline Visualization */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { label: "1. Proposed", count: proposedProposals.length, desc: "Terms under review" },
-            { label: "2. Accepted", count: acceptedProposals.length, desc: "Ready to schedule" },
-            { label: "3. Scheduled", count: scheduledSessions.length, desc: "Live room ready" },
-            { label: "4. Completed", count: completedProposals.length, desc: "Credits released" },
-          ].map((stage) => (
-            <div key={stage.label} className="glass-panel p-4.5 rounded-xl flex flex-col gap-1.5 border border-white/20 border-t-2 border-t-white/80 bg-black/55 backdrop-blur-xl bg-gradient-to-b from-white/[0.08] to-transparent hover:border-white/40 transition-all shadow-[0_8px_30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)]">
-              <span className="text-xs font-black text-white uppercase tracking-wider">{stage.label}</span>
-              <strong className="text-2xl font-black text-white font-mono">{stage.count}</strong>
-              <small className="text-[11px] text-zinc-300 font-medium">{stage.desc}</small>
+      {/* 2. Active Swap Hub Pipeline & Upcoming Live Session (Hidden for Learners Only) */}
+      {!isLearnerOnly && (
+        <section className="flex flex-col gap-6">
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="page-kicker">EXCHANGE PIPELINE</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">Active Swap Hub</h2>
             </div>
-          ))}
-        </div>
-
-        {/* Live Upcoming Session Countdown Card */}
-        {scheduledSessions.length > 0 ? (
-          <div className="glass-panel p-6 rounded-2xl border border-white/25 border-t-2 border-t-white/80 bg-black/55 backdrop-blur-xl bg-gradient-to-b from-white/[0.08] to-transparent flex flex-col md:flex-row justify-between items-start md:items-center gap-5 shadow-[0_8px_32px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.2)]">
-            <div className="flex items-start gap-4">
-              <span className="w-12 h-12 rounded-xl bg-white text-black border border-white flex items-center justify-center font-bold shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-                <Video size={22} className="text-black" />
+            <div className="flex gap-2">
+              <span className="text-xs text-zinc-400 font-semibold bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                {activeProposals.length} Total Trades in Pipeline
               </span>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]" />
-                  <span className="text-xs font-bold text-white uppercase tracking-wider">
-                    Upcoming 1:1 Live Session
-                  </span>
-                </div>
-                <h3 className="text-base md:text-lg font-bold text-white mt-0.5">
-                  {scheduledSessions[0].partnerName} · {scheduledSessions[0].format}
-                </h3>
-                <p className="text-xs text-zinc-300 mt-1">
-                  Trading <b className="text-white font-bold">{scheduledSessions[0].requestSkill}</b> in exchange for <b className="text-white font-bold">{scheduledSessions[0].offerSkill}</b>.
-                </p>
-                <div className="flex items-center gap-2 text-xs text-zinc-300 mt-2">
-                  <Calendar size={13} className="text-white" />
-                  <span>{scheduledSessions[0].scheduledTime || "Today · 7:00 PM EST"}</span>
-                  <span>·</span>
-                  <span className="text-white font-bold">Starts in: 02h 45m</span>
+            </div>
+          </div>
+
+          {/* 4-Stage Status Pipeline Visualization */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { label: "1. Proposed", count: proposedProposals.length, desc: "Terms under review" },
+              { label: "2. Accepted", count: acceptedProposals.length, desc: "Ready to schedule" },
+              { label: "3. Scheduled", count: scheduledSessions.length, desc: "Live room ready" },
+              { label: "4. Completed", count: completedProposals.length, desc: "Credits released" },
+            ].map((stage) => (
+              <div key={stage.label} className="glass-panel p-4.5 rounded-xl flex flex-col gap-1.5 border border-white/20 border-t-2 border-t-white/80 bg-black/55 backdrop-blur-xl bg-gradient-to-b from-white/[0.08] to-transparent hover:border-white/40 transition-all shadow-[0_8px_30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)]">
+                <span className="text-xs font-black text-white uppercase tracking-wider">{stage.label}</span>
+                <strong className="text-2xl font-black text-white font-mono">{stage.count}</strong>
+                <small className="text-[11px] text-zinc-300 font-medium">{stage.desc}</small>
+              </div>
+            ))}
+          </div>
+
+          {/* Live Upcoming Session Countdown Card */}
+          {scheduledSessions.length > 0 ? (
+            <div className="glass-panel p-6 rounded-2xl border border-white/25 border-t-2 border-t-white/80 bg-black/55 backdrop-blur-xl bg-gradient-to-b from-white/[0.08] to-transparent flex flex-col md:flex-row justify-between items-start md:items-center gap-5 shadow-[0_8px_32px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.2)]">
+              <div className="flex items-start gap-4">
+                <span className="w-12 h-12 rounded-xl bg-white text-black border border-white flex items-center justify-center font-bold shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+                  <Video size={22} className="text-black" />
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]" />
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">
+                      Upcoming 1:1 Live Session
+                    </span>
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-white mt-0.5">
+                    {scheduledSessions[0].partnerName} · {scheduledSessions[0].format}
+                  </h3>
+                  <p className="text-xs text-zinc-300 mt-1">
+                    Trading <b className="text-white font-bold">{scheduledSessions[0].requestSkill}</b> in exchange for <b className="text-white font-bold">{scheduledSessions[0].offerSkill}</b>.
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-zinc-300 mt-2">
+                    <Calendar size={13} className="text-white" />
+                    <span>{scheduledSessions[0].scheduledTime || "Today · 7:00 PM EST"}</span>
+                    <span>·</span>
+                    <span className="text-white font-bold">Starts in: 02h 45m</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex gap-3 w-full md:w-auto shrink-0">
-              <button
-                onClick={() => setActiveVideoProposal(scheduledSessions[0])}
-                className="primary-action text-xs py-3 px-6 font-black flex items-center justify-center gap-2 rounded-xl transition-all w-full md:w-auto shadow-md cursor-pointer border"
-              >
-                <Video size={16} className="shrink-0" />
-                <span>Join Video Room</span>
-              </button>
+              <div className="flex gap-3 w-full md:w-auto shrink-0">
+                <button
+                  onClick={() => setActiveVideoProposal(scheduledSessions[0])}
+                  className="primary-action text-xs py-3 px-6 font-black flex items-center justify-center gap-2 rounded-xl transition-all w-full md:w-auto shadow-md cursor-pointer border"
+                >
+                  <Video size={16} className="shrink-0" />
+                  <span>Join Video Room</span>
+                </button>
+              </div>
             </div>
-          </div>
-        ) : null}
-      </section>
+          ) : null}
+        </section>
+      )}
 
       {/* 3. Matched Peer Partners (Bento Grid) */}
       <section className="flex flex-col gap-6">
         <div className="flex justify-between items-end">
           <div>
-            <p className="page-kicker">INSTANT MATCHES</p>
+            <p className="page-kicker">{isLearnerOnly ? "VERIFIED MENTORS" : "INSTANT MATCHES"}</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Compatible Barter Partners ({scoredPartners.length})
+              {isLearnerOnly
+                ? `Verified Mentors to Learn From (${scoredPartners.length})`
+                : `Compatible Barter Partners (${scoredPartners.length})`}
             </h2>
           </div>
           <button
             className="secondary-action text-xs font-bold px-3 py-1.5 rounded-lg border cursor-pointer shadow-sm transition-all"
-            onClick={() => navigate("/discover")}
+            onClick={() => navigate(isLearnerOnly ? "/professionals" : "/discover")}
           >
-            <span>View All in Marketplace</span>
+            <span>{isLearnerOnly ? "View All Mentors" : "View All in Marketplace"}</span>
           </button>
         </div>
 
@@ -913,22 +995,31 @@ export function Dashboard() {
                       </div>
                     </div>
 
-                    {/* Seeking Wishlist */}
-                    <div className="mt-3 flex flex-col gap-1.5">
-                      <span className="text-xs font-bold text-white uppercase tracking-wider">
-                        Seeking
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {pro.seekingSkills.map((s) => (
-                          <span
-                            key={s.skill}
-                            className="px-2.5 py-1 rounded-md bg-white/5 border border-white/25 text-zinc-200 text-xs font-medium"
-                          >
-                            {s.skill}
-                          </span>
-                        ))}
+                    {/* Seeking Wishlist (Hidden for Learners Only, replaced with Direct Booking Rate) */}
+                    {!isLearnerOnly ? (
+                      <div className="mt-3 flex flex-col gap-1.5">
+                        <span className="text-xs font-bold text-white uppercase tracking-wider">
+                          Seeking
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {pro.seekingSkills.map((s) => (
+                            <span
+                              key={s.skill}
+                              className="px-2.5 py-1 rounded-md bg-white/5 border border-white/25 text-zinc-200 text-xs font-medium"
+                            >
+                              {s.skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="mt-3 flex items-center justify-between p-2 rounded-lg bg-white/5 border border-white/10 text-xs">
+                        <span className="text-zinc-400 font-medium">Session Rate:</span>
+                        <span className="font-bold text-white flex items-center gap-1">
+                          <Gem size={12} className="text-sky-400 fill-sky-400" /> {pro.price ?? 6} Gems / hr
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Card Footer: Rating, Swaps Count, & Quick Actions */}
@@ -946,7 +1037,7 @@ export function Dashboard() {
                         onClick={() => setSelectedProposalPartner(pro)}
                         className="primary-action trade-skill-btn propose-swap-btn rounded-xl text-xs font-black py-2.5 px-3 text-center justify-center col-span-2 flex items-center gap-1.5 shadow-md transition-all cursor-pointer border"
                       >
-                        {account?.mode === "learn" ? (
+                        {isLearnerOnly ? (
                           <>
                             <Gem size={14} className="shrink-0 text-white fill-white" />
                             <span>Book with Gems</span>
@@ -2342,6 +2433,27 @@ export function Matches() {
             Pair with verified peers based on complementary skills or manage received barter proposals in your dedicated inbox. Zero platform fees — 100% reciprocal knowledge barter.
           </p>
         </div>
+
+      {account?.mode === "learn" && (
+        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/20 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <Gem size={20} className="text-sky-400 fill-sky-400 shrink-0" />
+            <div>
+              <p className="text-sm font-bold text-white">Learners Only Mode Active</p>
+              <p className="text-xs text-zinc-300">
+                You can book any mentor directly using Gems without needing to offer a skill in return.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate("/professionals")}
+            className="px-4 py-2 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition-colors shrink-0"
+          >
+            Browse Mentors
+          </button>
+        </div>
+      )}
 
         {/* Minimalistic Switcher */}
         <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md w-full sm:w-auto self-stretch sm:self-auto shrink-0 shadow-lg">

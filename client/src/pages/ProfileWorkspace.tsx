@@ -1,6 +1,7 @@
 import { ArrowRight, Award, BadgeCheck, Bookmark, BriefcaseBusiness, Check, Library, Plus, ShieldCheck, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
+import { toast } from "sonner";
 import { useAccount } from "@/contexts/AccountContext";
 import { professionals, useSkillSwap, type ReviewFeedback } from "@/contexts/SkillSwapContext";
 import { PageSEO } from "@/components/PageSEO";
@@ -22,8 +23,10 @@ export default function ProfileWorkspace() {
   const { account, updateProfile } = useAccount();
   const { state, addQualification, addPortfolioProject, addAccomplishment } = useSkillSwap();
   const params = useMemo(() => new URLSearchParams(window.location.search), [location]);
+  const isLearnerOnly = account?.mode === "learn";
+  const activeTabs = useMemo(() => isLearnerOnly ? tabs.filter((t) => t !== "teaching") : tabs, [isLearnerOnly]);
   const requested = params.get("tab")?.toLowerCase();
-  const requestedTab: ProfileTab = tabs.includes(requested as ProfileTab) ? requested as ProfileTab : "overview";
+  const requestedTab: ProfileTab = (activeTabs as readonly string[]).includes(requested || "") ? (requested as ProfileTab) : "overview";
   const [activeTab, setActiveTab] = useState<ProfileTab>(requestedTab);
   useEffect(() => { setActiveTab(requestedTab); }, [requestedTab]);
   const tab = activeTab;
@@ -48,11 +51,12 @@ export default function ProfileWorkspace() {
     const validatedPrice = Math.max(12, Math.round(Number(profileDraft.sessionPrice) || 12));
     updateProfile({
       name: profileDraft.name.trim() || "SkillSwap member",
-      location: profileDraft.location.trim(),
-      languages: profileDraft.languages.split(",").map((item) => item.trim()).filter(Boolean),
+      location: profileDraft.location.trim() || undefined,
+      languages: profileDraft.languages.split(",").map((l) => l.trim()).filter(Boolean),
       mode: profileDraft.mode as "learn" | "teach" | "both",
       sessionPrice: validatedPrice,
     });
+    toast.success("Profile updated successfully.");
     endEdit();
   };
   const addQualificationRecord = () => { if (!qualificationDraft.name.trim() || !qualificationDraft.institution.trim() || !qualificationDraft.year.trim() || !qualificationDraft.skill.trim()) return; addQualification({ ...qualificationDraft, name: qualificationDraft.name.trim(), institution: qualificationDraft.institution.trim(), year: qualificationDraft.year.trim(), skill: qualificationDraft.skill.trim(), evidence: qualificationDraft.evidence.trim(), status: "claimed" }); setQualificationDraft({ name: "", institution: "", year: "", skill: "", evidence: "" }); setShowQualificationForm(false); };
@@ -105,7 +109,7 @@ export default function ProfileWorkspace() {
 
       {/* Tabs */}
       <nav className="flex gap-2 overflow-x-auto pb-2 border-b border-white/10 hide-scrollbar" aria-label="Profile sections">
-        {tabs.map((item) => (
+        {activeTabs.map((item) => (
           <button
             key={item}
             className={`text-xs font-semibold px-4 py-2.5 rounded-xl whitespace-nowrap transition-all ${
@@ -155,22 +159,24 @@ export default function ProfileWorkspace() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none"
               />
             </div>
-            <div>
-              <label className="text-xs text-gray-400 font-semibold block mb-1">Session Rate (Gems)</label>
-              <input
-                type="number"
-                min="12"
-                step="1"
-                value={profileDraft.sessionPrice}
-                onChange={(event) =>
-                  setProfileDraft((current) => ({
-                    ...current,
-                    sessionPrice: Math.max(12, parseInt(event.target.value) || 12),
-                  }))
-                }
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none"
-              />
-            </div>
+            {!isLearnerOnly && (
+              <div>
+                <label className="text-xs text-gray-400 font-semibold block mb-1">Session Rate (Gems)</label>
+                <input
+                  type="number"
+                  min="12"
+                  step="1"
+                  value={profileDraft.sessionPrice}
+                  onChange={(event) =>
+                    setProfileDraft((current) => ({
+                      ...current,
+                      sessionPrice: Math.max(12, parseInt(event.target.value) || 12),
+                    }))
+                  }
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none"
+                />
+              </div>
+            )}
             <div className="col-span-1 md:col-span-2">
               <label className="text-xs text-gray-400 font-semibold block mb-1.5">Account Mode Preference</label>
               <div className="grid grid-cols-3 gap-2">
@@ -214,9 +220,11 @@ export default function ProfileWorkspace() {
           <article className="glass-panel rounded-3xl p-8 flex flex-col gap-6">
             <div>
               <p className="page-kicker">SKILLS BENTO</p>
-              <h2 className="text-2xl font-bold text-white">Skills Exchange</h2>
+              <h2 className="text-2xl font-bold text-white">
+                {isLearnerOnly ? "Learning Goals" : "Skills Exchange"}
+              </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className={`grid gap-4 ${isLearnerOnly ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
               <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
                 <span className="text-xs font-bold text-white uppercase tracking-wider block mb-3">
                   Wants to Learn
@@ -238,26 +246,28 @@ export default function ProfileWorkspace() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                <span className="text-xs font-bold text-white uppercase tracking-wider block mb-3">
-                  Teaches & Mentors
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {account?.teachSkills.length ? (
-                    account.teachSkills.map((skill) => (
-                      <button
-                        key={skill}
-                        onClick={() => navigate(`/skills/${slug(skill)}`)}
-                        className="text-xs px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
-                      >
-                        {skill}
-                      </button>
-                    ))
-                  ) : (
-                    <p className="text-xs text-gray-500">No teaching skills listed.</p>
-                  )}
+              {!isLearnerOnly && (
+                <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                  <span className="text-xs font-bold text-white uppercase tracking-wider block mb-3">
+                    Teaches & Mentors
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {account?.teachSkills.length ? (
+                      account.teachSkills.map((skill) => (
+                        <button
+                          key={skill}
+                          onClick={() => navigate(`/skills/${slug(skill)}`)}
+                          className="text-xs px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
+                        >
+                          {skill}
+                        </button>
+                      ))
+                    ) : (
+                      <p className="text-xs text-gray-500">No teaching skills listed.</p>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </article>
 

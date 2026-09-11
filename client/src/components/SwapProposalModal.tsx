@@ -22,10 +22,12 @@ export function SwapProposalModal({
   const { proposeBarterSwap, book, state, claimStarterReward } = useSkillSwap();
   const { account } = useAccount();
 
+  const isLearnerOnly = account?.mode === "learn";
   // Mode defaults: If user is "learn" (Learners Only), default to "gems"; otherwise "trade"
   const [bookingType, setBookingType] = useState<"trade" | "gems">(
-    account?.mode === "learn" ? "gems" : "trade"
+    isLearnerOnly ? "gems" : "trade"
   );
+  const effectiveBookingType = isLearnerOnly ? "gems" : bookingType;
   const sessionPrice = partner.price ?? 6;
   const walletGems = state.wallet ?? 0;
   const hasEnoughGems = walletGems >= sessionPrice;
@@ -102,7 +104,7 @@ export function SwapProposalModal({
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <span className="text-[11px] font-bold text-white bg-white/10 border border-white/20 px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
-                {bookingType === "gems" ? (
+                {effectiveBookingType === "gems" ? (
                   <>
                     <Gem size={12} className="text-white fill-white" /> Learners Mode · Direct Booking
                   </>
@@ -112,12 +114,12 @@ export function SwapProposalModal({
                   </>
                 )}
               </span>
-              {bookingType === "trade" && (
+              {effectiveBookingType === "trade" && (
                 <span className="text-xs text-gray-400">Step {step} of 5</span>
               )}
             </div>
             <h2 className="text-2xl font-black text-white tracking-tight">
-              {bookingType === "gems"
+              {effectiveBookingType === "gems"
                 ? `Book Session with ${partner.name}`
                 : `Propose Swap with ${partner.name}`}
             </h2>
@@ -131,36 +133,38 @@ export function SwapProposalModal({
           </button>
         </div>
 
-        {/* Booking Option Switcher: Trade Skill vs Book with Gems */}
-        <div className="grid grid-cols-2 p-1 rounded-2xl bg-white/10 border border-white/15 gap-1">
-          <button
-            type="button"
-            onClick={() => setBookingType("trade")}
-            className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              bookingType === "trade"
-                ? "bg-white text-black shadow-md font-black"
-                : "text-gray-300 hover:text-white"
-            }`}
-          >
-            <Zap size={13} className={bookingType === "trade" ? "fill-black text-black" : "text-gray-400"} />
-            <span>⇄ Trade Skill (0 Gems)</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setBookingType("gems")}
-            className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              bookingType === "gems"
-                ? "bg-white text-black shadow-md font-black"
-                : "text-gray-300 hover:text-white"
-            }`}
-          >
-            <Gem size={13} className={bookingType === "gems" ? "fill-black text-black" : "text-gray-400"} />
-            <span>💎 Book with Gems ({sessionPrice} Gems)</span>
-          </button>
-        </div>
+        {/* Booking Option Switcher: Trade Skill vs Book with Gems (Hidden for Learners) */}
+        {!isLearnerOnly && (
+          <div className="grid grid-cols-2 p-1 rounded-2xl bg-white/10 border border-white/15 gap-1">
+            <button
+              type="button"
+              onClick={() => setBookingType("trade")}
+              className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                effectiveBookingType === "trade"
+                  ? "bg-white text-black shadow-md font-black"
+                  : "text-gray-300 hover:text-white"
+              }`}
+            >
+              <Zap size={13} className={effectiveBookingType === "trade" ? "fill-black text-black" : "text-gray-400"} />
+              <span>⇄ Trade Skill (0 Gems)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setBookingType("gems")}
+              className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                effectiveBookingType === "gems"
+                  ? "bg-white text-black shadow-md font-black"
+                  : "text-gray-300 hover:text-white"
+              }`}
+            >
+              <Gem size={13} className={effectiveBookingType === "gems" ? "fill-black text-black" : "text-gray-400"} />
+              <span>💎 Book with Gems ({sessionPrice} Gems)</span>
+            </button>
+          </div>
+        )}
 
         {/* Content based on bookingType */}
-        {bookingType === "gems" ? (
+        {effectiveBookingType === "gems" ? (
           /* =========================================================================
              LEARNERS ONLY / DIRECT GEMS BOOKING FLOW
              ========================================================================= */

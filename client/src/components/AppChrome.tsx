@@ -150,29 +150,45 @@ export function AppChrome({ children }: { children: ReactNode }) {
     go("/");
   };
 
-  const navLinks = [
-    { href: "/dashboard", label: "Home", icon: Home },
-    { href: "/discover", label: "Discover", icon: Compass },
-    { href: "/professionals", label: "Mentors", icon: UsersRound },
-    { href: "/matches", label: "Matches", icon: Zap },
-    { href: "/teach", label: "Studio", icon: GraduationCap },
-    { href: "/sessions", label: "Sessions", icon: PanelsTopLeft },
-    { href: "/community", label: "Community", icon: Sparkles },
-  ];
+  const isLearnerOnly = account?.mode === "learn";
 
-  const fullDrawerLinks = [
-    { href: "/dashboard", label: "Home", icon: Home },
-    { href: "/discover", label: "Discover", icon: Compass },
-    { href: "/matches", label: "Instant Matches", icon: Zap },
-    { href: "/sessions", label: "My Sessions", icon: PanelsTopLeft },
-    { href: "/teach", label: "Teaching Studio", icon: GraduationCap },
-    { href: "/wallet", label: "Skills Wallet", icon: Gem },
-    { href: "/professionals", label: "Mentors", icon: UsersRound },
-    { href: "/messages", label: "Messages", icon: MessageCircle },
-    { href: "/community", label: "Community", icon: Sparkles },
-    { href: "/profile", label: "Profile", icon: UserRound },
-    { href: "/settings", label: "Settings", icon: Settings },
-  ];
+  const navLinks = useMemo(() => {
+    const links = [
+      { href: "/dashboard", label: "Home", icon: Home },
+      { href: "/discover", label: "Discover", icon: Compass },
+      { href: "/professionals", label: "Mentors", icon: UsersRound },
+    ];
+    if (!isLearnerOnly) {
+      links.push({ href: "/matches", label: "Matches", icon: Zap });
+      links.push({ href: "/teach", label: "Studio", icon: GraduationCap });
+    }
+    links.push({ href: "/sessions", label: "Sessions", icon: PanelsTopLeft });
+    links.push({ href: "/community", label: "Community", icon: Sparkles });
+    return links;
+  }, [isLearnerOnly]);
+
+  const fullDrawerLinks = useMemo(() => {
+    const links = [
+      { href: "/dashboard", label: "Home", icon: Home },
+      { href: "/discover", label: "Discover", icon: Compass },
+    ];
+    if (!isLearnerOnly) {
+      links.push({ href: "/matches", label: "Instant Matches", icon: Zap });
+    }
+    links.push({ href: "/sessions", label: "My Sessions", icon: PanelsTopLeft });
+    if (!isLearnerOnly) {
+      links.push({ href: "/teach", label: "Teaching Studio", icon: GraduationCap });
+    }
+    links.push(
+      { href: "/wallet", label: "Skills Wallet", icon: Gem },
+      { href: "/professionals", label: "Mentors", icon: UsersRound },
+      { href: "/messages", label: "Messages", icon: MessageCircle },
+      { href: "/community", label: "Community", icon: Sparkles },
+      { href: "/profile", label: "Profile", icon: UserRound },
+      { href: "/settings", label: "Settings", icon: Settings }
+    );
+    return links;
+  }, [isLearnerOnly]);
 
 
   return (
@@ -214,7 +230,7 @@ export function AppChrome({ children }: { children: ReactNode }) {
           ? "bg-white/90 border-black/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
           : "bg-black/75 border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.6),inset_0_-1px_0_rgba(255,255,255,0.08)]"
       }`} style={{ paddingTop: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}>
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-12 sm:h-14 flex items-center justify-between gap-2 sm:gap-3">
+        <div className="w-full px-2 sm:px-4 lg:px-6 h-12 sm:h-14 flex items-center justify-between gap-1.5 sm:gap-2.5">
           {/* Mobile Menu & Logo */}
           <div className="flex items-center gap-2 shrink-0">
             <button
@@ -443,24 +459,26 @@ export function AppChrome({ children }: { children: ReactNode }) {
               <span className={`hidden sm:inline text-[11px] font-semibold ${resolvedTheme === "light" ? "text-black" : "text-white"}`}>Credits</span>
             </Link>
 
-            {/* Quick Teach Skill Action */}
-            <button
-              type="button"
-              onClick={() => setQuickTeachOpen(true)}
-              title="Teach a Skill (Alt+T)"
-              className="quick-teach-btn flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all border border-white/40 bg-white text-black hover:bg-zinc-200 shadow-[0_0_14px_rgba(255,255,255,0.25)]"
-              aria-label="Teach a skill"
-            >
-              <GraduationCap size={14} className="shrink-0" />
-              <span className="hidden min-[420px]:inline font-extrabold">+ Teach</span>
-              <span className="hidden xl:inline text-[9px] font-mono opacity-60 ml-0.5 uppercase tracking-wider px-1 py-0.5 rounded bg-black/10 text-black">
-                Alt+T
-              </span>
-            </button>
+            {/* Quick Teach Skill Action (Removed for Learners Only) */}
+            {!isLearnerOnly && (
+              <button
+                type="button"
+                onClick={() => setQuickTeachOpen(true)}
+                title="Teach a Skill (Alt+T)"
+                className="quick-teach-btn flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all border border-white/40 bg-white text-black hover:bg-zinc-200 shadow-[0_0_14px_rgba(255,255,255,0.25)] shrink-0"
+                aria-label="Teach a skill"
+              >
+                <GraduationCap size={14} className="shrink-0" />
+                <span className="hidden min-[420px]:inline font-extrabold">+ Teach</span>
+                <span className="hidden xl:inline text-[9px] font-mono opacity-60 ml-0.5 uppercase tracking-wider px-1 py-0.5 rounded bg-black/10 text-black">
+                  Alt+T
+                </span>
+              </button>
+            )}
 
             {/* Notification Hub Trigger */}
             <button
-              className={`notification-button p-1.5 sm:p-2 rounded-xl border transition-colors relative ${
+              className={`notification-button p-1.5 sm:p-2 rounded-xl border transition-colors relative shrink-0 ${
                 resolvedTheme === "light"
                   ? "text-black hover:bg-black/5 border-black/20"
                   : "text-white hover:bg-white/15 border-white/25"
@@ -478,9 +496,9 @@ export function AppChrome({ children }: { children: ReactNode }) {
 
             {/* Profile Menu Trigger */}
             {account ? (
-              <div className="profile-menu-wrap relative">
+              <div className="profile-menu-wrap relative shrink-0">
                 <button
-                  className="profile-trigger flex items-center gap-1 p-0.5 rounded-lg hover:bg-white/[0.04] transition-colors"
+                  className="profile-trigger flex items-center gap-1 p-0.5 rounded-lg hover:bg-white/[0.04] transition-colors shrink-0"
                   onClick={() => setProfileOpen((value) => !value)}
                   aria-expanded={profileOpen}
                   aria-controls="profile-navigation-menu"
@@ -787,21 +805,23 @@ export function AppChrome({ children }: { children: ReactNode }) {
 
         <div className={`mt-auto pt-3 border-t flex flex-col gap-2.5 ${resolvedTheme === "light" ? "border-black/10" : "border-white/10"}`}>
           {/* Quick Teach in mobile drawer */}
-          <button
-            type="button"
-            onClick={() => {
-              closeMenus();
-              setQuickTeachOpen(true);
-            }}
-            className={`w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors shadow ${
-              resolvedTheme === "light"
-                ? "bg-black text-white hover:bg-zinc-800"
-                : "bg-white text-black hover:bg-zinc-200"
-            }`}
-          >
-            <GraduationCap size={16} />
-            <span>+ Teach a Skill</span>
-          </button>
+          {!isLearnerOnly && (
+            <button
+              type="button"
+              onClick={() => {
+                closeMenus();
+                setQuickTeachOpen(true);
+              }}
+              className={`w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-colors shadow ${
+                resolvedTheme === "light"
+                  ? "bg-black text-white hover:bg-zinc-800"
+                  : "bg-white text-black hover:bg-zinc-200"
+              }`}
+            >
+              <GraduationCap size={16} />
+              <span>+ Teach a Skill</span>
+            </button>
+          )}
 
           {account && (
             <button
@@ -848,18 +868,27 @@ export function AppChrome({ children }: { children: ReactNode }) {
         }}
         aria-label="Mobile navigation"
       >
-        {[
-          { href: "/dashboard", label: "Home", icon: Home },
-          { href: "/discover", label: "Discover", icon: Compass },
-          {
-            href: "/matches",
-            label: "Matches",
-            icon: Zap,
-            badge: (state.barterProposals || []).filter((p) => p.status === "Proposed").length,
-          },
-          { href: "/messages", label: "Messages", icon: MessageCircle },
-          { href: "/profile", label: "Profile", icon: UserRound },
-        ].map((item) => {
+        {(isLearnerOnly
+          ? [
+              { href: "/dashboard", label: "Home", icon: Home },
+              { href: "/discover", label: "Discover", icon: Compass },
+              { href: "/professionals", label: "Mentors", icon: UsersRound },
+              { href: "/messages", label: "Messages", icon: MessageCircle },
+              { href: "/profile", label: "Profile", icon: UserRound },
+            ]
+          : [
+              { href: "/dashboard", label: "Home", icon: Home },
+              { href: "/discover", label: "Discover", icon: Compass },
+              {
+                href: "/matches",
+                label: "Matches",
+                icon: Zap,
+                badge: (state.barterProposals || []).filter((p) => p.status === "Proposed").length,
+              },
+              { href: "/messages", label: "Messages", icon: MessageCircle },
+              { href: "/profile", label: "Profile", icon: UserRound },
+            ]
+        ).map((item) => {
           const Icon = item.icon;
           const active = item.href === "/dashboard" ? location === "/dashboard" : location.startsWith(item.href);
           return (
