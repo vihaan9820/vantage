@@ -171,6 +171,30 @@ export default function ProfileWorkspace() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none"
               />
             </div>
+            <div className="col-span-1 md:col-span-2">
+              <label className="text-xs text-gray-400 font-semibold block mb-1.5">Account Mode Preference</label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: "both", label: "Barter (Both)", desc: "1:1 mutual swaps & Gems" },
+                  { id: "learn", label: "Learner Only", desc: "Book mentors with Gems" },
+                  { id: "teach", label: "Mentor Only", desc: "Teach & earn Gems" },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setProfileDraft((curr) => ({ ...curr, mode: item.id as any }))}
+                    className={`p-3 rounded-xl border text-left transition-all ${
+                      profileDraft.mode === item.id
+                        ? "bg-white text-black border-white shadow-md font-bold"
+                        : "bg-white/5 border-white/10 text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    <span className="text-xs block font-bold">{item.label}</span>
+                    <span className="text-[10px] block opacity-70 mt-0.5">{item.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex gap-3">
             <button className="primary-action text-xs px-6" onClick={saveProfile}>

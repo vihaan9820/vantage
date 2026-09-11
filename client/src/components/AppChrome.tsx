@@ -4,6 +4,7 @@ import {
   BookOpen,
   ChevronDown,
   ChevronRight,
+  Check,
   Compass,
   Gem,
   GraduationCap,
@@ -89,10 +90,11 @@ export function AppChrome({ children }: { children: ReactNode }) {
   const [notificationTab, setNotificationTab] = useState("All");
 
   const { state } = useSkillSwap();
-  const { account, signOut, settings, updateSettings } = useAccount();
+  const { account, signOut, settings, updateSettings, updateProfile } = useAccount();
   const { theme } = useTheme();
   const resolvedTheme = theme;
   const [quickTeachOpen, setQuickTeachOpen] = useState(false);
+  const [modeMenuOpen, setModeMenuOpen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
 
   // Studio signature entrance & scroll reveal animation across all pages
@@ -134,6 +136,7 @@ export function AppChrome({ children }: { children: ReactNode }) {
     setMobileOpen(false);
     setMoreOpen(false);
     setProfileOpen(false);
+    setModeMenuOpen(false);
   };
 
   const go = (href: string) => {
@@ -310,6 +313,121 @@ export function AppChrome({ children }: { children: ReactNode }) {
 
           {/* Right Header Controls: Credits + Notifications + Profile */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Mode Switcher Pill */}
+            {account && (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setModeMenuOpen((v) => !v)}
+                  className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl text-xs font-bold transition-all border ${
+                    account.mode === "learn"
+                      ? "bg-sky-500/15 text-sky-300 border-sky-400/30 hover:bg-sky-500/25"
+                      : account.mode === "teach"
+                      ? "bg-amber-500/15 text-amber-300 border-amber-400/30 hover:bg-amber-500/25"
+                      : resolvedTheme === "light"
+                      ? "bg-black/5 hover:bg-black/10 text-black border-black/20"
+                      : "bg-white/10 hover:bg-white/20 text-white border-white/25"
+                  }`}
+                  title="Change Account Mode (Learner Only, Mentor Only, Barter)"
+                  aria-label="Change account mode"
+                >
+                  {account.mode === "learn" ? (
+                    <>
+                      <Gem size={12} className="text-sky-400 fill-sky-400 shrink-0" />
+                      <span className="hidden sm:inline font-bold">Learner</span>
+                      <span className="text-[10px] text-sky-400/80 font-mono hidden md:inline">(Gems)</span>
+                    </>
+                  ) : account.mode === "teach" ? (
+                    <>
+                      <GraduationCap size={13} className="text-amber-400 shrink-0" />
+                      <span className="hidden sm:inline font-bold">Mentor</span>
+                      <span className="text-[10px] text-amber-400/80 font-mono hidden md:inline">(Earn)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Zap size={12} className="shrink-0" />
+                      <span className="hidden sm:inline font-bold">Barter</span>
+                      <span className="text-[10px] text-zinc-400 font-mono hidden md:inline">(Both)</span>
+                    </>
+                  )}
+                  <ChevronDown size={11} className="opacity-70 ml-0.5" />
+                </button>
+
+                {modeMenuOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-2 w-64 rounded-2xl bg-black border border-white/20 shadow-2xl p-2 z-50 flex flex-col gap-1 animate-popover"
+                    onClick={() => setModeMenuOpen(false)}
+                  >
+                    <div className="px-2.5 py-1.5 border-b border-white/10 mb-0.5">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-400 block">
+                        Account Mode Preference
+                      </span>
+                      <p className="text-[11px] text-zinc-300 mt-0.5">
+                        Choose how you interact with mentors and swap sessions.
+                      </p>
+                    </div>
+
+                    {[
+                      {
+                        id: "learn" as const,
+                        label: "Learners Only",
+                        sub: "Pay with Gems · No skill trade required",
+                        icon: Gem,
+                        activeColor: "text-sky-400",
+                      },
+                      {
+                        id: "teach" as const,
+                        label: "Mentors Only",
+                        sub: "Offer your skills · Earn Gems teaching",
+                        icon: GraduationCap,
+                        activeColor: "text-amber-400",
+                      },
+                      {
+                        id: "both" as const,
+                        label: "Barter Mode",
+                        sub: "1:1 mutual skill trade & Gems both active",
+                        icon: Zap,
+                        activeColor: "text-white",
+                      },
+                    ].map((item) => {
+                      const isSelected = account.mode === item.id;
+                      const Icon = item.icon;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => {
+                            updateProfile({ mode: item.id });
+                            if (item.id === "learn") {
+                              toast.success("🎓 Switched to Learners Only Mode! You can now book any mentor directly using Gems.");
+                            } else if (item.id === "teach") {
+                              toast.success("💡 Switched to Mentors Only Mode! Focus on listing offerings and earning Gems.");
+                            } else {
+                              toast.success("⇄ Switched to Barter Mode! 1:1 mutual skill trades and Gems are both active.");
+                            }
+                          }}
+                          className={`w-full text-left p-2 rounded-xl transition-all flex items-start justify-between gap-2 ${
+                            isSelected
+                              ? "bg-white/15 text-white border border-white/20 font-bold"
+                              : "hover:bg-white/5 text-zinc-300 border border-transparent"
+                          }`}
+                        >
+                          <div className="flex items-start gap-2 min-w-0">
+                            <Icon size={14} className={`shrink-0 mt-0.5 ${isSelected ? item.activeColor : "text-zinc-400"}`} />
+                            <div>
+                              <strong className="text-xs block leading-tight">{item.label}</strong>
+                              <small className="text-[10px] text-zinc-400 block mt-0.5 font-normal">{item.sub}</small>
+                            </div>
+                          </div>
+                          {isSelected && <Check size={14} className="text-white shrink-0 mt-0.5" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* TimeBank Swap Credits Badge */}
             <Link
               href="/wallet"
@@ -563,6 +681,46 @@ export function AppChrome({ children }: { children: ReactNode }) {
                 </small>
               </div>
             </div>
+            <div className="flex flex-col gap-1.5 pt-1.5 border-t border-white/10">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                Mode:
+              </span>
+              <div className="grid grid-cols-3 gap-1">
+                {[
+                  { id: "learn" as const, label: "Learner", icon: Gem },
+                  { id: "teach" as const, label: "Mentor", icon: GraduationCap },
+                  { id: "both" as const, label: "Barter", icon: Zap },
+                ].map((item) => {
+                  const isSelected = account.mode === item.id;
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        updateProfile({ mode: item.id });
+                        if (item.id === "learn") {
+                          toast.success("🎓 Switched to Learners Only Mode!");
+                        } else if (item.id === "teach") {
+                          toast.success("💡 Switched to Mentors Only Mode!");
+                        } else {
+                          toast.success("⇄ Switched to Barter Mode!");
+                        }
+                      }}
+                      className={`p-1.5 rounded-lg text-center flex flex-col items-center gap-0.5 transition-all text-[11px] font-bold border ${
+                        isSelected
+                          ? "bg-white text-black border-white shadow-sm font-black"
+                          : "bg-white/5 text-zinc-400 border-white/10 hover:text-white"
+                      }`}
+                    >
+                      <Icon size={12} className={isSelected ? "text-black fill-black" : "text-zinc-400"} />
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <Link
               href="/wallet"
               onClick={closeMenus}

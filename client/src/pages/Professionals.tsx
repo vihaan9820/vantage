@@ -1,7 +1,8 @@
-import { ArrowRight, BadgeCheck, Check, Heart, MapPin, MessageCircle, Search, SlidersHorizontal, Star, UsersRound, Zap } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check, Gem, Heart, MapPin, MessageCircle, Search, SlidersHorizontal, Star, UsersRound, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { professionals, useSkillSwap, type Professional } from "@/contexts/SkillSwapContext";
+import { useAccount } from "@/contexts/AccountContext";
 import { toast } from "sonner";
 import { SwapProposalModal } from "@/components/SwapProposalModal";
 import { PageSEO } from "@/components/PageSEO";
@@ -19,6 +20,7 @@ function ProfessionalCard({
 }) {
   const [, navigate] = useLocation();
   const { state, selectProfessional, toggleSave, book } = useSkillSwap();
+  const { account } = useAccount();
   const saved = state.savedIds.includes(professional.id);
 
   const chat = () => {
@@ -133,8 +135,17 @@ function ProfessionalCard({
               style={{ backgroundColor: "#E4E4E7", color: "#000000", border: "1px solid #E4E4E7" }}
               className="primary-action trade-skill-btn propose-swap-btn bg-[#E4E4E7] text-black hover:bg-zinc-300 active:bg-zinc-400 rounded-lg text-xs font-bold py-2 px-3 text-center justify-center col-span-2 flex items-center gap-1.5 shadow-sm transition-all cursor-pointer border border-[#E4E4E7]"
             >
-              <Zap size={13} className="text-black fill-black shrink-0" style={{ color: "#000000", fill: "#000000" }} />
-              <span style={{ color: "#000000", fontWeight: 800 }}>Trade Skill</span>
+              {account?.mode === "learn" ? (
+                <>
+                  <Gem size={13} className="text-black fill-black shrink-0" style={{ color: "#000000", fill: "#000000" }} />
+                  <span style={{ color: "#000000", fontWeight: 800 }}>Book (💎 {professional.price} Gems)</span>
+                </>
+              ) : (
+                <>
+                  <Zap size={13} className="text-black fill-black shrink-0" style={{ color: "#000000", fill: "#000000" }} />
+                  <span style={{ color: "#000000", fontWeight: 800 }}>Trade Skill</span>
+                </>
+              )}
             </button>
             <Link
               href={`/professionals/${professional.id}`}

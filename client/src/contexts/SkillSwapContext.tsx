@@ -898,7 +898,31 @@ export function SkillSwapProvider({ children, accountId }: { children: ReactNode
     }),
     book: (professionalId, time, points = professionals.find((item) => item.id === professionalId)?.price ?? 6, skill = professionals.find((item) => item.id === professionalId)?.primarySkill ?? "Skill session") => {
       if (!canReserveSession(state, points)) return false;
-      setState((current) => { const balance = current.wallet - points; return { ...current, wallet: balance, starterPoints: Math.max(0, current.starterPoints - points), sessions: [...current.sessions, { id: `session-${Date.now()}`, professionalId, skill, time, points, status: "upcoming" }], transactions: [{ id: `hold-${Date.now()}`, type: "Session Hold", amount: -points, balance, date: Date.now(), status: "Held" }, ...current.transactions], notifications: [`${skill} session confirmed`, ...current.notifications] }; });
+      const pro = professionals.find((item) => item.id === professionalId);
+      const roomUrl = `https://meet.skillswap.pro/room-${professionalId}-${Math.floor(1000 + Math.random() * 9000)}`;
+      setState((current) => {
+        const balance = current.wallet - points;
+        const newSession: Session = {
+          id: `session-${Date.now()}`,
+          professionalId,
+          skill,
+          time,
+          points,
+          status: "upcoming",
+          roomUrl,
+          partnerName: pro?.name,
+          partnerAvatar: pro?.avatar,
+          partnerAccent: pro?.accent,
+        };
+        return {
+          ...current,
+          wallet: balance,
+          starterPoints: Math.max(0, current.starterPoints - points),
+          sessions: [newSession, ...current.sessions],
+          transactions: [{ id: `hold-${Date.now()}`, type: "Session Hold", amount: -points, balance, date: Date.now(), status: "Held" }, ...current.transactions],
+          notifications: [`${skill} session confirmed with ${pro?.name || "mentor"}`, ...current.notifications],
+        };
+      });
       return true;
     },
     rescheduleSession: (sessionId, time) => {
@@ -1010,18 +1034,43 @@ export function SkillSwapProvider({ children, accountId }: { children: ReactNode
       }));
     },
     proposeBarterSwap: (proposal) => {
+      const proposalId = `barter-${Date.now()}`;
+      const scheduledTime = proposal.slot || "Tomorrow · 6:00 PM";
+      const roomUrl = `https://meet.skillswap.pro/room-${proposal.partnerId}-${Math.floor(1000 + Math.random() * 9000)}`;
+
       const newProposal: BarterProposal = {
         ...proposal,
-        id: `barter-${Date.now()}`,
+        id: proposalId,
         createdAt: Date.now(),
-        status: "Proposed",
+        status: "Session Scheduled",
+        scheduledTime,
+        roomUrl,
         direction: "outgoing",
       };
+
+      const barterSession: Session = {
+        id: `session-barter-${proposalId}`,
+        professionalId: proposal.partnerId,
+        skill: proposal.requestSkill,
+        time: scheduledTime,
+        points: 0,
+        status: "upcoming",
+        roomUrl,
+        isBarter: true,
+        format: proposal.format,
+        partnerName: proposal.partnerName,
+        partnerAvatar: proposal.partnerAvatar,
+        partnerAccent: proposal.partnerAccent,
+        offerSkill: proposal.offerSkill,
+        proposalId,
+      };
+
       setState((current) => ({
         ...current,
         barterProposals: [newProposal, ...(current.barterProposals || [])],
+        sessions: [barterSession, ...(current.sessions || [])],
         notifications: [
-          `⇄ Barter Proposal sent to ${proposal.partnerName} (${proposal.requestSkill} ⇄ ${proposal.offerSkill}).`,
+          `📅 Trade skill session with ${proposal.partnerName} scheduled for ${scheduledTime}! Added to your Sessions timeline.`,
           ...current.notifications,
         ],
       }));
